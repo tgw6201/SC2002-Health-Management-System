@@ -1,3 +1,4 @@
+package InformationAccess;
 import java.util.ArrayList;
 
 public class InformationAccessManager implements InformationAccess{
