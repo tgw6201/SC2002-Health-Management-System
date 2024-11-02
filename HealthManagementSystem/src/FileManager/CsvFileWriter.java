@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.FileWriter;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -33,8 +34,9 @@ public class CsvFileWriter implements dataWriter {
         }
         
         data.get(row)[col] = newData;
-        
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter("FileManager/Data/" + fileName))) {
+
+        String absolutePath = new File("").getAbsolutePath() + "\\" + fileName;
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(absolutePath))) {
             for (String[] rowValues : data) {
                 StringBuilder sb = new StringBuilder();
                 for (String value : rowValues) {

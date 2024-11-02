@@ -16,7 +16,7 @@ public class FileLogger implements Logger {
         this.fileName = fileName;
         try {
             Path currPath = Paths.get("").toAbsolutePath();
-            this.dirName = currPath.toString() + "/Logger/logs"; // Path to the logs directory
+            this.dirName = currPath.toString() + "../src/Logger/logs/"; // Path to the logs directory
             File logDir = new File(dirName);
             if (!logDir.exists()) {
                 logDir.mkdirs(); // Create the logs directory if it doesn't exist
