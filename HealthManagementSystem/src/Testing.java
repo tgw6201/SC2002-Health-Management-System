@@ -1,19 +1,13 @@
-import InformationAccess.InformationAccessManager;
-import Logger.FileLogger;
-import userLogin.UserLoginServices;
-
-import java.io.FileReader;
-import java.util.List;
-import java.util.Scanner;
-
-import FileManager.CsvFileReader;
-import FileManager.CsvFileWriter;
+import Inventory.*;
 
 public class Testing {
     public static void main(String[] args) {
         
-        CsvFileWriter csvFileWriter = new CsvFileWriter();
-        csvFileWriter.writeData("Medicine_List.csv", "2", "1", "50");
+        InventoryManagement inventoryManagement = new InventoryManagement();
+        inventoryManagement.restockItems("Amoxicillin", 50);
+        
+        //CsvFileWriter csvFileWriter = new CsvFileWriter();
+        //csvFileWriter.writeData("Medicine_List.csv", "3", "1", "150");
         /* 
         String username;
         String password;
