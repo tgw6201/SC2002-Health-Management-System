@@ -14,10 +14,7 @@ public class InventoryManagement {
     }
 
     public void viewItems() {
-        // Start from the second row if the first row is a header
-
-        System.out.println("Viewing Medicine Inventory.... \n");
-
+        System.out.println("\nViewing Medicine Inventory.... \n");
         for (int i = 1; i < inventoryData.size(); i++) {
             String[] row = inventoryData.get(i);
             for (String cell : row) {
@@ -28,10 +25,7 @@ public class InventoryManagement {
     }
 
     public boolean restockItems(String medsName, int quantity) {
-        // Start from the second row if the first row is a header
-
-        System.out.println("Restocking " + medsName + "....\n");
-
+        System.out.println("\nRestocking " + medsName + "....\n");
         for (int i = 1; i < inventoryData.size(); i++) {
             String[] row = inventoryData.get(i);
             try {
@@ -40,6 +34,10 @@ public class InventoryManagement {
                     initialQuantity += quantity;
                     row[1] = String.valueOf(initialQuantity);  // Update the quantity in the list
                     System.out.println("Updated quantity of " + medsName + " to " + row[1]);
+
+                    // Write the update to the CSV file
+                    csvFileWriter.writeData("Medicine_List.csv", i, 1, row[1]);
+
                     return true;
                 }
             } catch (NumberFormatException e) {
@@ -51,10 +49,7 @@ public class InventoryManagement {
     }
 
     public boolean dispenseItems(String medsName, int quantity) {
-
-        System.out.println("Dispensing" + medsName + "....\n");
-
-        // Start from the second row if the first row is a header
+        System.out.println("\nDispensing " + medsName + "....\n");
         for (int i = 1; i < inventoryData.size(); i++) {
             String[] row = inventoryData.get(i);
             try {
@@ -65,6 +60,10 @@ public class InventoryManagement {
                         row[1] = String.valueOf(initialQuantity);
                         System.out.println("Dispensed " + quantity + " of " + medsName);
                         System.out.println("Updated quantity of " + medsName + " to " + row[1]);
+
+                        // Write the update to the CSV file
+                        csvFileWriter.writeData("Medicine_List.csv", i, 1, row[1]);
+
                         return true;
                     } else {
                         System.out.println("Not enough stock to dispense " + quantity + " of " + medsName);
@@ -80,10 +79,7 @@ public class InventoryManagement {
     }
 
     public void checkLowStock() {
-
-        System.out.println("Checking stock....\n");
-
-        // Start from the second row if the first row is a header
+        System.out.println("\n Checking stock....\n");
         for (int i = 1; i < inventoryData.size(); i++) {
             String[] row = inventoryData.get(i);
             try {
