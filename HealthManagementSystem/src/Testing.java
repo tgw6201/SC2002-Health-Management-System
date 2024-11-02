@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Testing {
     public static void main(String[] args) {
 
+        /* 
         String username;
         String password;
         Scanner sc = new Scanner(System.in);
@@ -22,17 +23,16 @@ public class Testing {
         boolean login = userLoginServices.login(username, password);
         System.out.println("Login Status:" + login);
         System.out.println("Role: " + userLoginServices.getRole());
-
+        
         
         
         //when patient is accessing information
         InformationAccessManager AccessManager = new InformationAccessManager();
         boolean x = AccessManager.checkInformationAccess("Blood Type");
         System.out.println(x);
-
+        */
         //Testing of CSV File reader
 
-        /*
         CsvFileReader csvFileReader = new CsvFileReader();
         List<String[]> data = csvFileReader.readData("User_Accounts.csv");
 
@@ -57,6 +57,5 @@ public class Testing {
             System.out.print(cell[0] + ",");
         } 
 
-        */
     }
 }

@@ -1,6 +1,8 @@
 package FileReader;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -9,14 +11,14 @@ public class CsvFileReader implements FileReader {
     public List<String[]> readData(String fileName) {
         //read data from csv file
         List<String[]> data = new ArrayList<>();
-        String fullFilePath = "./FileReader/Data/" + fileName;
-        File file  = new File(fullFilePath);
-        if (!file.exists()) {
-            System.out.println("File not found");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileReader/Data/" + fileName);
+        
+        if (inputStream == null) {
+            System.out.println("File not found in resources: " + fileName);
             return data;
         }
         System.out.println("Reading data from csv file");
-        try(BufferedReader br = new BufferedReader(new java.io.FileReader(fullFilePath))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
 
             while ((line = br.readLine()) != null) {
@@ -35,14 +37,14 @@ public class CsvFileReader implements FileReader {
         //read row from csv file
         List<String[]> data = new ArrayList<>();
         int row = Integer.parseInt(rowIndex);
-        String fullFilePath = "./FileReader/Data/" + fileName;
-        File file = new File(fullFilePath);
-        if (!file.exists()) {
-            System.out.println("File not found");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileReader/Data/" + fileName);
+        
+        if (inputStream == null) {
+            System.out.println("File not found in resources: " + fileName);
             return data;
         }
         System.out.println("Reading data from xlsx file");
-        try(BufferedReader br = new BufferedReader(new java.io.FileReader(fullFilePath))) {
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             int currRow = 0;
             String line;
             while ((line = br.readLine()) != null) {
@@ -66,14 +68,14 @@ public class CsvFileReader implements FileReader {
         //read column from csv file
         List<String[]> data = new ArrayList<>();
         int col = Integer.parseInt(column);
-        String fullFilePath = "./FileReader/Data/" + fileName;
-        File file = new File(fullFilePath);
-        if (!file.exists()) {
-            System.out.println("File not found");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileReader/Data/" + fileName);
+        
+        if (inputStream == null) {
+            System.out.println("File not found in resources: " + fileName);
             return data;
         }
         System.out.println("Reading data from xlsx file");
-        try(BufferedReader br = new BufferedReader(new java.io.FileReader(fullFilePath))) {
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
