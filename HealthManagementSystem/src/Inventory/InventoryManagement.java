@@ -24,16 +24,13 @@ public class InventoryManagement {
     public boolean restockItems(String medsName, int quantity){
         for (String[]row:inventoryData) {
             for(String cell:row){
-                System.out.println(cell + "\n");
                 if(row[0].equals(medsName)){
                     //csvFileWriter.writeData("Medicine_List.csv", "2", "1", "100");
 
-                    /*
                     int initialQuantity = Integer.parseInt(row[1]);
                     initialQuantity += quantity;
                     row[1] = String.valueOf(initialQuantity);  // Update the quantity in the list
                     System.out.println("Updated quantity of " + medsName + " to " + row[1]);
-                    */
                     return true;
                 }
             }
@@ -41,7 +38,24 @@ public class InventoryManagement {
         return false;
     }
 
-    public boolean dispenseItems(String medsName, int quantity){
+    public boolean dispenseItems(String medsName, int quantity) {
+        for (String[] row : inventoryData) {
+            for (String cell:row){
+                if (row[0].equals(medsName)){
+                    int initialQuantity = Integer.parseInt(row[1]);
+                    if (initialQuantity >= quantity) {
+                        initialQuantity -= quantity;
+                        row[1] = String.valueOf(initialQuantity);
+                        System.out.println("Dispensed " + quantity + " of " + medsName);
+                        System.out.println("Updated quantity of " + medsName + " to " + row[1]);
+                        return true;
+                    } else {
+                        System.out.println("Not enough stock to dispense " + quantity + " of " + medsName);
+                        return false;
+                    }
+                }
+            }
+        }
         return false;
     }
 }
