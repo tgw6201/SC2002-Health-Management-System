@@ -2,6 +2,7 @@ import InformationAccess.InformationAccessManager;
 import Logger.FileLogger;
 import userLogin.UserLoginServices;
 
+import java.io.File;
 import java.io.FileReader;
 import java.util.List;
 import java.util.Scanner;
@@ -9,11 +10,18 @@ import java.util.Scanner;
 import FileManager.CsvFileReader;
 import FileManager.CsvFileWriter;
 
+import Appointment.*;
+
 public class Testing {
     public static void main(String[] args) {
         
-        CsvFileWriter csvFileWriter = new CsvFileWriter();
-        csvFileWriter.writeData("Medicine_List.csv", 2, 1, "50");
+        AppointmentOutcomeManager manager = new AppointmentOutcomeManager();
+        manager.createAppointmentOutcome("P1001", "25/10/2024", "x-ray", "Paracetamol, Ibuprofen", "pending", "eat meds 3 times a day");
+        manager.viewPastRecords("P1001");
+        
+
+        //CsvFileWriter csvFileWriter = new CsvFileWriter();
+        //csvFileWriter.writeData("Medicine_List.csv", 2, 1, "50");
         /* 
         String username;
         String password;

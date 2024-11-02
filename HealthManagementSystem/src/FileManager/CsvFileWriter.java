@@ -34,7 +34,7 @@ public class CsvFileWriter implements dataWriter {
         data.get(rowIndex)[colIndex] = newData;
 
         //String absolutePath = new File("").getAbsolutePath() + "\\HealthManagementSystem\\src\\FileManager\\Data\\" + fileName;
-        String absolutePath = new File("").getAbsolutePath() + "\\FileManager\\Data\\" + fileName;
+        String absolutePath = new File("").getAbsolutePath() + "\\HealthManagementSystem\\src\\FileManager\\Data\\" + fileName;
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(absolutePath))) {
             for (String[] rowValues : data) {
                 StringBuilder sb = new StringBuilder();
@@ -50,5 +50,25 @@ public class CsvFileWriter implements dataWriter {
             e.printStackTrace();
             System.out.println("Error writing file");
         }
+    
 	}
+    
+    // New method to append a row to the CSV file
+    public void appendRow(String fileName, String[] newRow) {
+        String absolutePath = new File("").getAbsolutePath() + "\\HealthManagementSystem\\src\\FileManager\\Data\\" + fileName;
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(absolutePath, true))) { // Open in append mode
+            StringBuilder sb = new StringBuilder();
+            for (String value : newRow) {
+                sb.append(value).append(",");
+            }
+            sb.deleteCharAt(sb.length() - 1); // Remove the last comma
+            bw.write(sb.toString());
+            bw.newLine();
+            System.out.println("New row added to " + fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error writing new row to file");
+        }
+    }    
 }
