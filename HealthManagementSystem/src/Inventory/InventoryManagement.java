@@ -1,7 +1,9 @@
 package Inventory;
 
 import FileManager.*;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 public class InventoryManagement {
 
@@ -13,6 +15,7 @@ public class InventoryManagement {
         inventoryData = csvFileReader.readData("Medicine_List.csv");
     }
 
+    // Method to view all items in the inventory
     public void viewItems() {
         System.out.println("\nViewing Medicine Inventory.... \n");
         for (int i = 1; i < inventoryData.size(); i++) {
@@ -24,6 +27,7 @@ public class InventoryManagement {
         }
     }
 
+    // Method to restock items in the inventory
     public boolean restockItems(String medsName, int quantity) {
         System.out.println("\nRestocking " + medsName + "....\n");
         for (int i = 1; i < inventoryData.size(); i++) {
@@ -48,6 +52,7 @@ public class InventoryManagement {
         return false;
     }
 
+    // Method to dispense items from the inventory
     public boolean dispenseItems(String medsName, int quantity) {
         System.out.println("\nDispensing " + medsName + "....\n");
         for (int i = 1; i < inventoryData.size(); i++) {
@@ -78,6 +83,7 @@ public class InventoryManagement {
         return false;
     }
 
+    // Method to check low stock for each item
     public void checkLowStock() {
         System.out.println("\n Checking stock....\n");
         for (int i = 1; i < inventoryData.size(); i++) {
@@ -93,4 +99,17 @@ public class InventoryManagement {
             }
         }
     }
+
+    // Method to submit a replenishment request
+    public void submitReplenishmentRequest(String medsName, int quantityRequested, String requestedBy) {
+        UUID uuid = UUID.randomUUID();
+        LocalDate date = LocalDate.now();
+        String requestId = uuid.toString(); 
+        String dateRequested = date.toString(); // Implement this method to get the current date
+        String[] request = {requestId, medsName, String.valueOf(quantityRequested), requestedBy, dateRequested, "Pending", "", ""};
+        
+        csvFileWriter.appendRow("Replenishment_Requests.csv", request);
+        System.out.println("Replenishment request submitted for " + medsName);
+    }
+    
 }

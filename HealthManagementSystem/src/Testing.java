@@ -7,7 +7,8 @@ public class Testing {
         //inventoryManagement.viewItems();
         //inventoryManagement.restockItems("Amoxicillin", 50);
         //inventoryManagement.dispenseItems("Amoxicillin", 100);
-        inventoryManagement.checkLowStock();
+        //inventoryManagement.checkLowStock();
+        inventoryManagement.submitReplenishmentRequest("Amoxicillin", 50, "P001");
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
         //csvFileWriter.writeData("Medicine_List.csv", "2", "1", "5");

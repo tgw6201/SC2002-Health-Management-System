@@ -5,4 +5,5 @@ public interface InventoryOperations {
     boolean restockItems(String medsName, int quantity);
     boolean dispenseItems(String medsName, int quantity);
     void checkLowStock();
+    void submitReplenishmentRequest(String medsName, int quantityRequested, String requestedBy);
 }
