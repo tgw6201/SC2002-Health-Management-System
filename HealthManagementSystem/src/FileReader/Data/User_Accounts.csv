@@ -1,0 +1,8 @@
+Hospital ID,Password,Role
+D001,password,Doctor
+D002,password,Doctor
+P001,password,Pharmacist
+A001,password,Administrator
+P1001,password,Patient
+P1002,password,Patient
+P1003,password,Patient
