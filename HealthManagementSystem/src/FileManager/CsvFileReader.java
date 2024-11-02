@@ -1,17 +1,16 @@
-package FileReader;
+package FileManager;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.ArrayList;
 
-public class CsvFileReader implements FileReader {
+public class CsvFileReader implements dataReader {
     @Override
     public List<String[]> readData(String fileName) {
         //read data from csv file
         List<String[]> data = new ArrayList<>();
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileReader/Data/" + fileName);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileManager/Data/" + fileName);
         
         if (inputStream == null) {
             System.out.println("File not found in resources: " + fileName);
@@ -37,7 +36,7 @@ public class CsvFileReader implements FileReader {
         //read row from csv file
         List<String[]> data = new ArrayList<>();
         int row = Integer.parseInt(rowIndex);
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileReader/Data/" + fileName);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileManager/Data/" + fileName);
         
         if (inputStream == null) {
             System.out.println("File not found in resources: " + fileName);
@@ -68,7 +67,7 @@ public class CsvFileReader implements FileReader {
         //read column from csv file
         List<String[]> data = new ArrayList<>();
         int col = Integer.parseInt(column);
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileReader/Data/" + fileName);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileManager/Data/" + fileName);
         
         if (inputStream == null) {
             System.out.println("File not found in resources: " + fileName);

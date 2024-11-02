@@ -1,13 +1,19 @@
-import FileReader.CsvFileReader;
 import InformationAccess.InformationAccessManager;
 import Logger.FileLogger;
 import userLogin.UserLoginServices;
+
+import java.io.FileReader;
 import java.util.List;
 import java.util.Scanner;
 
+import FileManager.CsvFileReader;
+import FileManager.CsvFileWriter;
+
 public class Testing {
     public static void main(String[] args) {
-
+        
+        CsvFileWriter csvFileWriter = new CsvFileWriter();
+        csvFileWriter.writeData("Medicine_List.csv", "2", "1", "50");
         /* 
         String username;
         String password;
@@ -33,6 +39,7 @@ public class Testing {
         */
         //Testing of CSV File reader
 
+        /*
         CsvFileReader csvFileReader = new CsvFileReader();
         List<String[]> data = csvFileReader.readData("User_Accounts.csv");
 
@@ -55,7 +62,7 @@ public class Testing {
         }
         for (String[] cell : column) {
             System.out.print(cell[0] + ",");
-        } 
+        } */
 
     }
 }
