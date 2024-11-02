@@ -1,9 +1,9 @@
 package FileManager;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.FileWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -35,7 +35,8 @@ public class CsvFileWriter implements dataWriter {
         
         data.get(row)[col] = newData;
 
-        String absolutePath = new File("").getAbsolutePath() + "\\" + fileName;
+        String absolutePath = new File("").getAbsolutePath() + "\\HealthManagementSystem\\src\\FileManager\\Data\\" + fileName;
+        System.out.println(absolutePath);
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(absolutePath))) {
             for (String[] rowValues : data) {
                 StringBuilder sb = new StringBuilder();

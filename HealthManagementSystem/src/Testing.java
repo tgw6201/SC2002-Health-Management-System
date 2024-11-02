@@ -1,16 +1,18 @@
+import FileManager.*;
+import Inventory.*;
 
 public class Testing {
     public static void main(String[] args) {
         
-        //InventoryManagement inventoryManagement = new InventoryManagement();
-        //inventoryManagement.restockItems("Amoxicillin", 50);
+        InventoryManagement inventoryManagement = new InventoryManagement();
+        inventoryManagement.restockItems("Amoxicillin", 50);
         
         CsvFileWriter csvFileWriter = new CsvFileWriter();
-        csvFileWriter.writeData("Medicine_List.csv", "3", "1", "150");
+        csvFileWriter.writeData("Medicine_List.csv", "2", "1", "50");
         /* 
         String username;
         String password;
-        Scanner sc = new Scanner(System.in); 
+        Scanner sc = new Scanner(System.in);
         FileLogger logger;
         System.out.println("Hospital Management System");
         System.out.println("Username: ");
