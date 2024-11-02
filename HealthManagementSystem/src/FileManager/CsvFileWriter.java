@@ -52,7 +52,7 @@ public class CsvFileWriter implements dataWriter {
         }
 	}
 
-    // New method to append a row to the CSV file
+    // New method to add a row to the CSV file
     public void appendRow(String fileName, String[] newRow) {
         String absolutePath = new File("").getAbsolutePath() + "\\HealthManagementSystem\\src\\FileManager\\Data\\" + fileName;
         
@@ -68,6 +68,30 @@ public class CsvFileWriter implements dataWriter {
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error writing new row to file");
+        }
+    }
+
+    // Method to overwrite the file with updated rows (CSV doesn't allow direct in-place editing of specific rows)
+    public void overwriteFile(String fileName, List<String[]> data) {
+        String absolutePath = new File("").getAbsolutePath() + "\\HealthManagementSystem\\src\\FileManager\\Data\\" + fileName;
+    
+        System.out.println("Overwriting file: " + absolutePath);
+    
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(absolutePath))) {
+            for (String[] rowValues : data) {
+    
+                StringBuilder sb = new StringBuilder();
+                for (String value : rowValues) {
+                    sb.append(value).append(",");
+                }
+                sb.deleteCharAt(sb.length() - 1);
+                bw.write(sb.toString());
+                bw.newLine();
+            }
+            System.out.println("File " + fileName + " updated successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error writing data to file");
         }
     }
 }

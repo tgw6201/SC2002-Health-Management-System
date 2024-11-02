@@ -101,7 +101,7 @@ public class InventoryManagement {
     }
 
     // Method to submit a replenishment request
-    public void submitReplenishmentRequest(String medsName, int quantityRequested, String requestedBy) {
+    public void submitRequest(String medsName, int quantityRequested, String requestedBy) {
         UUID uuid = UUID.randomUUID();
         LocalDate date = LocalDate.now();
         String requestId = uuid.toString(); 
@@ -112,4 +112,40 @@ public class InventoryManagement {
         System.out.println("Replenishment request submitted for " + medsName);
     }
     
+    // Method for admin to approve replenishment request
+    public void approveRequest(String requestId, String approvedBy) {
+        List<String[]> requests = csvFileReader.readData("Replenishment_Requests.csv");
+    
+        System.out.println("Searching for request ID: " + requestId);
+        
+        for (int i = 0; i < requests.size(); i++) {
+            String[] request = requests.get(i);
+            
+            if (request[0].equals(requestId) && request[5].equals("Pending")) {
+                // Ensure the row has enough elements (SubmitRequest only have 6 elements)
+                if (request.length < 8) {
+                    String[] expandedRequest = new String[8];
+                    System.arraycopy(request, 0, expandedRequest, 0, request.length);
+                    for (int j = request.length; j < 8; j++) {
+                        expandedRequest[j] = ""; // Fill remaining spots with empty strings
+                    }
+                    request = expandedRequest;
+                }
+    
+                // Update values in the row
+                request[5] = "Approved";
+                request[6] = approvedBy;
+                request[7] = java.time.LocalDate.now().toString();
+                
+                // Replace the modified row back in the requests list
+                requests.set(i, request);
+                
+                restockItems(request[1], Integer.parseInt(request[2]));
+                csvFileWriter.overwriteFile("Replenishment_Requests.csv", requests);
+                System.out.println("Replenishment request " + requestId + " approved.");
+                return;
+            }
+        }
+        System.out.println("Request ID " + requestId + " not found, is not pending, or row format is incorrect.");
+    }
 }
