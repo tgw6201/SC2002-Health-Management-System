@@ -94,5 +94,3 @@ public class InventoryManagement {
         }
     }
 }
-
-// teaching the fellas how to git
