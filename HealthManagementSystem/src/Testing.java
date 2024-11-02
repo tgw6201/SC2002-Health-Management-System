@@ -13,7 +13,7 @@ public class Testing {
     public static void main(String[] args) {
         
         CsvFileWriter csvFileWriter = new CsvFileWriter();
-        csvFileWriter.writeData("Medicine_List.csv", "2", "1", "50");
+        csvFileWriter.writeData("Medicine_List.csv", 2, 1, "50");
         /* 
         String username;
         String password;
