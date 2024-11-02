@@ -5,10 +5,14 @@ public class Testing {
     public static void main(String[] args) {
         
         InventoryManagement inventoryManagement = new InventoryManagement();
+        inventoryManagement.viewItems();
         inventoryManagement.restockItems("Amoxicillin", 50);
-        
+        inventoryManagement.restockItems("Amoxicillin", 50);
+        inventoryManagement.checkLowStock();
+
         CsvFileWriter csvFileWriter = new CsvFileWriter();
-        csvFileWriter.writeData("Medicine_List.csv", "2", "1", "50");
+        csvFileWriter.writeData("Medicine_List.csv", "2", "1", "5");
+        
         /* 
         String username;
         String password;
