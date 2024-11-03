@@ -32,10 +32,9 @@ public class CsvFileReader implements dataReader {
     }
 
     @Override
-    public List<String[]> readRow(String fileName, String rowIndex) {
+    public List<String[]> readRow(String fileName, int rowIndex) {
         //read row from csv file
         List<String[]> data = new ArrayList<>();
-        int row = Integer.parseInt(rowIndex);
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileManager/Data/" + fileName);
         
         if (inputStream == null) {
@@ -47,7 +46,7 @@ public class CsvFileReader implements dataReader {
             int currRow = 0;
             String line;
             while ((line = br.readLine()) != null) {
-                if(currRow == row) {
+                if(currRow == rowIndex) {
                     String[] values = line.split(",");
                     data.add(values);
                     break;
@@ -63,10 +62,9 @@ public class CsvFileReader implements dataReader {
     }
 
     @Override
-    public List<String[]> readColumn(String fileName, String column) {
+    public List<String[]> readColumn(String fileName, int column) {
         //read column from csv file
         List<String[]> data = new ArrayList<>();
-        int col = Integer.parseInt(column);
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileManager/Data/" + fileName);
         
         if (inputStream == null) {
@@ -78,8 +76,8 @@ public class CsvFileReader implements dataReader {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                if (col < values.length) {
-                    data.add(new String[]{values[col]});
+                if (column < values.length) {
+                    data.add(new String[]{values[column]});
                 }
             }
         } catch (Exception e) {
