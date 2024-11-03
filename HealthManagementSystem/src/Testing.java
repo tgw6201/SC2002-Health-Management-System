@@ -8,8 +8,8 @@ public class Testing {
         //inventoryManagement.restockItems("Amoxicillin", 50);
         //inventoryManagement.dispenseItems("Amoxicillin", 100);
         //inventoryManagement.checkLowStock();
-        //inventoryManagement.submitReplenishmentRequest("Amoxicillin", 50, "P001");
-        inventoryManagement.approveReplenishmentRequest("da5f2235-5f1a-4165-9fbc-8d9c4bef794d", "P002");
+        //inventoryManagement.submitRequest("Amoxicillin", 50, "P001");
+        inventoryManagement.approveRequest("2fb61454-858c-457f-8498-4994dda78ab7", "P100");
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
         //csvFileWriter.writeData("Medicine_List.csv", "2", "1", "5");

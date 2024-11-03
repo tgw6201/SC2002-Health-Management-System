@@ -2,6 +2,7 @@ package Inventory;
 
 import FileManager.*;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,6 +13,7 @@ public class InventoryManagement {
     CsvFileReader csvFileReader = new CsvFileReader();
 
     public InventoryManagement() {
+        // Load all inventory data at initialization
         inventoryData = csvFileReader.readData("Medicine_List.csv");
     }
 
@@ -39,7 +41,7 @@ public class InventoryManagement {
                     row[1] = String.valueOf(initialQuantity);  // Update the quantity in the list
                     System.out.println("Updated quantity of " + medsName + " to " + row[1]);
 
-                    // Write the update to the CSV file
+                    // Update the specific cell in the CSV file
                     csvFileWriter.writeData("Medicine_List.csv", i, 1, row[1]);
 
                     return true;
@@ -66,7 +68,7 @@ public class InventoryManagement {
                         System.out.println("Dispensed " + quantity + " of " + medsName);
                         System.out.println("Updated quantity of " + medsName + " to " + row[1]);
 
-                        // Write the update to the CSV file
+                        // Update the specific cell in the CSV file
                         csvFileWriter.writeData("Medicine_List.csv", i, 1, row[1]);
 
                         return true;
@@ -85,7 +87,7 @@ public class InventoryManagement {
 
     // Method to check low stock for each item
     public void checkLowStock() {
-        System.out.println("\n Checking stock....\n");
+        System.out.println("\nChecking stock....\n");
         for (int i = 1; i < inventoryData.size(); i++) {
             String[] row = inventoryData.get(i);
             try {
@@ -105,10 +107,10 @@ public class InventoryManagement {
         UUID uuid = UUID.randomUUID();
         LocalDate date = LocalDate.now();
         String requestId = uuid.toString(); 
-        String dateRequested = date.toString(); // Implement this method to get the current date
-        String[] request = {requestId, medsName, String.valueOf(quantityRequested), requestedBy, dateRequested, "Pending", "", ""};
+        String dateRequested = date.toString();
+        List<String> request = Arrays.asList(requestId, medsName, String.valueOf(quantityRequested), requestedBy, dateRequested, "Pending", "", "");
         
-        csvFileWriter.appendRow("Replenishment_Requests.csv", request);
+        csvFileWriter.writeRow("Replenishment_Requests.csv", request);
         System.out.println("Replenishment request submitted for " + medsName);
     }
     
@@ -122,7 +124,7 @@ public class InventoryManagement {
             String[] request = requests.get(i);
             
             if (request[0].equals(requestId) && request[5].equals("Pending")) {
-                // Ensure the row has enough elements (SubmitRequest only have 6 elements)
+                // Ensure the row has enough elements
                 if (request.length < 8) {
                     String[] expandedRequest = new String[8];
                     System.arraycopy(request, 0, expandedRequest, 0, request.length);
@@ -140,8 +142,12 @@ public class InventoryManagement {
                 // Replace the modified row back in the requests list
                 requests.set(i, request);
                 
+                // Update the stock in Medicine_List.csv
                 restockItems(request[1], Integer.parseInt(request[2]));
-                csvFileWriter.overwriteFile("Replenishment_Requests.csv", requests);
+
+                // Write the entire list back to Replenishment_Requests.csv
+                List<String> newRequestData = Arrays.asList(request);
+                csvFileWriter.writeRow("Replenishment_Requests.csv", i, newRequestData);
                 System.out.println("Replenishment request " + requestId + " approved.");
                 return;
             }
