@@ -11,7 +11,7 @@ public class AppointmentOutcomeManager {
 
     //sync the appointmentOutcomeList with CSV file
     public AppointmentOutcomeManager(){
-        appointmentOutcomeListCsv = csvFileReader.readData("ApppointmentOutcomeRecord_List.csv");
+        appointmentOutcomeListCsv = csvFileReader.readData("AppointmentOutcomeRecord_List.csv");
     }
 
     //create an appointmentOutcomeRecord and add to the appointmentOutcomeList + CSV file
