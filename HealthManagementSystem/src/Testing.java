@@ -13,6 +13,11 @@ import FileManager.CsvFileWriter;
 
 public class Testing {
     public static void main(String[] args) {
+
+        InformationAccessManager informationAccessManager = new InformationAccessManager("Patient");
+        System.out.println(informationAccessManager.checkInformationAccess("Blood Type"));
+
+        /* 
         Scanner sc = new Scanner(System.in);
         int choice = -1;
         String username;
@@ -81,6 +86,7 @@ public class Testing {
                 }
             }
         }
-        System.out.println("Exiting...");
+        System.out.println("Exiting..."); */
     }
+
 }
