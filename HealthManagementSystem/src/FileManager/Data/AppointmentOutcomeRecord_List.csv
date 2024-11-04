@@ -1,4 +1,4 @@
 appointmentOutcomeID,patientID,appointmentDate,typeOfService,prescribedMedication,prescribedMedicationQuantity,prescriptionStatus,consultationNotes
-1001AB25,P1001,25/10/2024,Retrieve medication,Paracetamol,100,pending,eat meds 3 times a day
-1001AB27,P1001,27/10/2024,X-ray,NIL,0,pending,1 day mc
-1002BS28,P1002,28/10/2024,Check-up,NIL,0,pending,Nothing wrong
+P100125,P1001,25/10/2024,Retrieve medication,Paracetamol,100,pending,eat meds 3 times a day
+P100127,P1001,27/10/2024,X-ray,NIL,0,pending,1 day mc
+P100228,P1002,28/10/2024,Check-up,NIL,0,pending,Nothing wrong

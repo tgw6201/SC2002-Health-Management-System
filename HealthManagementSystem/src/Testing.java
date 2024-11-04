@@ -17,14 +17,25 @@ import Appointment.*;
 public class Testing {
     public static void main(String[] args) {
         
-        AppointmentOutcomeManager manager = new AppointmentOutcomeManager();
-        manager.createAppointmentOutcome("1001AB25","P1001", "25/10/2024", "Retrieve medication", "Paracetamol", "100", "pending", "eat meds 3 times a day");
-        manager.createAppointmentOutcome("1001AB27","P1001", "27/10/2024", "X-ray", "NIL", "0", "pending", "1 day mc");
-        manager.createAppointmentOutcome("1002BS28","P1002", "28/10/2024", "Check-up", "NIL", "0", "pending", "Nothing wrong");
+        //AppointmentOutcomeManager manager = new AppointmentOutcomeManager();
+        //manager.createAppointmentOutcome("1001AB25","P1001", "25/10/2024", "Retrieve medication", "Paracetamol", "100", "pending", "eat meds 3 times a day");
+        //manager.createAppointmentOutcome("1001AB27","P1001", "27/10/2024", "X-ray", "NIL", "0", "pending", "1 day mc");
+        //manager.createAppointmentOutcome("1002BS28","P1002", "28/10/2024", "Check-up", "NIL", "0", "pending", "Nothing wrong");
         
-        manager.viewPastRecords("P1001");
+        //manager.viewPastRecords("P1001");
 
-        manager.viewOutcomeRecord("1002BS28");
+        //manager.viewOutcomeRecord("P100125");
+
+        //AppointmentSlotManager slot = new AppointmentSlotManager();
+        //slot.setAppointmentAvailability("D1001", "John Smith", "11/5/2024", "9:00 - 10:00", "Available");
+        //slot.setAppointmentAvailability("D1002", "Emily Clarke", "11/6/2024", "13:00 - 14:00", "Booked");
+        //slot.setAppointmentAvailability("D100111900", "Booked");
+        //slot.viewAvailableAppointmentSlots();
+
+        AppointmentManager appointment = new AppointmentManager();
+        //appointment.scheduleAppointment("P1001", "D100111900");
+        appointment.scheduleAppointment("P1002", "D1002111300");
+
         
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();

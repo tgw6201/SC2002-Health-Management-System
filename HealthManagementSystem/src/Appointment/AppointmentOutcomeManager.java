@@ -44,7 +44,7 @@ public class AppointmentOutcomeManager {
             "Appointment Date: ",
             "Type of Service: ",
             "Prescribed Medication: ",
-            "Prescribed Medication Quantity",
+            "Prescribed Medication Quantity: ",
             "Prescription Status: ",
             "Consultation Notes: "
         };
@@ -75,7 +75,7 @@ public class AppointmentOutcomeManager {
         };
 
         for(String[] row : appointmentOutcomeListCsv){// iterates over each String[] (1 row in csv)
-            if(row[0].equals(appointmentOutcomeID)){ // check if appointmentOutcomeID matches
+            if((row[0].equals(appointmentOutcomeID)) && (!row[0].equals("appointmentOutcomeID"))){ // check if appointmentOutcomeID matches and row 0 is the headers
                 
                 for(int i = 0; i < row.length; i++){
                     System.out.println(labels[i] + row[i]);
