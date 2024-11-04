@@ -18,8 +18,13 @@ public class Testing {
     public static void main(String[] args) {
         
         AppointmentOutcomeManager manager = new AppointmentOutcomeManager();
-        manager.createAppointmentOutcome("P1001", "25/10/2024", "x-ray", "Paracetamol, Ibuprofen", "pending", "eat meds 3 times a day");
+        //manager.createAppointmentOutcome("1001AB25","P1001", "25/10/2024", "Retrieve medication", "Paracetamol, Ibuprofen", "pending", "eat meds 3 times a day");
+        //manager.createAppointmentOutcome("1001AB27","P1001", "27/10/2024", "X-ray", "NIL", "pending", "1 day mc");
+        //manager.createAppointmentOutcome("1002BS28","P1002", "28/10/2024", "Check-up", "NIL", "pending", "Nothing wrong");
+        
         manager.viewPastRecords("P1001");
+
+        //manager.viewOutcomeRecord("1001AB27");
         
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
