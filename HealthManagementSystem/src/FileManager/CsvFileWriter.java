@@ -52,42 +52,21 @@ public class CsvFileWriter implements dataWriter {
         }
 	}
 
-    public void writeRow(String fileName,List<String> newData){
-        //write data to csv file
-        List<String[]> data = new ArrayList<>();
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("FileManager/Data/" + fileName);
-        
-        if (inputStream == null) {
-            System.out.println("File not found in resources: " + fileName);
-            return;
-        }
-        System.out.println("Reading data from csv file");
-        try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                data.add(line.split(","));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error reading file");
-        }
-        
-        String[] newRow = newData.toArray(new String[0]);
-        data.add(newRow);
-
+    public void writeRow(String fileName, List<String> newData) {
         String absolutePath = new File("").getAbsolutePath() + "\\HealthManagementSystem\\src\\FileManager\\Data\\" + fileName;
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter(absolutePath))) {
-            System.out.println("Writing data to csv file");
-            for (String[] rowValues : data) {
-                StringBuilder sb = new StringBuilder();
-                for (String value : rowValues) {
-                    sb.append(value);
-                    sb.append(",");
-                }
-                sb.deleteCharAt(sb.length() - 1);
-                bw.write(sb.toString());
-                bw.newLine();
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(absolutePath, true))) {
+            System.out.println("Appending new row to CSV file");
+    
+            StringBuilder sb = new StringBuilder();
+            for (String value : newData) {
+                sb.append(value).append(",");
             }
+            sb.deleteCharAt(sb.length() - 1);
+            bw.write(sb.toString());
+            bw.newLine();
+            
+            System.out.println("Appended row: " + sb.toString()); // Log the row for verification
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error writing file");
