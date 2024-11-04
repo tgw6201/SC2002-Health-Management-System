@@ -1,3 +1,4 @@
 RequestID,Medication Name,Quantity Requested,RequestedBy,Date Requested,Status,ApprovedBy,Date Approved
-315b45f7-6db5-47a3-86fb-fa03fcb2fc78,Amoxicillin,50,P001,2024-11-03,Approved,P100,2024-11-03
-2fb61454-858c-457f-8498-4994dda78ab7,Amoxicillin,50,P001,2024-11-03,Approved,P100,2024-11-03
+315b45f7-6db5-47a3-86fb-fa03fcb2fc78,Amoxicillin,50,P001,2024-11-03,pending,P100,2024-11-03
+2fb61454-858c-457f-8498-4994dda78ab7,Paracetamol,50,P001,2024-11-03,pending,P100,2024-11-03
+562e8cf3-ec1f-4ab3-931e-7034ece7833e,Ibuprofenz,50,P001,2024-11-04,pending,P100,2024-11-04

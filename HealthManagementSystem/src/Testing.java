@@ -6,10 +6,15 @@ public class Testing {
         InventoryManagement inventoryManagement = new InventoryManagement();
         //inventoryManagement.viewItems();
         //inventoryManagement.restockItems("Amoxicillin", 50);
-        //inventoryManagement.dispenseItems("Amoxicillin", 100);
+        //inventoryManagement.dispenseItems("Amoxicillin", 40);
         //inventoryManagement.checkLowStock();
-        //inventoryManagement.submitRequest("Amoxicillin", 50, "P001");
-        inventoryManagement.approveRequest("2fb61454-858c-457f-8498-4994dda78ab7", "P100");
+        //inventoryManagement.submitReplenishmentRequest("Amoxicillin", 50, "P001");
+        //inventoryManagement.approveReplenishmentRequest("562e8cf3-ec1f-4ab3-931e-7034ece7833e", "P100");
+        //inventoryManagement.displayPendingPrescriptions();
+        //inventoryManagement.dispenseByAppointmentId("1001AB25");
+        //inventoryManagement.dispenseAllPending();
+        //inventoryManagement.updateThreshold("Amoxicillin", 5);
+        inventoryManagement.approveAllPendingRequests("P100");
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
         //csvFileWriter.writeData("Medicine_List.csv", "2", "1", "5");
