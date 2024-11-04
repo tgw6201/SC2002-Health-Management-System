@@ -1,5 +1,0 @@
-User P1001 has logged in.
-User P1001 has logged in.
-User P1001 has failed to log in.
-User P1001 has logged in.
-User P1001 has failed to log in.
