@@ -54,7 +54,7 @@ public class AppointmentSlotManager {
         appointmentSlotListCsv.add(newArray);
     }
     
-    //patient view appointmentslots
+    //patient view appointmentslots --> updated to only view available slots
     public void viewAvailableAppointmentSlots(){
         String[] labels = {
             "Appointment Slot ID: ",
@@ -66,7 +66,7 @@ public class AppointmentSlotManager {
         };
         for(String[] row : appointmentSlotListCsv){
             
-            if(!row[0].equals("appointmentSlotID")){// row 0 is the header --> skip
+            if(!row[0].equals("appointmentSlotID") && row[5].equals("Available")){// row 0 is the header --> skip
 
                 for(int i = 0; i < row.length; i++){
                     System.out.println(labels[i] + row[i]);
