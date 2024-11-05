@@ -10,7 +10,11 @@ public class AppointmentManager {
     
     private List<String[]> appointmentSlotListCsv;
     private List<String[]> appointmentListCsv;
-    
+    private List<String[]> appointmentOutcomeListCsv;
+    private List<String[]> medicalRecordListCsv;
+            
+
+    //should this be private (attributes)?
     CsvFileReader csvFileReader = new CsvFileReader();
     CsvFileWriter csvFileWriter = new CsvFileWriter(); 
 
@@ -20,6 +24,10 @@ public class AppointmentManager {
         
         //contains all info of appointments
         appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+
+        medicalRecordListCsv = csvFileReader.readData("MedicalRecord_List.csv");
+            
+        appointmentOutcomeListCsv = csvFileReader.readData("AppointmentOutcomeRecord_List.csv");
     }
 
     // more efficient to use appointmentSlotID 
@@ -32,15 +40,11 @@ public class AppointmentManager {
         
         for(String[] row1 : appointmentSlotListCsv){
             
-            if(row1[0].equals(appointmentSlotID)){
+            if(row1[0].equalsIgnoreCase(appointmentSlotID)){
             //Ensure that the patient cannot book a booked slot
-                if(row1[5].equals("Booked")){ //Ensure that the patient cannot book a booked/unavailable slot
+                if(row1[5].equalsIgnoreCase("Booked")){ //Ensure that the patient cannot book a booked/unavailable slot
                     System.out.println("Find another appointment slot. This slot is Booked.");
                     return;
-                }
-                else if(row1[5].equals("Unavailable")){// can be further confirmed if there should be this 
-                    System.out.println("Find another appointment slot. This slot is Unavailable.");
-                    return;                    
                 }
 
                 else{// create appointment + update appointmentslot
@@ -53,7 +57,7 @@ public class AppointmentManager {
                     //Finding the appointmentSlot + get information 
                     for(String[] row2 : appointmentSlotListCsv){
 
-                        if(row2[0].equals(appointmentSlotID)){
+                        if(row2[0].equalsIgnoreCase(appointmentSlotID)){
                             doctorID = row2[1];
                             appointmentDate = row2[3];
                             appointmentTime = row2[4];
@@ -119,7 +123,7 @@ public class AppointmentManager {
         
         // get old appointment slot id
         for(String[] row : appointmentListCsv){
-            if(row[0].equals(appointmentID)){
+            if(row[0].equalsIgnoreCase(appointmentID)){
                 oldAppointmentSlotID = row[6]; 
                 break;
             }
@@ -129,16 +133,16 @@ public class AppointmentManager {
         for(String[] row1 : appointmentSlotListCsv){
 
             //make new appointmentslot booked
-            if(row1[0].equals(newAppointmentSlotID)){
+            if(row1[0].equalsIgnoreCase(newAppointmentSlotID)){
                 
                 //check if it is booked/unavailable --> choose a new appoitnment slot
                 //Ensure that the patient cannot book a booked/unavailable slot
 
-                if(row1[5].equals("Booked")){
+                if(row1[5].equalsIgnoreCase("Booked")){
                     System.out.println("Find another appointment slot. This slot is Booked.");
                     return;
                 }
-                else if(row1[5].equals("Unavailable")){// can be further confirmed if there should be this 
+                else if(row1[5].equalsIgnoreCase("Unavailable")){// can be further confirmed if there should be this 
                     System.out.println("Find another appointment slot. This slot is Unavailable.");
                     return;                    
                 }
@@ -165,7 +169,7 @@ public class AppointmentManager {
                     for(String[] row2 : appointmentListCsv){
                         
                         //find the row containing the appointment
-                        if(row2[6].equals(oldAppointmentSlotID)){
+                        if(row2[6].equalsIgnoreCase(oldAppointmentSlotID)){
                             patientID = row2[1];
                             appointmentOutcomeID = row2[7];
                             // need use i to iterate over to find location of appointment
@@ -209,7 +213,7 @@ public class AppointmentManager {
         //Find appointment
         for(String[] row : appointmentListCsv){
             //If it matches the appoointmentID
-            if(row[0].equals(appointmentID)){
+            if(row[0].equalsIgnoreCase(appointmentID)){
                 //change the appointmentStatus to cancelled in csv
                 csvFileWriter.writeData("Appointment_List.csv", i, 3, "Cancelled");
                 //get the appointmentSlotID
@@ -226,6 +230,236 @@ public class AppointmentManager {
         System.out.println("Appointment cancelled.");
     }
 
+        //Doctor accept or decline appointment
+        public void acceptDeclineAppointment(String appointmentID, String decision){
+            //Read existing data in csv
+            appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
+            appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+             
+            //intialise
+            String appointmentSlotID = "NIL";
+            //i is used to keep track of the row that appoinment is in
+            int i = 0;
+           
     
+    
+            //change appointment Status to confirmed
+            if(decision.equalsIgnoreCase("Accept")){
+                //find apppointment
+                for(String[] row :  appointmentListCsv){
+                    //check for appointmentID
+                    if(row[0].equalsIgnoreCase(appointmentID)){
+                        //update appointmentStatus
+                        csvFileWriter.writeData("Appointment_List.csv", i, 3, "Confirmed");
+                        
+                        //get appointmentSlotID
+                        appointmentSlotID = row[6];
+                    }
+                    i++;
+                }
+                //update appointmentSlot to booked
+                AppointmentSlotManager slot = new AppointmentSlotManager();
+                slot.setAppointmentAvailability(appointmentSlotID, "Booked");
+        
+                //verify appointment status changes to "confirmed"
+                System.out.println("Appointment status changed to confirmed");
+    
+    
+            }
+    
+    
+            //change appointmentStatus to cancelled and appointmentSlot to available
+            else{
+                //find appointment
+                for(String[] row :  appointmentListCsv){
+                    //check for appointmentID
+                    if(row[0].equalsIgnoreCase(appointmentID)){
+                        //update appointmentStatus
+                        csvFileWriter.writeData("Appointment_List.csv", i, 3, "Cancelled");
+    
+    
+                        //get appointmentSlotID
+                        appointmentSlotID = row[6];
+                    }
+                    i++;
+                }
+                //update appointmentSlot to available
+                AppointmentSlotManager slot = new AppointmentSlotManager();
+                slot.setAppointmentAvailability(appointmentSlotID, "Available");
+    
+    
+                //verify “cancelled” when declined
+                System.out.println("Appointment status changed to decline");
+            }
+        }
 
+        //View Scheduled Appointment for patient
+        public void viewScheduleAppointment(String patientID){
+            //Read existing data in csv
+            appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
+            appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+            //find appointements for patient
+
+            //initialise 
+            String doctorName = "NIL";
+            String appointmentDate = "NIL";
+            String appointmentTime = "NIL";
+            String appointmentStatus = "NIL";
+            String appointmentSlotID = "NIL";
+
+            for(String[] row : appointmentListCsv){
+                //make sure appointmentID 
+                if(row[1].equalsIgnoreCase(patientID)){
+                    appointmentStatus = row[3];
+                    appointmentDate = row[4];
+                    appointmentTime = row[5];
+                    appointmentSlotID = row[6];
+                    //find doctorName
+                    for(String[] row1 : appointmentSlotListCsv){
+                        if(row1[0].equalsIgnoreCase(appointmentSlotID)){
+                            doctorName = row1[2];
+                        }
+                    }
+                    System.out.println("Doctor Name : " + doctorName + "\n" +  "Appointment Date: " + appointmentDate + "\n" + "Appointment Time: " +appointmentTime + "\n" + "Appointment Status: " + appointmentStatus);
+                    System.out.println();
+                }
+            }
+
+        }
+
+        //dcotor view personal schedule
+        public void viewPersonalSchedule(String doctorID){
+            
+            //Read existing data in csv
+            appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
+            appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+            
+            //labels to format printing
+            String[] appointmentLabels = {
+                "Appointment ID: ",
+                "Patient ID: ",
+                "Doctor ID: ",
+                "Appointment Status: ",
+                "Appointment Date: ",
+                "Appointment Time: ",
+                "Appointment Slot ID: ",
+                "Appointment Outcome ID: "
+            };
+
+            System.out.println("Upcoming appointments: ");
+
+            //find the appointments that corresponds to doctorID and confirmed
+            for(String[] row1 : appointmentListCsv){
+                if(row1[2].equalsIgnoreCase(doctorID) && row1[3].equalsIgnoreCase("Confirmed")){
+                    for(int i = 0; i < row1.length; i++){
+                        System.out.println(appointmentLabels[i] + row1[i]);
+                    }
+                }
+                System.out.println();
+            }
+
+            //labels to format printing
+            String[] appointmentSlotLabels = {
+                "Appointment Slot ID: ",
+                "Doctor ID: ",
+                "Doctor Name: ",
+                "Appointment Date: ",
+                "Apppointment Time: ",
+                "Availability: "
+            };
+
+            System.out.println("Availability Slots: ");
+            //find the appointmentSlot that corresponds to the doctorID 
+            for(String[] row2 : appointmentSlotListCsv){
+                if(row2[1].equalsIgnoreCase(doctorID)){ 
+                    for(int i = 0; i<row2.length; i++){
+                        System.out.println(appointmentSlotLabels[i] + row2[i]);
+                    }
+                }
+                System.out.println();
+            }
+            
+        }
+        //view upcoming confirmed appointments
+        public void viewUpcomingAppointments(String DoctorID){
+            //Read existing data in csv
+            appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
+            appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+            medicalRecordListCsv = csvFileReader.readData("MedicalRecord_List.csv");
+
+            for(String[] row: appointmentListCsv){
+                //check if doctorID matches
+                if(row[2].equalsIgnoreCase(DoctorID)){
+                    
+
+                }
+            }
+
+
+        }
+
+
+
+        //view Appointment Details --> administrator
+        public void viewAppointmentDetails(String appointmentID){
+                
+            //Read existing data in csv
+            appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
+            appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+            appointmentOutcomeListCsv = csvFileReader.readData("AppointmentOutcomeRecord_List.csv");
+            //intialization 
+            String appointmentOutcomeID = "NIL";
+
+            String[] appointmentLabels = {
+                "Appointment ID: ",
+                "Patient ID: ",
+                "Doctor ID: ",
+                "Appointment Status: ",
+                "Appointment Date: ",
+                "Appointment Time: ",
+                "Appointment Slot ID: ",
+                "Appointment Outcome ID: "
+            };
+
+
+            //print out appointment details
+            System.out.println("Appointment Details: ");
+            for(String[]row : appointmentListCsv){
+                //check if appointmentID matches
+                if(row[0].equalsIgnoreCase(appointmentID)){
+                    for(int j = 0; j<row.length; j++){
+                        System.out.println(appointmentLabels[j] + row[j]);
+                    }
+                    
+                    //get appointmentOutcomeID
+                    appointmentOutcomeID = row[7];
+
+                    System.out.println();
+                    
+                }
+            }
+
+            //print out appointment Outcome Record
+            String[] labels = {
+                "Appointment Outcome ID: ",
+                "Patient ID: ",
+                "Appointment Date: ",
+                "Type of Service: ",
+                "Prescribed Medication: ",
+                "Prescribed Medication Quantity: ",
+                "Prescription Status: ",
+                "Consultation Notes: ",
+                "Appointment Outcome ID: "
+            };
+
+            for(String row1[] : appointmentOutcomeListCsv){
+                if(row1[0].equalsIgnoreCase(appointmentOutcomeID)){
+                    for(int x = 0; x<row1.length; x++){
+                        System.out.println(labels[x] + row1[x]);
+                    }
+                }
+            }
+        }
+
+    
 }

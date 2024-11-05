@@ -22,7 +22,7 @@ public class AppointmentSlotManager {
         
         for(int i = 0; i<appointmentSlotListCsv.size(); i++){// iterates over each String[] (1 row in csv)
             String[] row = appointmentSlotListCsv.get(i);// get the row 
-            if(row[0].equals(appointmentSlotID)){ // check if appointmentSlotID matches
+            if(row[0].equalsIgnoreCase(appointmentSlotID)){ // check if appointmentSlotID matches
                 csvFileWriter.writeData("AvailabilitySlot_List.csv", i, 5, availability);
                 System.out.println("Appointment Slot Availability updated");   
                 //update appointmentSlotListCsv array
@@ -51,6 +51,7 @@ public class AppointmentSlotManager {
         newRow.add(availability);
         csvFileWriter.writeRow("AvailabilitySlot_List.csv", newRow);
         System.out.println("Appointment Slot Availability updated"); 
+        
         //update appointmentSlotListCsv array
         String[] newArray = {appointmentSlotID, doctorID, doctorName, appointmentDate, appointmentTime, availability};
         appointmentSlotListCsv.add(newArray);
@@ -66,9 +67,11 @@ public class AppointmentSlotManager {
             "AppointmentTime: ",
             "Availability: "
         };
+        System.out.println("Available appointment slots:");
+        
         for(String[] row : appointmentSlotListCsv){
             
-            if(!row[0].equals("appointmentSlotID") && row[5].equals("Available")){// row 0 is the header --> skip
+            if(!row[0].equalsIgnoreCase("AppointmentSlotID") && row[5].equalsIgnoreCase("Available")){// row 0 is the header --> skip
 
                 for(int i = 0; i < row.length; i++){
                     System.out.println(labels[i] + row[i]);
