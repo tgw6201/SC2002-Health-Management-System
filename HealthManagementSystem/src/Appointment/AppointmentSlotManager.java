@@ -19,13 +19,15 @@ public class AppointmentSlotManager {
 
     //doctor update availability --> existing appointmentslot / scheduled appointment
     public void setAppointmentAvailability(String appointmentSlotID, String availability){
+        
         for(int i = 0; i<appointmentSlotListCsv.size(); i++){// iterates over each String[] (1 row in csv)
             String[] row = appointmentSlotListCsv.get(i);// get the row 
             if(row[0].equals(appointmentSlotID)){ // check if appointmentSlotID matches
                 csvFileWriter.writeData("AvailabilitySlot_List.csv", i, 5, availability);
                 System.out.println("Appointment Slot Availability updated");   
                 //update appointmentSlotListCsv array
-                row[5] = availability;
+                row[5] = availability;         
+                
             }
         }
     }

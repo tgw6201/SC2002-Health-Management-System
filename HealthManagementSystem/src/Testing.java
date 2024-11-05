@@ -34,9 +34,12 @@ public class Testing {
 
         AppointmentManager appointment = new AppointmentManager();
         //appointment.scheduleAppointment("P1001", "D100111900");
-        appointment.scheduleAppointment("P1002", "D1002111300");
-
+        //appointment.scheduleAppointment("P1002", "D1002111300");
+        appointment.rescheduleAppointment("P1002D1002111300", "D100111900");
+        //appointment.cancelAppointment("P1002D1002111300");
         
+
+
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
         //csvFileWriter.writeData("Medicine_List.csv", 2, 1, "50");
