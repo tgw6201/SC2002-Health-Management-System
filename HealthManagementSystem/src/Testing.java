@@ -4,17 +4,22 @@ public class Testing {
     public static void main(String[] args) {
         
         InventoryManagement inventoryManagement = new InventoryManagement();
+        PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement);
+
         //inventoryManagement.viewItems();
-        //inventoryManagement.restockItems("Amoxicillin", 50);
-        //inventoryManagement.dispenseItems("Amoxicillin", 40);
-        //inventoryManagement.checkLowStock();
-        //inventoryManagement.submitReplenishmentRequest("Amoxicillin", 50, "P001");
-        //inventoryManagement.approveReplenishmentRequest("562e8cf3-ec1f-4ab3-931e-7034ece7833e", "P100");
-        //inventoryManagement.displayPendingPrescriptions();
-        //inventoryManagement.dispenseByAppointmentId("1001AB25");
-        //inventoryManagement.dispenseAllPending();
-        //inventoryManagement.updateThreshold("Amoxicillin", 5);
-        inventoryManagement.approveAllPendingRequests("P100");
+        //inventoryManagement.submitReplenishmentRequest("Paracetamol", 10, "P001");
+        //inventoryManagement.updateLowStockThreshold("Ibuprofen", 20);
+        //inventoryManagement.restockItemByName("Ibuprofen", 10);
+        //inventoryManagement.restockItemByRequestID("d29eaf54-f13a-40b9-8ff6-2cdf0facd7b8", "A001");
+        //inventoryManagement.checkLowStockForItem("Paracetamol");
+        //inventoryManagement.viewPendingItems();
+        //inventoryManagement.handleAllPending("A001");
+
+        //prescriptionManagement.viewPendingItems();
+        //prescriptionManagement.handleAllPending("P001");
+        //prescriptionManagement.dispenseItemByAppointmentID("1001AB25");
+        //prescriptionManagement.dispenseItemByMedicineName("Paracetamol", 20);
+        prescriptionManagement.showAllAppointments();
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
         //csvFileWriter.writeData("Medicine_List.csv", "2", "1", "5");
