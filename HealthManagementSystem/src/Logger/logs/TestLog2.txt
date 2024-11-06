@@ -1,8 +1,0 @@
-Testing log message
-User admin has logged in.
-User admin has logged in.
-User admin has logged out.
-User admin has logged in.
-User admin has logged out.
-User admin has logged in.
-User admin has logged out.
