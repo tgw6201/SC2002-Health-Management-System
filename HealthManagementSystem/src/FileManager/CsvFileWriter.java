@@ -115,6 +115,7 @@ public class CsvFileWriter implements dataWriter {
             sb.deleteCharAt(sb.length() - 1);
             bw.write(sb.toString());
             bw.newLine();
+            bw.flush();
             
             System.out.println("Appended row: " + sb.toString()); // Log the row for verification
         } catch (IOException e) {
@@ -167,10 +168,60 @@ public class CsvFileWriter implements dataWriter {
             for (String[] rowValues : data) {
                 bw.write(String.join(",", rowValues));
                 bw.newLine();
+                bw.flush();
             }
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error writing file");
+        }
+    }
+
+    /**
+     * Removes an existing row in the CSV file with new data.
+     * 
+     * @param fileName The name of the CSV file to update, located in the specified path.
+     * @param rowIndex The index of the row to replace, starting from 0.
+     * 
+     * <p>
+     * If the row index is out of bounds, no update is performed.
+     * </p>
+     */
+
+    @Override
+    public void deleteRow(String fileName, int rowIndex) {
+        String absolutePath = new File("").getAbsolutePath() + "/HealthManagementSystem/src/FileManager/Data/" + fileName;
+        List<String[]> data = new ArrayList<>();
+        System.out.println("Reading data from csv file");
+        try (BufferedReader br = new BufferedReader(new FileReader(absolutePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                data.add(line.split(","));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error reading file");
+            return;
+        }
+
+        // Check if rowIndex is within bounds
+        if (rowIndex >= data.size() || rowIndex < 0) {
+            System.out.println("Row index out of bounds");
+            return;
+        }
+
+        // Remove row data
+        data.remove(rowIndex);
+
+        // Write updated data back to the CSV file
+        System.out.println("Writing data to csv file");
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(absolutePath, false))) { // Use 'false' to overwrite the file
+            for (String[] rowValues : data) {
+                bw.write(String.join(",", rowValues));
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error Deleting row");
         }
     }
 }

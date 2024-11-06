@@ -1,10 +1,69 @@
+import java.util.List;
+import java.util.Scanner;
+
+import FileManager.CsvFileWriter;
 import Inventory.*;
+import StaffManagement.*;
 
 public class Testing {
     public static void main(String[] args) {
+
+        staffManagement staffManagement = new hospitalStaffManagement();
+        int choice = -1;
+        Scanner sc = new Scanner(System.in);
+        while(choice != 5){
+            System.out.println("Enter options:");
+            System.out.println("1. Add Staff");
+            System.out.println("2. Remove Staff");
+            System.out.println("3. Update Staff");
+            System.out.println("4. Filtered View");
+            System.out.println("5. Exit");
+            choice = sc.nextInt();
+            sc.nextLine();
+            if(choice == 1){
+                System.out.println("Enter Staff ID:");
+                String staffID = sc.nextLine();
+                System.out.println("Enter Staff Name:");
+                String staffName = sc.nextLine();
+                System.out.println("Enter Staff Role:");
+                String staffRole = sc.nextLine();
+                System.out.println("Enter Staff gender:");
+                String staffGender = sc.nextLine();
+                System.out.println("Enter Staff Age:");
+                int staffAge = sc.nextInt();
+                sc.nextLine();
+                staffManagement.addStaff(staffID, staffName, staffRole, staffGender, staffAge);
+            }
+            else if(choice == 2){
+                System.out.println("Enter Staff ID:");
+                String staffID = sc.nextLine();
+                staffManagement.removeStaff(staffID);
+            }
+            else if(choice == 3){
+                System.out.println("Enter Staff ID:");
+                String staffID = sc.nextLine();
+                System.out.println("Enter Staff Name:");
+                String staffName = sc.nextLine();
+                System.out.println("Enter Staff Role:");
+                String staffRole = sc.nextLine();
+                System.out.println("Enter Staff gender:");
+                String staffGender = sc.nextLine();
+                System.out.println("Enter Staff Age:");
+                int staffAge = sc.nextInt();
+                sc.nextLine();
+                staffManagement.updateStaff(staffID, staffName, staffRole, staffGender, staffAge);
+            }
+            else if(choice == 4){
+                System.out.println("Enter Category:");
+                String category = sc.nextLine();
+                System.out.println("Enter Type:");
+                String type = sc.nextLine();
+                staffManagement.filteredView(category, type);
+            }
+        }
         
-        InventoryManagement inventoryManagement = new InventoryManagement();
-        PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement);
+        //InventoryManagement inventoryManagement = new InventoryManagement();
+        //PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement);
 
         //inventoryManagement.viewItems();
         //inventoryManagement.submitReplenishmentRequest("Paracetamol", 10, "P001");
@@ -19,7 +78,7 @@ public class Testing {
         //prescriptionManagement.handleAllPending("P001");
         //prescriptionManagement.dispenseItemByAppointmentID("1001AB25");
         //prescriptionManagement.dispenseItemByMedicineName("Paracetamol", 20);
-        prescriptionManagement.showAllAppointments();
+        //prescriptionManagement.showAllAppointments();
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
         //csvFileWriter.writeData("Medicine_List.csv", "2", "1", "5");

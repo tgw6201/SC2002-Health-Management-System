@@ -49,4 +49,17 @@ public interface dataWriter {
      * </p>
      */
     public void writeRow(String fileName, int row, List<String> data);
+
+    /**
+     * Deletes an entire row in the CSV file.
+     * 
+     * @param fileName The name of the CSV file to write to.
+     * @param row The row index to update or write data to, where the first row is 0.
+     * 
+     * <p>
+     * If the specified row index exists, this method will delete the entire row. If it does not exist or is out of bounds, the implementation may 
+     * handle it by appending or ignoring, depending on the intended behavior.
+     * </p>
+     */
+    public void deleteRow(String fileName, int row);
 }
