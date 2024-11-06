@@ -1,13 +1,9 @@
-import java.util.List;
-import java.util.Scanner;
-
-import FileManager.CsvFileWriter;
 import Inventory.*;
-import StaffManagement.*;
 
 public class Testing {
     public static void main(String[] args) {
 
+        /*
         staffManagement staffManagement = new hospitalStaffManagement();
         int choice = -1;
         Scanner sc = new Scanner(System.in);
@@ -61,15 +57,16 @@ public class Testing {
                 staffManagement.filteredView(category, type);
             }
         }
+        */
         
-        //InventoryManagement inventoryManagement = new InventoryManagement();
-        //PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement);
+        InventoryManagement inventoryManagement = new InventoryManagement();
+        PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement);
 
         //inventoryManagement.viewItems();
         //inventoryManagement.submitReplenishmentRequest("Paracetamol", 10, "P001");
         //inventoryManagement.updateLowStockThreshold("Ibuprofen", 20);
         //inventoryManagement.restockItemByName("Ibuprofen", 10);
-        //inventoryManagement.restockItemByRequestID("d29eaf54-f13a-40b9-8ff6-2cdf0facd7b8", "A001");
+        //inventoryManagement.restockItemByRequestID("ec8c329e-205d-4be2-bda9-a28398c10438", "A001");
         //inventoryManagement.checkLowStockForItem("Paracetamol");
         //inventoryManagement.viewPendingItems();
         //inventoryManagement.handleAllPending("A001");
@@ -78,7 +75,7 @@ public class Testing {
         //prescriptionManagement.handleAllPending("P001");
         //prescriptionManagement.dispenseItemByAppointmentID("1001AB25");
         //prescriptionManagement.dispenseItemByMedicineName("Paracetamol", 20);
-        //prescriptionManagement.showAllAppointments();
+        prescriptionManagement.showAllAppointments();
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
         //csvFileWriter.writeData("Medicine_List.csv", "2", "1", "5");
