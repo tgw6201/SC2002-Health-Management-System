@@ -24,11 +24,11 @@ import java.util.List;
  * @see CsvFileReader
  * @see CsvFileWriter
  * 
- * <p>
+ * 
  * @author  Sia Yi Zhen
  * @version  1.0
  * @since 2024-11-5
- * </p>
+ * 
  */
 
 public class PrescriptionManagement implements DispensingService, PendingManagement {

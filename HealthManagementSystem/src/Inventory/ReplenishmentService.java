@@ -17,7 +17,6 @@ package Inventory;
  * 
  * @see InventoryManagement
  * @see PendingManagement
- * </p>
  * 
  * @author Sia Yi Zhen
  * @version 1.0
