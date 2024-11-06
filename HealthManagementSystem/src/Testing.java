@@ -1,10 +1,30 @@
 import Inventory.*;
+import StaffManagement.HospitalStaffManagement;
+import StaffManagement.StaffDataReader;
+import StaffManagement.StaffDataWriter;
+import StaffManagement.StaffManagementAdd;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.logging.LogManager;
+
+import FileManager.CsvFileReader;
+import FileManager.CsvFileWriter;
+import FileManager.dataReader;
+import FileManager.dataWriter;
+import InformationAccess.*;
+import Logger.*;
 
 public class Testing {
     public static void main(String[] args) {
 
-        /*
-        staffManagement staffManagement = new hospitalStaffManagement();
+
+        /* 
+        dataReader reader = new CsvFileReader();
+        dataWriter writer = new CsvFileWriter();
+        HospitalStaffManagement staffManagement = new HospitalStaffManagement(reader, writer);
         int choice = -1;
         Scanner sc = new Scanner(System.in);
         while(choice != 5){
@@ -58,10 +78,10 @@ public class Testing {
             }
         }
         */
-        
+        /* 
         InventoryManagement inventoryManagement = new InventoryManagement();
         PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement);
-
+        */
         //inventoryManagement.viewItems();
         //inventoryManagement.submitReplenishmentRequest("Paracetamol", 10, "P001");
         //inventoryManagement.updateLowStockThreshold("Ibuprofen", 20);
@@ -75,7 +95,7 @@ public class Testing {
         //prescriptionManagement.handleAllPending("P001");
         //prescriptionManagement.dispenseItemByAppointmentID("1001AB25");
         //prescriptionManagement.dispenseItemByMedicineName("Paracetamol", 20);
-        prescriptionManagement.showAllAppointments();
+        //prescriptionManagement.showAllAppointments();
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
         //csvFileWriter.writeData("Medicine_List.csv", "2", "1", "5");
@@ -95,14 +115,18 @@ public class Testing {
         boolean login = userLoginServices.login(username, password);
         System.out.println("Login Status:" + login);
         System.out.println("Role: " + userLoginServices.getRole());
-        
+        */
         
         
         //when patient is accessing information
-        InformationAccessManager AccessManager = new InformationAccessManager();
+
+        /*
+        dataReader reader = new CsvFileReader();
+        dataWriter writer = new CsvFileWriter();
+        InformationAccessManager AccessManager = new InformationAccessManager("Patient", reader, writer);
         boolean x = AccessManager.checkInformationAccess("Blood Type");
-        System.out.println(x);
-        */
+        System.out.println(x); */
+        
         //Testing of CSV File reader
 
         /*

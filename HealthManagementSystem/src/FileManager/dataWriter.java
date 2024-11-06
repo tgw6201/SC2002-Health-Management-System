@@ -51,6 +51,15 @@ public interface dataWriter {
     public void writeRow(String fileName, int row, List<String> data);
 
     /**
+     * Appends a new row to the end of the CSV file.
+     * 
+     * @param fileName The name of the CSV file to write to.
+     * @param data A list of strings representing the new row data to be appended.
+     *             Each element in the list represents a cell in the row.
+     */
+    public void writeRow(String fileName, List<String> data);
+
+    /**
      * Deletes an entire row in the CSV file.
      * 
      * @param fileName The name of the CSV file to write to.
