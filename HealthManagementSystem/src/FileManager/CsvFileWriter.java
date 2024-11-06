@@ -13,42 +13,43 @@ import java.util.List;
 public class CsvFileWriter implements dataWriter {
 	@Override
 	public void writeData(String fileName, int rowIndex, int colIndex, String newData) {
-        // Path to the original CSV file
-        String absolutePath = new File("").getAbsolutePath() + "\\HealthManagementSystem\\src\\FileManager\\Data\\" + fileName;
+		 // Path to the original CSV file
+         String absolutePath = new File("").getAbsolutePath() + "\\HealthManagementSystem\\src\\FileManager\\Data\\" + fileName;
 
-        // Read the file data
-        List<String[]> data = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(absolutePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                data.add(line.split(","));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error reading file");
-            return;
-        }
-        
-        // Update the specified cell
-        if (rowIndex < data.size() && colIndex < data.get(rowIndex).length) {
-            data.get(rowIndex)[colIndex] = newData;
-        } else {
-            System.out.println("Specified row or column is out of bounds");
-            return;
-        }
-    
-        // Write the updated data back to the original file (overwriting it)
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(absolutePath))) {
-            for (String[] rowValues : data) {
-                bw.write(String.join(",", rowValues));
-                bw.newLine();
-            }
-            System.out.println("Data successfully updated in the original file: " + absolutePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error writing file");
-        }
-   }
+         // Read the file data
+         List<String[]> data = new ArrayList<>();
+         try (BufferedReader br = new BufferedReader(new FileReader(absolutePath))) {
+             String line;
+             while ((line = br.readLine()) != null) {
+                 data.add(line.split(","));
+             }
+         } catch (Exception e) {
+             e.printStackTrace();
+             System.out.println("Error reading file");
+             return;
+         }
+         
+         // Update the specified cell
+         if (rowIndex < data.size() && colIndex < data.get(rowIndex).length) {
+             data.get(rowIndex)[colIndex] = newData;
+         } else {
+             System.out.println("Specified row or column is out of bounds");
+             return;
+         }
+     
+         // Write the updated data back to the original file (overwriting it)
+         try (BufferedWriter bw = new BufferedWriter(new FileWriter(absolutePath))) {
+             for (String[] rowValues : data) {
+                 bw.write(String.join(",", rowValues));
+                 bw.newLine();
+             }
+             System.out.println("Data successfully updated in the original file: " + absolutePath);
+         } catch (IOException e) {
+             e.printStackTrace();
+             System.out.println("Error writing file");
+         }
+	}
+
     public void writeRow(String fileName, List<String> newData) {
         String absolutePath = new File("").getAbsolutePath() + "\\HealthManagementSystem\\src\\FileManager\\Data\\" + fileName;
         

@@ -1,92 +1,78 @@
-import InformationAccess.InformationAccessManager;
-import Logger.FileLogger;
-import userLogin.UserLoginServices;
-
-import java.io.FileReader;
-import java.lang.reflect.Array;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import FileManager.CsvFileReader;
-import FileManager.CsvFileWriter;
+import Inventory.*;
 
 public class Testing {
     public static void main(String[] args) {
+        
+        InventoryManagement inventoryManagement = new InventoryManagement();
+        PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement);
 
-        InformationAccessManager informationAccessManager = new InformationAccessManager("Patient");
-        System.out.println(informationAccessManager.checkInformationAccess("Blood Type"));
+        //inventoryManagement.viewItems();
+        //inventoryManagement.submitReplenishmentRequest("Paracetamol", 10, "P001");
+        //inventoryManagement.updateLowStockThreshold("Ibuprofen", 20);
+        //inventoryManagement.restockItemByName("Ibuprofen", 10);
+        //inventoryManagement.restockItemByRequestID("d29eaf54-f13a-40b9-8ff6-2cdf0facd7b8", "A001");
+        //inventoryManagement.checkLowStockForItem("Paracetamol");
+        //inventoryManagement.viewPendingItems();
+        //inventoryManagement.handleAllPending("A001");
 
+        //prescriptionManagement.viewPendingItems();
+        //prescriptionManagement.handleAllPending("P001");
+        //prescriptionManagement.dispenseItemByAppointmentID("1001AB25");
+        //prescriptionManagement.dispenseItemByMedicineName("Paracetamol", 20);
+        prescriptionManagement.showAllAppointments();
+
+        //CsvFileWriter csvFileWriter = new CsvFileWriter();
+        //csvFileWriter.writeData("Medicine_List.csv", "2", "1", "5");
+        
         /* 
-        Scanner sc = new Scanner(System.in);
-        int choice = -1;
         String username;
         String password;
+        Scanner sc = new Scanner(System.in);
         FileLogger logger;
-        UserLoginServices userLoginServices;
+        System.out.println("Hospital Management System");
+        System.out.println("Username: ");
+        username = sc.nextLine();
+        logger = new FileLogger(username+".txt");
+        System.out.println("Password: ");
+        password = sc.nextLine();
+        UserLoginServices userLoginServices = new UserLoginServices(logger);
+        boolean login = userLoginServices.login(username, password);
+        System.out.println("Login Status:" + login);
+        System.out.println("Role: " + userLoginServices.getRole());
+        
+        
+        
+        //when patient is accessing information
+        InformationAccessManager AccessManager = new InformationAccessManager();
+        boolean x = AccessManager.checkInformationAccess("Blood Type");
+        System.out.println(x);
+        */
+        //Testing of CSV File reader
 
-        while(choice != 0)
-        {
-            System.out.println("Login System");
-            System.out.println("1. Login");
-            System.out.println("2. Register");
-            System.out.println("3. Forgot Password");
-            System.out.println("0. Exit");
-            System.out.println("Enter choice: ");
-            choice = sc.nextInt();
-            sc.nextLine();
-            if(choice == 1)
-            {
-                System.out.println("Enter username: ");
-                username = sc.nextLine();
-                System.out.println("Enter password: ");
-                password = sc.nextLine();
-                userLoginServices = new UserLoginServices(logger=new FileLogger(username));
-                if(userLoginServices.login(username, password))
-                {
-                    System.out.println("Login successful");
-                }
-                else
-                {
-                    System.out.println("Login failed");
-                }
-                System.out.println("Your role is: " + userLoginServices.getRole());
-                System.out.println("Logging out now...");
-                userLoginServices.logout();
-            }
-            else if(choice == 2)
-            {
-                System.out.println("Register Account");
-                System.out.println("Enter username: ");
-                username = sc.nextLine();
-                System.out.println("Enter password: ");
-                password = sc.nextLine();
-                userLoginServices = new UserLoginServices(logger=new FileLogger(username));
-                if(userLoginServices.register(username, password, "Patient"))
-                {
-                    System.out.println("Registration successful");
-                }
-                else
-                {
-                    System.out.println("Registration failed");
-                }
-            }
-            else if(choice == 3){
-                System.out.println("Forgot Password");
-                System.out.println("Enter username: ");
-                username = sc.nextLine();
-                userLoginServices = new UserLoginServices(logger=new FileLogger(username));
-                if(userLoginServices.resetPassword(username))
-                {
-                    System.out.println("Password reset successful");
-                }
-                else
-                {
-                    System.out.println("Password reset failed");
-                }
-            }
+        /*
+        CsvFileReader csvFileReader = new CsvFileReader();
+        List<String[]> data = csvFileReader.readData("User_Accounts.csv");
+
+        if(data.isEmpty()) {
+            System.out.println("No data found");
+            return;
         }
-        System.out.println("Exiting..."); */
-    }
+        for (String[] row : data) {
+            for (String cell : row) {
+                System.out.print(cell + "\t");
+            }
+            System.out.println();
+        }
 
+
+        List<String[]> column = csvFileReader.readColumn("User_Accounts.csv", "0");
+        if(column.isEmpty()) {
+            System.out.println("No data found");
+            return;
+        }
+        for (String[] cell : column) {
+            System.out.print(cell[0] + ",");
+        } */
+
+    }
 }
