@@ -5,12 +5,53 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The CsvFileWriter class provides methods to write or modify data in CSV files 
+ * located within the project structure. It implements the dataWriter interface, 
+ * enabling the writing of individual cells, appending rows, and updating specific rows.
+ * 
+ * <p>
+ * This class assumes that CSV files are stored under the path 
+ * "HealthManagementSystem/src/FileManager/Data/" within the project directory.
+ * </p>
+ * 
+ * <p>
+ * Example usage:
+ * <pre>
+ *     CsvFileWriter csvWriter = new CsvFileWriter();
+ *     csvWriter.writeData("example.csv", 2, 1, "newValue");
+ *     csvWriter.writeRow("example.csv", List.of("new", "data", "row"));
+ *     csvWriter.writeRow("example.csv", 3, List.of("updated", "data", "row"));
+ * </pre>
+ * </p>
+ * 
+ * <p>
+ * Note: Ensure proper file permissions and that the file exists at the specified path.
+ * </p>
+ * 
+ * @author Tan Guang Wei
+ * @version 1.0
+ * @since 2024-11-6
+ */
+
 public class CsvFileWriter implements dataWriter {
+
+    /**
+     * Updates a specific cell in the CSV file with new data.
+     * 
+     * @param fileName The name of the CSV file to update, located in the specified path.
+     * @param rowIndex The row index of the cell to update, starting from 0.
+     * @param colIndex The column index of the cell to update, starting from 0.
+     * @param newData The new data to write into the specified cell.
+     * 
+     * <p>
+     * If the specified cell position is out of bounds, no update will be performed.
+     * </p>
+     */
+
 	@Override
 	public void writeData(String fileName, int rowIndex, int colIndex, String newData) {
 		 // Path to the original CSV file
@@ -50,6 +91,17 @@ public class CsvFileWriter implements dataWriter {
          }
 	}
 
+    /**
+     * Appends a new row to the end of the CSV file.
+     * 
+     * @param fileName The name of the CSV file to update, located in the specified path.
+     * @param newData A list of strings representing the new row data to append.
+     * 
+     * <p>
+     * Each string in the list represents a cell in the row, separated by commas in the file.
+     * </p>
+     */
+
     public void writeRow(String fileName, List<String> newData) {
         String absolutePath = new File("").getAbsolutePath() + "\\HealthManagementSystem\\src\\FileManager\\Data\\" + fileName;
         
@@ -70,6 +122,18 @@ public class CsvFileWriter implements dataWriter {
             System.out.println("Error writing file");
         }
     }
+
+    /**
+     * Replaces an existing row in the CSV file with new data.
+     * 
+     * @param fileName The name of the CSV file to update, located in the specified path.
+     * @param rowIndex The index of the row to replace, starting from 0.
+     * @param newData A list of strings representing the new data to insert into the specified row.
+     * 
+     * <p>
+     * If the row index is out of bounds, no update is performed.
+     * </p>
+     */
 
     @Override
     public void writeRow(String fileName, int rowIndex, List<String> newData) {
