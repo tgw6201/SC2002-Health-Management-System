@@ -1,28 +1,28 @@
-import Inventory.*;
-import StaffManagement.HospitalStaffManagement;
-import StaffManagement.StaffManagementAdd;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.logging.LogManager;
-
 import FileManager.CsvFileReader;
 import FileManager.CsvFileWriter;
 import FileManager.dataReader;
 import FileManager.dataWriter;
-import InformationAccess.*;
-import Logger.*;
+import StaffManagement.hospitalStaffManagement;
+import java.util.Scanner;
+
+import userLogin.userLogin;
+import userLogin.UserLoginServices;
+import Logger.Logger;
+import Logger.FileLogger;
 
 public class Testing {
     public static void main(String[] args) {
-
-
-        /* 
+        /*
         dataReader reader = new CsvFileReader();
         dataWriter writer = new CsvFileWriter();
-        HospitalStaffManagement staffManagement = new HospitalStaffManagement(reader, writer);
+        DataProcessor processor = new DataProcessor(reader, writer); 
+        //Admin user interface
+        */
+        
+        /*
+        dataReader reader = new CsvFileReader();
+        dataWriter writer = new CsvFileWriter();
+        hospitalStaffManagement staffManagement = new hospitalStaffManagement(reader, writer);
         int choice = -1;
         Scanner sc = new Scanner(System.in);
         while(choice != 5){
@@ -76,6 +76,7 @@ public class Testing {
             }
         }
         */
+
         /* 
         InventoryManagement inventoryManagement = new InventoryManagement();
         PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement);
@@ -98,11 +99,11 @@ public class Testing {
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
         //csvFileWriter.writeData("Medicine_List.csv", "2", "1", "5");
         
-        /* 
+        
         String username;
         String password;
         Scanner sc = new Scanner(System.in);
-        FileLogger logger;
+        Logger logger;
         System.out.println("Hospital Management System");
         System.out.println("Username: ");
         username = sc.nextLine();
@@ -113,7 +114,7 @@ public class Testing {
         boolean login = userLoginServices.login(username, password);
         System.out.println("Login Status:" + login);
         System.out.println("Role: " + userLoginServices.getRole());
-        */
+        
         
         
         //when patient is accessing information

@@ -3,7 +3,6 @@ package StaffManagement;
 import FileManager.DataProcessor;
 import FileManager.dataReader;
 import FileManager.dataWriter;
-
 import java.util.List;
 
 /**
@@ -16,14 +15,14 @@ import java.util.List;
  * @version 1.0
  * @since 2024-11-6
  */
-public class HospitalStaffManagement implements StaffManagementAdd, StaffManagementUpdate, StaffManagementRemove, StaffManagementView, StaffFilter {
+public class hospitalStaffManagement implements StaffManagementAdd, StaffManagementUpdate, StaffManagementRemove, StaffManagementView, StaffFilter {
     private final DataProcessor dataProcessor;
 
     /**
      * Constructor for the hospitalStaffManagement class.
      * 
      */
-    public HospitalStaffManagement(dataReader dataReader, dataWriter dataWriter) {
+    public hospitalStaffManagement(dataReader dataReader, dataWriter dataWriter) {
         this.dataProcessor = new DataProcessor(dataReader, dataWriter);
     }
 
