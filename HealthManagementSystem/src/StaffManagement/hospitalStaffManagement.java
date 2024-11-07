@@ -16,7 +16,7 @@ import java.util.List;
  * @version 1.0
  * @since 2024-11-6
  */
-public class HospitalStaffManagement implements StaffManagementAdd, StaffManagementUpdate, StaffManagementRemove, StaffManagementView {
+public class HospitalStaffManagement implements StaffManagementAdd, StaffManagementUpdate, StaffManagementRemove, StaffManagementView, StaffFilter {
     private final DataProcessor dataProcessor;
 
     /**
