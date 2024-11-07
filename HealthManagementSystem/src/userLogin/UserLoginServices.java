@@ -7,22 +7,16 @@ import java.util.List;
 import FileManager.*;
 
 /**
- * The UserLoginServices class implements the {@link userLogin} interface, providing user authentication
- * and management functionalities such as login, logout, user registration, password change, and password reset.
- * This class interacts with CSV files to manage user accounts and stores user credentials such as username, password,
- * and role. It also logs user actions such as login, logout, registration, and password changes using a logging mechanism.
- * <p>
- * The service validates user credentials during login, allowing for role-based access control, and facilitates secure password changes or resets.
- * </p>
- *
- * <p>
+ * Implements {@link userLogin} interface for user authentication, registration, and password management.
+ * Logs user actions such as login, logout, and registration.
+ * 
  * Example usage:
  * <pre>
- *     Logger logger = new ConsoleLogger(); // Or a FileLogger for persistent logs
- *     UserLoginServices loginServices = new UserLoginServices(logger);
- *     loginServices.login("user1", "password123");
+ *     dataReader reader = new CsvFileReader();
+       dataWriter writer = new CsvFileWriter();
+ *     UserLoginServices loginServices = new UserLoginServices(reader,writer);
+ *     loginServices.login("P1001", "password");
  * </pre>
- * </p>
  * 
  * @author Tan Guang Wei
  * @version 1.0
@@ -30,60 +24,57 @@ import FileManager.*;
  */
 
 public class UserLoginServices implements userLogin{
-    private final Logger logger;
     private String username;
     private String password;
     private boolean validation;
     private String userRole;
+    private final DataProcessor dataProcessor;
 
     /**
-     * Constructs a UserLoginServices instance with a specified logger for logging activities.
+     * Constructs a {@code UserLoginServices} instance with data reader and writer.
      * 
-     * @param logger The logger to be used for logging activities (e.g., ConsoleLogger, FileLogger).
+     * @param reader Data reader for user data.
+     * @param writer Data writer for saving user data.
      */
-    public UserLoginServices(Logger logger) {
-        this.logger = logger;
+
+    public UserLoginServices(dataReader reader, dataWriter writer) {
         this.username = "";
         this.password = "";
         this.validation = false;
+        this.dataProcessor = new DataProcessor(reader, writer);
     }
 
-    /**
-     * Logs in the user by checking the provided username and password against stored user credentials.
-     * If valid, the user's role is assigned, and the login is logged using the logger.
+     /**
+     * Validates user credentials for login.
      * 
-     * @param username The username of the user attempting to log in.
-     * @param password The password associated with the username.
-     * @return true if the login is successful; false if the credentials are invalid.
+     * @param username The username.
+     * @param password The password.
+     * @return {@code true} if valid, otherwise {@code false}.
      */
     @Override
     public boolean login(String username, String password) {
         this.username = username;
         this.password = password;
         //Fetch user credentials from csv file
-        CsvFileReader csvFileReader = new CsvFileReader();
-        List<String[]> userCredentials = csvFileReader.readData("User_Accounts.csv");
+
+        List<String[]> userCredentials = dataProcessor.readData("User_Accounts.csv");
         for(String[] user : userCredentials) {
             if(user[0].equals(username) && user[1].equals(password)) {
                 this.validation = true;
                 this.userRole = user[2];
-                logger.log("User " + username + " has logged in.");
                 return true;
             }
         }
-        logger.log("User " + username + " has failed to log in.");
         return false;
     }
 
     /**
-     * Logs out the currently logged-in user, clearing their session data and logging the logout event.
-     * 
-     * @return false after logging the user out (since no data is returned after logout).
-     */
+    * Logs out the user.
+    * 
+    * @return {@code false} (no data returned after logout).
+    */
     @Override
     public boolean logout() {
-        logger.log("User " + username + " has logged out.");
-        logger.stopLogging();
         this.validation = false;
         this.username = "";
         this.password = "";
@@ -92,14 +83,13 @@ public class UserLoginServices implements userLogin{
     }
 
     /**
-     * Checks if a user with the given username exists in the stored user data.
+     * Checks if a user exists.
      * 
-     * @param username The username to be checked.
-     * @return true if the user exists; false otherwise.
+     * @param username The username.
+     * @return {@code true} if user exists, otherwise {@code false}.
      */
     private boolean findUser(String username) {
-        CsvFileReader csvFileReader = new CsvFileReader();
-        List<String[]> userCredentials = csvFileReader.readData("User_Accounts.csv");
+        List<String[]> userCredentials = dataProcessor.readData("User_Accounts.csv");
         for(String[] user : userCredentials) {
             if(user[0].equals(username)) {
                 return true;
@@ -109,52 +99,45 @@ public class UserLoginServices implements userLogin{
     }
 
     /**
-     * Registers a new user by adding their username, password, and role to the user accounts data.
-     * If the username already exists, registration fails, and an appropriate log entry is made.
+     * Registers a new user.
      * 
-     * @param username The username to be registered.
-     * @param password The password for the new user.
-     * @param role The role of the new user (e.g., "admin", "user").
-     * @return true if the user was successfully registered; false if the username already exists.
+     * @param username The username.
+     * @param password The password.
+     * @param role The user role.
+     * @return {@code true} if registered, otherwise {@code false}.
      */
     @Override
     public boolean register(String username, String password, String role) {
         
         //Check if username already exists
         if(findUser(username)) {
-            logger.log("User " + username + " already exists.");
             return false;
         }
-
-        CsvFileWriter csvFileWriter = new CsvFileWriter();
         ArrayList<String> data = new ArrayList<>();
         data.add(username);
         data.add(password);
         data.add(role);
-        csvFileWriter.writeRow("User_Accounts.csv", data);
+        dataProcessor.writeRow("User_Accounts.csv", data);
         Logger regLogger = new FileLogger("Registration");
         regLogger.log("User " + username + " has registered.");
         return true;
     }
 
      /**
-     * Changes the password for an existing user, updating the password in the stored user credentials.
-     * If the user does not exist, the password change fails.
+     * Changes an existing user's password.
      * 
-     * @param username The username of the user whose password is to be changed.
-     * @param password The new password for the user.
-     * @return true if the password was successfully changed; false if the user does not exist.
+     * @param username The username.
+     * @param password The new password.
+     * @return {@code true} if changed, otherwise {@code false}.
      */
     @Override
     public boolean changePassword(String username, String password) {
         //Fetch user credentials from excel file
         if(findUser(username) == false) {
-            logger.log("User " + username + " does not exist.");
             return false;
         }
         int row = 0;
-        CsvFileReader csvFileReader = new CsvFileReader();
-        List<String[]> userCredentials = csvFileReader.readData("User_Accounts.csv");
+        List<String[]> userCredentials = dataProcessor.readData("User_Accounts.csv");
         List<String> updatedData = new ArrayList<>();
         for(String[] user : userCredentials) {
             if(user[0].equals(username)) {
@@ -165,29 +148,23 @@ public class UserLoginServices implements userLogin{
             }
             row++;
         }
-
-        CsvFileWriter csvFileWriter = new CsvFileWriter();
-        csvFileWriter.writeRow("User_Accounts.csv", row ,updatedData);
-        logger.log("User " + username + " has changed password.");
+        dataProcessor.writeRow("User_Accounts.csv", row ,updatedData);
         return true;
     }
 
     /**
-     * Resets the password for a user to a default value ("password"). If the user does not exist,
-     * the reset fails.
+     * Resets a user's password to the default value.
      * 
-     * @param username The username of the user whose password is to be reset.
-     * @return true if the password was successfully reset; false if the user does not exist.
+     * @param username The username.
+     * @return {@code true} if reset, otherwise {@code false}.
      */
     @Override
     public boolean resetPassword(String username) {
         if(findUser(username) == false) {
-            logger.log("User " + username + " does not exist.");
             return false;
         }
         int row = 0;
-        CsvFileReader csvFileReader = new CsvFileReader();
-        List<String[]> userCredentials = csvFileReader.readData("User_Accounts.csv");
+        List<String[]> userCredentials = dataProcessor.readData("User_Accounts.csv");
         List<String> updatedData = new ArrayList<>();
         for(String[] user : userCredentials) {
             if(user[0].equals(username)) {
@@ -199,16 +176,14 @@ public class UserLoginServices implements userLogin{
             row++;
         }
 
-        CsvFileWriter csvFileWriter = new CsvFileWriter();
-        csvFileWriter.writeRow("User_Accounts.csv", row ,updatedData);
-        logger.log("User " + username + " has reset password.");
+        dataProcessor.writeRow("User_Accounts.csv", row ,updatedData);
         return true;
     }
 
     /**
-     * Retrieves the role of the currently logged-in user. If no user is logged in, an empty string is returned.
+     * Retrieves the role of the currently logged-in user.
      * 
-     * @return The role of the logged-in user if authenticated; an empty string if no user is logged in.
+     * @return The user's role if logged in; otherwise an empty string.
      */
     @Override
     public String getRole() {
