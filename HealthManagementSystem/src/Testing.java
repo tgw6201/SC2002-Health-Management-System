@@ -1,14 +1,28 @@
-import java.util.List;
-import java.util.Scanner;
-
-import FileManager.CsvFileWriter;
 import Inventory.*;
-import StaffManagement.*;
+import StaffManagement.HospitalStaffManagement;
+import StaffManagement.StaffManagementAdd;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.logging.LogManager;
+
+import FileManager.CsvFileReader;
+import FileManager.CsvFileWriter;
+import FileManager.dataReader;
+import FileManager.dataWriter;
+import InformationAccess.*;
+import Logger.*;
 
 public class Testing {
     public static void main(String[] args) {
 
-        staffManagement staffManagement = new hospitalStaffManagement();
+
+        /* 
+        dataReader reader = new CsvFileReader();
+        dataWriter writer = new CsvFileWriter();
+        HospitalStaffManagement staffManagement = new HospitalStaffManagement(reader, writer);
         int choice = -1;
         Scanner sc = new Scanner(System.in);
         while(choice != 5){
@@ -61,15 +75,16 @@ public class Testing {
                 staffManagement.filteredView(category, type);
             }
         }
-        
-        //InventoryManagement inventoryManagement = new InventoryManagement();
-        //PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement);
-
+        */
+        /* 
+        InventoryManagement inventoryManagement = new InventoryManagement();
+        PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement);
+        */
         //inventoryManagement.viewItems();
         //inventoryManagement.submitReplenishmentRequest("Paracetamol", 10, "P001");
         //inventoryManagement.updateLowStockThreshold("Ibuprofen", 20);
         //inventoryManagement.restockItemByName("Ibuprofen", 10);
-        //inventoryManagement.restockItemByRequestID("d29eaf54-f13a-40b9-8ff6-2cdf0facd7b8", "A001");
+        //inventoryManagement.restockItemByRequestID("ec8c329e-205d-4be2-bda9-a28398c10438", "A001");
         //inventoryManagement.checkLowStockForItem("Paracetamol");
         //inventoryManagement.viewPendingItems();
         //inventoryManagement.handleAllPending("A001");
@@ -98,14 +113,18 @@ public class Testing {
         boolean login = userLoginServices.login(username, password);
         System.out.println("Login Status:" + login);
         System.out.println("Role: " + userLoginServices.getRole());
-        
+        */
         
         
         //when patient is accessing information
-        InformationAccessManager AccessManager = new InformationAccessManager();
+
+        /*
+        dataReader reader = new CsvFileReader();
+        dataWriter writer = new CsvFileWriter();
+        InformationAccessManager AccessManager = new InformationAccessManager("Patient", reader, writer);
         boolean x = AccessManager.checkInformationAccess("Blood Type");
-        System.out.println(x);
-        */
+        System.out.println(x); */
+        
         //Testing of CSV File reader
 
         /*

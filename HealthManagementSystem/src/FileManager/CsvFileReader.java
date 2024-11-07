@@ -87,7 +87,7 @@ public class CsvFileReader implements dataReader {
             System.out.println("File not found in resources: " + fileName);
             return data;
         }
-        System.out.println("Reading data from xlsx file");
+        System.out.println("Reading data from csv file");
         try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             int currRow = 0;
             String line;
@@ -127,7 +127,7 @@ public class CsvFileReader implements dataReader {
             System.out.println("File not found in resources: " + fileName);
             return data;
         }
-        System.out.println("Reading data from xlsx file");
+        System.out.println("Reading data from csv file");
         try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = br.readLine()) != null) {
