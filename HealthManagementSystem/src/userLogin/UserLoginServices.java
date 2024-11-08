@@ -1,10 +1,8 @@
 package userLogin;
+import FileManager.*;
 import Logger.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import FileManager.*;
 
 /**
  * Implements {@link userLogin} interface for user authentication, registration, and password management.
@@ -192,5 +190,9 @@ public class UserLoginServices implements userLogin{
         }
         else
             return "";
+    }
+    public String getID()
+    {
+        return this.username;
     }
 }

@@ -1,32 +1,52 @@
 import java.util.Scanner;
+import Logger.*;
+import FileManager.*;
+import Appointment.*;
+
 public class Patient 
 {
+    private String userID;
+    private String userRole;
+    private Logger logger;
 
-    public Patient() 
+
+    public Patient(String userID, String userRole, Logger logger)
     {
-        
+        this.userID= userID;
+        this.userRole = userRole;
+        this.logger = logger;
     }
     
     public void menu()
-    {
+    {   
+        logger.log("User logged in");//once enter, log the file
+        dataReader reader = new CsvFileReader();
+        dataWriter writer = new CsvFileWriter();
+        PatientMedicalRecordManager patientService =  new PatientMedicalRecordManager(reader, writer);
+        MedicalRecordManagement patientMedRecord = new MedicalRecordManagement(patientService);
         Scanner sc = new Scanner(System.in);
-        int choice = sc.nextInt();
+        int choice = 0;
         while (choice !=9)
         {
             System.out.println("Input a choice from 1 to 9");
-            System.out.println("[1] View Medical Record");
-            System.out.println("[2] Update Personal Information");
-            System.out.println("[3] View Available Appointment Slots");
-            System.out.println("[4] Schedule an Appointment");
-            System.out.println("[5] Reschedule an Appointment");
-            System.out.println("[6] Cancel an Appointment");
-            System.out.println("[7] View Scheduled Appointments");
-            System.out.println("[8] View Past Appointment Outcome Records");
-            System.out.println("[9] Logout");
+            System.out.println("1. View Medical Record");
+            System.out.println("2. Update Personal Information");
+            System.out.println("3. View Available Appointment Slots");
+            System.out.println("4. Schedule an Appointment");
+            System.out.println("5. Reschedule an Appointment");
+            System.out.println("6. Cancel an Appointment");
+            System.out.println("7. View Scheduled Appointments");
+            System.out.println("8. View Past Appointment Outcome Records");
+            System.out.println("9. Logout");
+            choice = sc.nextInt();
+            sc.nextLine();
             switch (choice)
             {
                 case 1:
                     System.out.println("View medical record"); // wait rennie
+                    MedicalRecordManager medical = new MedicalRecordManager();
+                   //Check case 1 and 9
+                    medical.viewMedicalRecord("P1001"); //how to input patient ID?
                     break;
                 case 2:
                     System.out.println("Update Personal Information"); // ask admin->SystemManagement to do so?
@@ -57,5 +77,15 @@ public class Patient
                     break;
             }
         }
+        logger.stopLogging();
+        
+    }
+    public String getUserID()
+    {
+        return userID;
+    }
+    public String getRole()
+    {
+        return userRole;
     }
 }
