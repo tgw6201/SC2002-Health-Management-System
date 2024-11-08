@@ -3,39 +3,29 @@ package Appointment;
 import java.util.ArrayList;
 import java.util.List;
 
-import FileManager.CsvFileReader;
-import FileManager.CsvFileWriter;
+import FileManager.*;
 
-public class AppointmentManager {
+import FileManager.DataProcessor;
+import FileManager.dataReader;
+import FileManager.dataWriter;
+import Appointment2.*;
+
+public class AppointmentManager implements AppointmentSchedulingService, ViewAppointment {
     
-    private List<String[]> appointmentSlotListCsv;
-    private List<String[]> appointmentListCsv;
-    private List<String[]> appointmentOutcomeListCsv;
-    private List<String[]> medicalRecordListCsv;
-            
-
-    //should this be private (attributes)?
-    CsvFileReader csvFileReader = new CsvFileReader();
-    CsvFileWriter csvFileWriter = new CsvFileWriter(); 
-
-    public AppointmentManager(){
-        //will need info from appointmentSlot to create / cancel appointment/ reschedule appointment
-        appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
-        
-        //contains all info of appointments
-        appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
-
-        medicalRecordListCsv = csvFileReader.readData("MedicalRecord_List.csv");
-            
-        appointmentOutcomeListCsv = csvFileReader.readData("AppointmentOutcomeRecord_List.csv");
+       
+    private DataProcessor dataProcessor;
+    private dataReader fileReader = new CsvFileReader();
+    private dataWriter fileWriter = new CsvFileWriter();
+    
+    public AppointmentManager(dataReader reader, dataWriter writer){
+        dataProcessor = new DataProcessor(reader, writer);
     }
 
     // more efficient to use appointmentSlotID 
     public void scheduleAppointment(String patientID, String appointmentSlotID){
         
         //Read existing data in csv
-        appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
-        appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+        List<String[]> appointmentSlotListCsv = dataProcessor.readData("AvailabilitySlot_List.csv");
 
         
         for(String[] row1 : appointmentSlotListCsv){
@@ -87,10 +77,10 @@ public class AppointmentManager {
                     newRow.add(appointmentTime);
                     newRow.add(appointmentSlotID);
                     newRow.add(appointmentOutcomeID);
-                    csvFileWriter.writeRow("Appointment_List.csv", newRow);
+                    dataProcessor.writeRow("Appointment_List.csv", newRow);
                 
-                    //update appointment slot to Booked for the csv
-                    AppointmentSlotManager slot = new AppointmentSlotManager();
+                    //update appointment slot to Booked for the csvreader
+                    AppointmentSlotManager slot = new AppointmentSlotManager(fileReader, fileWriter);
                     slot.setAppointmentAvailability(appointmentSlotID, "Booked");
 
                     //verify that the appointment is scheduled successfully
@@ -106,8 +96,8 @@ public class AppointmentManager {
     public void rescheduleAppointment(String appointmentID, String newAppointmentSlotID){
             
         //Read existing data in csv
-        appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
-        appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+        List<String[]> appointmentSlotListCsv = dataProcessor.readData("AvailabilitySlot_List.csv");
+        List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
 
         //Initalization
         String oldAppointmentSlotID = "NIL";
@@ -119,7 +109,7 @@ public class AppointmentManager {
         //default staus is confirmed
         String appointmentStatus = "Confirmed";
 
-        AppointmentSlotManager slot = new AppointmentSlotManager();
+        AppointmentSlotManager slot = new AppointmentSlotManager(fileReader, fileWriter);
         
         // get old appointment slot id
         for(String[] row : appointmentListCsv){
@@ -183,7 +173,7 @@ public class AppointmentManager {
                             newRow.add(appointmentTime);
                             newRow.add(newAppointmentSlotID);
                             newRow.add(appointmentOutcomeID);
-                            csvFileWriter.writeRow("Appointment_List.csv", i, newRow);
+                            dataProcessor.writeRow("Appointment_List.csv", i, newRow);
                         
                             
                             //verify that the appointment is rescheduled successfully
@@ -203,8 +193,7 @@ public class AppointmentManager {
     public void cancelAppointment(String appointmentID){
     
         //Read existing data in csv
-        appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
-        appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+        List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
 
         //Intialization 
         String AppointmentSlotID = "NIL";
@@ -215,7 +204,7 @@ public class AppointmentManager {
             //If it matches the appoointmentID
             if(row[0].equalsIgnoreCase(appointmentID)){
                 //change the appointmentStatus to cancelled in csv
-                csvFileWriter.writeData("Appointment_List.csv", i, 3, "Cancelled");
+                dataProcessor.writeData("Appointment_List.csv", i, 3, "Cancelled");
                 //get the appointmentSlotID
                 AppointmentSlotID = row[6];
                 break;
@@ -223,7 +212,7 @@ public class AppointmentManager {
             i++;
         }
         //Update appointmentSlot from booked to available
-        AppointmentSlotManager slot = new AppointmentSlotManager();
+        AppointmentSlotManager slot = new AppointmentSlotManager(fileReader, fileWriter);
         slot.setAppointmentAvailability(AppointmentSlotID, "Available");
 
         //verify that the appointment has been cancelled
@@ -233,8 +222,7 @@ public class AppointmentManager {
         //Doctor accept or decline appointment
         public void acceptDeclineAppointment(String appointmentID, String decision){
             //Read existing data in csv
-            appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
-            appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+            List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
              
             //intialise
             String appointmentSlotID = "NIL";
@@ -250,7 +238,7 @@ public class AppointmentManager {
                     //check for appointmentID
                     if(row[0].equalsIgnoreCase(appointmentID)){
                         //update appointmentStatus
-                        csvFileWriter.writeData("Appointment_List.csv", i, 3, "Confirmed");
+                        dataProcessor.writeData("Appointment_List.csv", i, 3, "Confirmed");
                         
                         //get appointmentSlotID
                         appointmentSlotID = row[6];
@@ -258,7 +246,7 @@ public class AppointmentManager {
                     i++;
                 }
                 //update appointmentSlot to booked
-                AppointmentSlotManager slot = new AppointmentSlotManager();
+                AppointmentSlotManager slot = new AppointmentSlotManager(fileReader, fileWriter);
                 slot.setAppointmentAvailability(appointmentSlotID, "Booked");
         
                 //verify appointment status changes to "confirmed"
@@ -275,7 +263,7 @@ public class AppointmentManager {
                     //check for appointmentID
                     if(row[0].equalsIgnoreCase(appointmentID)){
                         //update appointmentStatus
-                        csvFileWriter.writeData("Appointment_List.csv", i, 3, "Cancelled");
+                        dataProcessor.writeData("Appointment_List.csv", i, 3, "Cancelled");
     
     
                         //get appointmentSlotID
@@ -284,7 +272,7 @@ public class AppointmentManager {
                     i++;
                 }
                 //update appointmentSlot to available
-                AppointmentSlotManager slot = new AppointmentSlotManager();
+                AppointmentSlotManager slot = new AppointmentSlotManager(fileReader, fileWriter);
                 slot.setAppointmentAvailability(appointmentSlotID, "Available");
     
     
@@ -296,8 +284,8 @@ public class AppointmentManager {
         //View Scheduled Appointment for patient
         public void viewScheduleAppointment(String patientID){
             //Read existing data in csv
-            appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
-            appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+            List<String[]> appointmentSlotListCsv = dataProcessor.readData("AvailabilitySlot_List.csv");
+            List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
             //find appointements for patient
 
             //initialise 
@@ -327,12 +315,12 @@ public class AppointmentManager {
 
         }
 
-        //dcotor view personal schedule
+        //doctor view personal schedule
         public void viewPersonalSchedule(String doctorID){
             
             //Read existing data in csv
-            appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
-            appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+            List<String[]> appointmentSlotListCsv = dataProcessor.readData("AvailabilitySlot_List.csv");
+            List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
             
             //labels to format printing
             String[] appointmentLabels = {
@@ -383,8 +371,8 @@ public class AppointmentManager {
         //view upcoming confirmed appointments
         public void viewUpcomingAppointments(String DoctorID){
             //Read existing data in csv
-            appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
-            medicalRecordListCsv = csvFileReader.readData("MedicalRecord_List.csv");
+            List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
+            List<String[]> medicalRecordListCsv = dataProcessor.readData("MedicalRecord_List.csv");
 
             //initialization 
 
@@ -439,9 +427,8 @@ public class AppointmentManager {
         public void viewAppointmentDetails(String appointmentID){
                 
             //Read existing data in csv
-            appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
-            appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
-            appointmentOutcomeListCsv = csvFileReader.readData("AppointmentOutcomeRecord_List.csv");
+            List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
+            List<String[]> appointmentOutcomeListCsv = dataProcessor.readData("AppointmentOutcomeRecord_List.csv");
             //intialization 
             String appointmentOutcomeID = "NIL";
 

@@ -1,20 +1,19 @@
-package Appointment;
+package Appointment2;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import FileManager.CsvFileReader;
-import FileManager.CsvFileWriter;
+import FileManager.*;
 
-public class AppointmentSlotManager {
+public class AppointmentSlotManager implements AppointmentSlotService{
     private List<String[]> appointmentSlotListCsv;
-    
-    CsvFileReader csvFileReader = new CsvFileReader();
-    CsvFileWriter csvFileWriter = new CsvFileWriter();    
+    private DataProcessor dataProcessor;
+   
 
     //sync the appointmentSlotList with CSV file
-    public AppointmentSlotManager(){
-        appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
+    public AppointmentSlotManager(dataReader reader, dataWriter writer){
+        dataProcessor = new DataProcessor(reader, writer);
+        appointmentSlotListCsv = dataProcessor.readData("AvailabilitySlot_List.csv");
     }
 
     //doctor update availability --> existing appointmentslot / scheduled appointment
@@ -23,7 +22,7 @@ public class AppointmentSlotManager {
         for(int i = 0; i<appointmentSlotListCsv.size(); i++){// iterates over each String[] (1 row in csv)
             String[] row = appointmentSlotListCsv.get(i);// get the row 
             if(row[0].equalsIgnoreCase(appointmentSlotID)){ // check if appointmentSlotID matches
-                csvFileWriter.writeData("AvailabilitySlot_List.csv", i, 5, availability);
+                dataProcessor.writeData("AvailabilitySlot_List.csv", i, 5, availability);
                 System.out.println("Appointment Slot Availability updated");   
                 //update appointmentSlotListCsv array
                 row[5] = availability;         
@@ -49,7 +48,7 @@ public class AppointmentSlotManager {
         newRow.add(appointmentDate);
         newRow.add(appointmentTime);
         newRow.add(availability);
-        csvFileWriter.writeRow("AvailabilitySlot_List.csv", newRow);
+        dataProcessor.writeRow("AvailabilitySlot_List.csv", newRow);
         System.out.println("Appointment Slot Availability updated"); 
         
         //update appointmentSlotListCsv array

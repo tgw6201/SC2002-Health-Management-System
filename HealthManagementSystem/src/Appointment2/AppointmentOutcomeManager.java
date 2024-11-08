@@ -1,18 +1,14 @@
-package Appointment;
+package Appointment2;
 import java.util.*;
 import FileManager.*;
 
-public class AppointmentOutcomeManager {
-    private List<String[]> appointmentOutcomeListCsv; // list of stringarrays --> each string array is an appointmentoutcomerecord/a row in csv
-    private List<String[]> appointmentListCsv;
-    CsvFileReader csvFileReader = new CsvFileReader();
-    CsvFileWriter csvFileWriter = new CsvFileWriter();
+public class AppointmentOutcomeManager implements AppointmentOutcomeService{
+
+    private DataProcessor dataProcessor;
 
     //sync the appointmentOutcomeList with CSV file
-    public AppointmentOutcomeManager(){
-        appointmentOutcomeListCsv = csvFileReader.readData("AppointmentOutcomeRecord_List.csv");
-
-        appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+    public AppointmentOutcomeManager(dataReader reader, dataWriter writer){
+        dataProcessor = new DataProcessor(reader, writer);
     }
 
     //create an appointmentOutcomeRecord and add to the appointmentOutcomeList + CSV file
@@ -22,8 +18,7 @@ public class AppointmentOutcomeManager {
     //update appointmentOutcomeRecord of appointment
     public void recordAppointmentOutcome(String typeOfService, String prescribedMedication, String prescribedMedicationQuantity, String prescriptionStatus, String consultationNotes, String appointmentID){
         
-        appointmentOutcomeListCsv = csvFileReader.readData("AppointmentOutcomeRecord_List.csv");
-        appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
+        List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
         
 
         //intialization
@@ -42,10 +37,10 @@ public class AppointmentOutcomeManager {
                 String appointmentOutcomeID = patientID + appointmentID;
                 
                 //update appointment Status
-                csvFileWriter.writeData("Appointment_List.csv", i, 3, "Completed");
+                dataProcessor.writeData("Appointment_List.csv", i, 3, "Completed");
 
                 //update AppointmentOutcomeID for appointment
-                csvFileWriter.writeData("Appointment_List.csv", i, 7, appointmentOutcomeID);
+                dataProcessor.writeData("Appointment_List.csv", i, 7, appointmentOutcomeID);
 
             }
             i++;
@@ -64,7 +59,7 @@ public class AppointmentOutcomeManager {
         newRow.add(prescriptionStatus);
         newRow.add(consultationNotes);
         newRow.add(appointmentID);
-        csvFileWriter.writeRow("AppointmentOutcomeRecord_List.csv", newRow);
+        dataProcessor.writeRow("AppointmentOutcomeRecord_List.csv", newRow);
 
 
         //verify that the appointment outcome is recorded(doctor's pov)
@@ -74,6 +69,8 @@ public class AppointmentOutcomeManager {
     //For patients to view all past records
     public void viewPastRecords(String patientID){
 
+        List<String[]> appointmentOutcomeListCsv = dataProcessor.readData("AppointmentOutcomeRecord_List.csv");
+    
         String[] labels = {
             "Appointment Outcome ID: ",
             "Patient ID: ",
@@ -99,6 +96,9 @@ public class AppointmentOutcomeManager {
 
     //For viewing a specific appointmentOutcomeRecord
     public void viewOutcomeRecord(String appointmentOutcomeID){
+
+        List<String[]> appointmentOutcomeListCsv = dataProcessor.readData("AppointmentOutcomeRecord_List.csv");
+    
 
         String[] labels = {
             "Appointment Outcome ID: ",
