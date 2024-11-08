@@ -1,4 +1,2 @@
-appointmentOutcomeID,patientID,appointmentDate,typeOfService,prescribedMedication,prescribedMedicationQuantity,prescriptionStatus,consultationNotes
-1001AB25,P1001,25/10/2024,Retrieve medication,Paracetamol,50,Dispensed,eat meds 3 times a day
-1002BS28,P1002,28/10/2024,Check-up,Amoxicillin,50,Dispensed,Nothing wrong
-1002BS29,P1002,28/10/2024,Check-up,Ibuprofen,50,Dispensed,Nothing wrong
+appointmentOutcomeID,patientID,appointmentDate,typeOfService,prescribedMedication,prescribedMedicationQuantity,prescriptionStatus,consultationNotes,appointmentID
+P1002P1002D1002111300,P1002,11/6/2024,Retrieve medication,Paracetamol,100,pending,eat meds 3 times a day,P1002D1002111300
