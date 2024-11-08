@@ -461,5 +461,35 @@ public class AppointmentManager {
             }
         }
 
+    //YU XUAN SELF ADDED STUFF FROM CHATGPT
+    /* 
+    public void showPendingRequests() {
+        // Read existing data from the appointment list CSV file
+        appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
     
+        System.out.println("Pending Appointment Requests:");
+        boolean foundPending = false;
+    
+        // Loop through each appointment entry
+        for (String[] row : appointmentListCsv) {
+            // Check if the appointment status is "Pending"
+            if (row[3].equalsIgnoreCase("Pending")) {
+                foundPending = true;
+                System.out.println("Appointment ID: " + row[0]);
+                System.out.println("Patient ID: " + row[1]);
+                System.out.println("Doctor ID: " + row[2]);
+                System.out.println("Appointment Date: " + row[4]);
+                System.out.println("Appointment Time: " + row[5]);
+                System.out.println();
+            }
+        }
+    
+        // If no pending appointments are found
+        if (!foundPending) {
+            System.out.println("No pending appointment requests found.");
+        }
+    }
+    */
+
+
 }

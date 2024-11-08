@@ -1,3 +1,4 @@
+
 package StaffManagement;
 
 /**
@@ -23,5 +24,5 @@ public interface StaffFilter {
      * @return {@code true} if the staff record meets the filter condition, 
      *         {@code false} otherwise.
      */
-    boolean filter(String[] staffData);
+    void filteredView(String category, String type);
 }
