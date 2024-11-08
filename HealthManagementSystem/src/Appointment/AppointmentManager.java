@@ -329,7 +329,7 @@ public class AppointmentManager {
 
         }
 
-        //dcotor view personal schedule
+        //doctor view personal schedule
         public void viewPersonalSchedule(String doctorID){
             
             //Read existing data in csv
