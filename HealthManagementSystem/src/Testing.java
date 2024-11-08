@@ -37,7 +37,7 @@ public class Testing {
         //slot.viewAvailableAppointmentSlots();
 
         
-        AppointmentManager appointment = new AppointmentManager();
+        //AppointmentManager appointment = new AppointmentManager();
 
         //check case 4 --> work for available and booked
         //appointment.scheduleAppointment("P1001", "D100111900");
@@ -66,7 +66,8 @@ public class Testing {
         //case 13 --> work
         //appointment.acceptDeclineAppointment("P1002D1002111300", "accept");
         
-        //case 14 --> not done yet
+        //case 14 --> work
+        //appointment.viewUpcomingAppointments("D1002");
         
         //case 15 --> works
         //manager.recordAppointmentOutcome("Retrieve medication", "Paracetamol", "100", "pending", "eat meds 3 times a day", "P1002D1002111300");

@@ -32,7 +32,9 @@ public class MedicalRecordManager {
             "Phone Number: ",
             "Email Address: ",
             "Blood Type: ",
-            ""
+            "",
+            "Doctor ID: ",
+            "Doctor In Charge: "
         };
 
         

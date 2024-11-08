@@ -383,18 +383,53 @@ public class AppointmentManager {
         //view upcoming confirmed appointments
         public void viewUpcomingAppointments(String DoctorID){
             //Read existing data in csv
-            appointmentSlotListCsv = csvFileReader.readData("AvailabilitySlot_List.csv");
             appointmentListCsv = csvFileReader.readData("Appointment_List.csv");
             medicalRecordListCsv = csvFileReader.readData("MedicalRecord_List.csv");
 
-            for(String[] row: appointmentListCsv){
-                //check if doctorID matches
-                if(row[2].equalsIgnoreCase(DoctorID)){
-                    
+            //initialization 
 
+            String appointmentDate = "NIL";
+            String appointmentTime = "NIL";
+            String patientID = "NIL";
+
+            //labels for formatting 
+            String[] labels = {
+                "Patient ID: ", 
+                "Name: ",
+                "Date Of Birth: ",
+                "Gender: ",
+                "Phone Number: ",
+                "Email Address: ",
+                "Blood Type: ",
+                "",
+            };
+
+
+            System.out.println("Upcoming appointments:");
+            System.out.println();
+
+            for(String[] row: appointmentListCsv){
+                //check if doctorID matches and appointmentStatus = confirmed
+                if(row[2].equalsIgnoreCase(DoctorID) && row[3].equalsIgnoreCase("Confirmed")){
+                    patientID = row[1];
+                    appointmentDate = row[4];
+                    appointmentTime = row[5];
+
+                    //print out patient details 
+                    for(String[]row1 : medicalRecordListCsv){
+                        if(row1[0].equalsIgnoreCase(patientID)){
+                            for(int i=0; i<8; i++){
+                                System.out.println(labels[i] + row1[i]);
+                            } 
+                        }
+                    }
+
+                    System.out.println("Appointment Date: " + appointmentDate);
+                    System.out.println("Appointment Time: " + appointmentTime);
+                    System.out.println();
+                    
                 }
             }
-
 
         }
 
