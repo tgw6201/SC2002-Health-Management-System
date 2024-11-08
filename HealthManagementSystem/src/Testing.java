@@ -1,19 +1,6 @@
-import Inventory.*;
-import StaffManagement.HospitalStaffManagement;
-import StaffManagement.StaffManagementAdd;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.logging.LogManager;
-
-import FileManager.CsvFileReader;
-import FileManager.CsvFileWriter;
-import FileManager.dataReader;
-import FileManager.dataWriter;
-import InformationAccess.*;
-import Logger.*;
+import FileManager.*;
+import Inventory.InventoryManagement;
+import Inventory.PrescriptionManagement;
 
 public class Testing {
     public static void main(String[] args) {
@@ -76,10 +63,13 @@ public class Testing {
             }
         }
         */
-        /* 
-        InventoryManagement inventoryManagement = new InventoryManagement();
-        PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement);
-        */
+        
+        
+        dataReader dataReader = new CsvFileReader();
+        dataWriter dataWriter = new CsvFileWriter();
+        InventoryManagement inventoryManagement = new InventoryManagement(dataReader, dataWriter);
+        PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement, dataReader, dataWriter);
+        
         //inventoryManagement.viewItems();
         //inventoryManagement.submitReplenishmentRequest("Paracetamol", 10, "P001");
         //inventoryManagement.updateLowStockThreshold("Ibuprofen", 20);
