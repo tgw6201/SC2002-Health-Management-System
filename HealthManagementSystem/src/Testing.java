@@ -1,5 +1,7 @@
 import InformationAccess.InformationAccessManager;
 import Logger.FileLogger;
+import MedicalRecord.MedicalRecordManagement;
+import MedicalRecord.PatientMedicalRecordManager;
 import userLogin.UserLoginServices;
 
 import java.io.File;
@@ -11,12 +13,20 @@ import java.util.Scanner;
 
 import FileManager.CsvFileReader;
 import FileManager.CsvFileWriter;
-
+import FileManager.dataReader;
+import FileManager.dataWriter;
 import Appointment.*;
 
 public class Testing {
     public static void main(String[] args) {
+       
+        dataReader reader = new CsvFileReader();
+        dataWriter writer = new CsvFileWriter();    
         
+        PatientMedicalRecordManager service =  new PatientMedicalRecordManager(reader, writer);
+        MedicalRecordManagement medical = new MedicalRecordManagement(service);
+
+
        //MedicalRecord works fine
        //MedicalRecordManager medical = new MedicalRecordManager();
        
