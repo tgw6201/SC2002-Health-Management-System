@@ -47,22 +47,7 @@ public class Testing {
         //doctorUseRecord.updateMedicalRecord("P1003", "Heart Attack", "Surgery");
 
 
-
-        //MedicalRecord works fine
-       //MedicalRecordManager medical = new MedicalRecordManager();
-       
-       
-       //Check case 1 and 9
-       //medical.viewMedicalRecord("P1001");
-       
-       //Check case 2
-       //medical.updatePersonalInformation("P1002", "bobby@gmail.com", "09876543");
-       
-       //Check case 10
-       //medical.updatePatientMedicalRecords("P1003", "Heart Attack", "Surgery");
-       
-
-
+        
         //AppointmentSlotManager slot = new AppointmentSlotManager(reader, writer);
 
         //check case 3
