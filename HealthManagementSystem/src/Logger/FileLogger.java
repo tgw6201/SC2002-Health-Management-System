@@ -100,8 +100,6 @@ public class FileLogger implements Logger {
             writer.flush(); 
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (IllegalStateException e) {
-            System.out.println("Error: " + e.getMessage());
         }
     }
 

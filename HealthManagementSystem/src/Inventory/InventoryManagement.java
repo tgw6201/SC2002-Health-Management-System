@@ -18,7 +18,7 @@ import java.util.UUID;
  * </p>
  * 
  * <p>
- * It interacts with {@link dataProcessor} to manage inventory 
+ * It interacts with {@link CsvFileReader} and {@link CsvFileWriter} to manage inventory 
  * data and store replenishment requests. This class can be extended to support additional
  * inventory-related functionalities.
  * </p>
@@ -28,8 +28,8 @@ import java.util.UUID;
  * 
  * @see ReplenishmentService
  * @see PendingManagement
- * @see dataProcessor
- * @see dataProcessor
+ * @see CsvFileReader
+ * @see CsvFileWriter
  * 
  * @author Sia Yi Zhen
  * @version 1.0
@@ -39,15 +39,16 @@ import java.util.UUID;
 public class InventoryManagement implements ReplenishmentService, PendingManagement {
 
     private final List<String[]> inventoryData;
-    private final DataProcessor dataProcessor;
+    CsvFileWriter csvFileWriter = new CsvFileWriter();
+    CsvFileReader csvFileReader = new CsvFileReader();
+
     /**
      * Constructs an InventoryManagement instance and loads all inventory data 
      * from the "Medicine_List.csv" file at initialization.
      */
-    public InventoryManagement(dataReader dataReader, dataWriter dataWriter) {
+    public InventoryManagement() {
         // Load all inventory data at initialization
-        dataProcessor = new DataProcessor(dataReader, dataWriter);
-        inventoryData = dataProcessor.readData("Medicine_List.csv");
+        inventoryData = csvFileReader.readData("Medicine_List.csv");
     }
 
     /**
@@ -78,7 +79,7 @@ public class InventoryManagement implements ReplenishmentService, PendingManagem
         String dateRequested = LocalDate.now().toString();
         List<String> request = Arrays.asList(
                 requestId.toString(), itemName, String.valueOf(quantity), requestedBy, dateRequested, "Pending", "", "");
-        dataProcessor.writeRow("Replenishment_Requests.csv", request);
+        csvFileWriter.writeRow("Replenishment_Requests.csv", request);
         System.out.println("Replenishment request submitted for " + itemName);
     }
 
@@ -95,7 +96,7 @@ public class InventoryManagement implements ReplenishmentService, PendingManagem
             String[] row = inventoryData.get(i);
             if (row[0].equalsIgnoreCase(itemName)) {
                 row[2] = String.valueOf(newThreshold);
-                dataProcessor.writeData("Medicine_List.csv", i, 2, row[2]);
+                csvFileWriter.writeData("Medicine_List.csv", i, 2, row[2]);
                 System.out.println("Updated threshold for " + itemName + " to " + row[2]);
                 return;
             }
@@ -118,7 +119,7 @@ public class InventoryManagement implements ReplenishmentService, PendingManagem
             if (row[0].equalsIgnoreCase(medicineName)) {
                 int currentQuantity = Integer.parseInt(row[1]);
                 row[1] = String.valueOf(currentQuantity + quantity);
-                dataProcessor.writeData("Medicine_List.csv", i, 1, row[1]);
+                csvFileWriter.writeData("Medicine_List.csv", i, 1, row[1]);
                 System.out.println("Restocked " + medicineName + " to " + row[1] + " units.");
                 return true;
             }
@@ -137,7 +138,7 @@ public class InventoryManagement implements ReplenishmentService, PendingManagem
      */
     @Override
     public boolean restockItemByRequestID(String requestID, String approvedBy) {
-        List<String[]> requests = dataProcessor.readData("Replenishment_Requests.csv");
+        List<String[]> requests = csvFileReader.readData("Replenishment_Requests.csv");
         for (int i = 0; i < requests.size(); i++) {
             String[] request = requests.get(i);
             if (request[0].equals(requestID) && "Pending".equalsIgnoreCase(request[5])) {
@@ -155,7 +156,7 @@ public class InventoryManagement implements ReplenishmentService, PendingManagem
                 request[5] = "Approved";
                 request[6] = approvedBy;
                 request[7] = LocalDate.now().toString();
-                dataProcessor.writeRow("Replenishment_Requests.csv", i, Arrays.asList(request));
+                csvFileWriter.writeRow("Replenishment_Requests.csv", i, Arrays.asList(request));
                 restockItemByName(request[1], Integer.parseInt(request[2]));
                 System.out.println("Replenishment request " + requestID + " approved.");
                 return true;
@@ -208,7 +209,7 @@ public class InventoryManagement implements ReplenishmentService, PendingManagem
      */
     @Override
     public void viewPendingItems() {
-        List<String[]> requests = dataProcessor.readData("Replenishment_Requests.csv");
+        List<String[]> requests = csvFileReader.readData("Replenishment_Requests.csv");
         System.out.println("\nViewing all pending replenishment requests:\n");
         for (String[] request : requests) {
             if ("Pending".equalsIgnoreCase(request[5])) {
@@ -225,7 +226,7 @@ public class InventoryManagement implements ReplenishmentService, PendingManagem
      */
     @Override
     public void handleAllPending(String approvedBy) {
-        List<String[]> requests = dataProcessor.readData("Replenishment_Requests.csv");
+        List<String[]> requests = csvFileReader.readData("Replenishment_Requests.csv");
         for (int i = 0; i < requests.size(); i++) {
             String[] request = requests.get(i);
             if ("Pending".equalsIgnoreCase(request[5])) {
@@ -243,7 +244,7 @@ public class InventoryManagement implements ReplenishmentService, PendingManagem
                 request[5] = "Approved";
                 request[6] = approvedBy;
                 request[7] = LocalDate.now().toString();
-                dataProcessor.writeRow("Replenishment_Requests.csv", i, Arrays.asList(request));
+                csvFileWriter.writeRow("Replenishment_Requests.csv", i, Arrays.asList(request));
                 restockItemByName(request[1], Integer.parseInt(request[2]));
                 System.out.println("Approved and processed pending request ID: " + request[0]);
             }

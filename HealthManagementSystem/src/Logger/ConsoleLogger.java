@@ -17,11 +17,6 @@ package Logger;
  */
 
 public class ConsoleLogger implements Logger {
-    private boolean loggingStatus;
-
-    public ConsoleLogger() {
-        this.loggingStatus = true;
-    }
     /**
      * Logs a message to the console with a "Console Logger" prefix.
      * 
@@ -29,10 +24,7 @@ public class ConsoleLogger implements Logger {
      */
     @Override
     public void log(String message) {
-        if(loggingStatus)
-            System.out.println("Console Logger: " + message);
-        else
-            System.out.println("Logger has stopped.");
+        System.out.println("Console Logger: " + message);
     }
 
     /**
@@ -42,6 +34,5 @@ public class ConsoleLogger implements Logger {
     @Override
     public void stopLogging() {
         System.out.println("Console Logger stopped.");
-        this.loggingStatus = false;
     }
 }

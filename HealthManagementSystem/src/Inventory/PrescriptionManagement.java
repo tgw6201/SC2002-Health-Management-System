@@ -14,15 +14,15 @@ import java.util.List;
  * </p>
  * 
  * <p>
- * Prescription data is managed using {@link dataProcessor},
+ * Prescription data is managed using {@link CsvFileReader} and {@link CsvFileWriter},
  * allowing the system to track, dispense, and approve prescriptions as needed.
  * </p>
  * 
  * @see DispensingService
  * @see PendingManagement
  * @see InventoryManagement
- * @see dataProcessor
- * @see dataProcessor
+ * @see CsvFileReader
+ * @see CsvFileWriter
  * 
  * 
  * @author  Sia Yi Zhen
@@ -34,7 +34,8 @@ import java.util.List;
 public class PrescriptionManagement implements DispensingService, PendingManagement {
 
     private final InventoryManagement inventoryManagement;
-    private final DataProcessor dataProcessor;
+    CsvFileWriter csvFileWriter = new CsvFileWriter();
+    CsvFileReader csvFileReader = new CsvFileReader();
 
      /**
      * Constructs a PrescriptionManagement instance that interacts with InventoryManagement 
@@ -42,8 +43,7 @@ public class PrescriptionManagement implements DispensingService, PendingManagem
      *
      * @param inventoryManagement The InventoryManagement instance used for managing inventory items.
      */
-    public PrescriptionManagement(InventoryManagement inventoryManagement, dataReader dataReader, dataWriter dataWriter) {
-        dataProcessor = new DataProcessor(dataReader, dataWriter);
+    public PrescriptionManagement(InventoryManagement inventoryManagement) {
         this.inventoryManagement = inventoryManagement;
     }
 
@@ -52,7 +52,7 @@ public class PrescriptionManagement implements DispensingService, PendingManagem
      */
     @Override
     public void viewPendingItems() {
-        List<String[]> prescriptions = dataProcessor.readData("AppointmentOutcomeRecord_List.csv");
+        List<String[]> prescriptions = csvFileReader.readData("AppointmentOutcomeRecord_List.csv");
         System.out.println("\nDisplaying all pending prescriptions:\n");
         for (String[] record : prescriptions) {
             if ("Pending".equalsIgnoreCase(record[6])) {
@@ -72,7 +72,7 @@ public class PrescriptionManagement implements DispensingService, PendingManagem
      */
     @Override
     public void handleAllPending(String approvedBy) {
-        List<String[]> prescriptions = dataProcessor.readData("AppointmentOutcomeRecord_List.csv");
+        List<String[]> prescriptions = csvFileReader.readData("AppointmentOutcomeRecord_List.csv");
         for (int i = 0; i < prescriptions.size(); i++) {
             String[] prescription = prescriptions.get(i);
             if ("Pending".equalsIgnoreCase(prescription[6])) {
@@ -86,7 +86,7 @@ public class PrescriptionManagement implements DispensingService, PendingManagem
                     // Sufficient stock is available, proceed with dispensing
                     dispenseItemByMedicineName(medicineName, requestedQuantity);
                     prescription[6] = "Dispensed";
-                    dataProcessor.writeRow("AppointmentOutcomeRecord_List.csv", i, Arrays.asList(prescription));
+                    csvFileWriter.writeRow("AppointmentOutcomeRecord_List.csv", i, Arrays.asList(prescription));
                     System.out.println("Processed pending prescription for ID: " + prescription[0]);
                 } else {
                     // Insufficient stock, skip or partially dispense
@@ -107,7 +107,7 @@ public class PrescriptionManagement implements DispensingService, PendingManagem
      */
     @Override
     public void dispenseItemByAppointmentID(String appointmentID) {
-        List<String[]> prescriptions = dataProcessor.readData("AppointmentOutcomeRecord_List.csv");
+        List<String[]> prescriptions = csvFileReader.readData("AppointmentOutcomeRecord_List.csv");
         for (int i = 0; i < prescriptions.size(); i++) {
             String[] prescription = prescriptions.get(i);
             if (prescription[0].equals(appointmentID) && "Pending".equalsIgnoreCase(prescription[6])) {
@@ -121,7 +121,7 @@ public class PrescriptionManagement implements DispensingService, PendingManagem
                     boolean success = dispenseItemByMedicineName(medicineName, requestedQuantity);
                     if (success) {
                         prescription[6] = "Dispensed";
-                        dataProcessor.writeRow("AppointmentOutcomeRecord_List.csv", i, Arrays.asList(prescription));
+                        csvFileWriter.writeRow("AppointmentOutcomeRecord_List.csv", i, Arrays.asList(prescription));
                         System.out.println("Medicine dispensed successfully for appointment ID " + appointmentID);
                     } else {
                         System.out.println("Failed to dispense medicine for appointment ID " + appointmentID);
@@ -170,7 +170,7 @@ public class PrescriptionManagement implements DispensingService, PendingManagem
      * Displays all records from "AppointmentOutcomeRecord_List.csv", showing the outcome of each appointment.
      */
     public void showAllAppointments() {
-        List<String[]> appointments = dataProcessor.readData("AppointmentOutcomeRecord_List.csv");
+        List<String[]> appointments = csvFileReader.readData("AppointmentOutcomeRecord_List.csv");
         System.out.println("\nDisplaying all appointment outcome records:\n");
 
         for (String[] record : appointments) {
