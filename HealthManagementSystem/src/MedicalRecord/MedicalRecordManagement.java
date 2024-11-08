@@ -13,8 +13,8 @@ public class MedicalRecordManagement {
         medicalRecordService.viewMedicalRecord(patientID);
     }
 
-    public void updateInformation(String patientID, String information1, String information2){
-        medicalRecordService.updateInformation(patientID, information1, information2);
+    public void updateMedicalRecord(String patientID, String information1, String information2){
+        medicalRecordService.updateMedicalRecord(patientID, information1, information2);
     }
     
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import FileManager.CsvFileReader;
 import FileManager.CsvFileWriter;
 
+import Appointment2;
+
 public class AppointmentManager {
     
     private List<String[]> appointmentSlotListCsv;

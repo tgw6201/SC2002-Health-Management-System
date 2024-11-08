@@ -1,7 +1,7 @@
 import InformationAccess.InformationAccessManager;
 import Logger.FileLogger;
-import MedicalRecord.MedicalRecordManagement;
-import MedicalRecord.PatientMedicalRecordManager;
+import MedicalRecord.*;
+
 import userLogin.UserLoginServices;
 
 import java.io.File;
@@ -16,6 +16,7 @@ import FileManager.CsvFileWriter;
 import FileManager.dataReader;
 import FileManager.dataWriter;
 import Appointment.*;
+import Appointment2.*;
 
 public class Testing {
     public static void main(String[] args) {
@@ -23,12 +24,33 @@ public class Testing {
         dataReader reader = new CsvFileReader();
         dataWriter writer = new CsvFileWriter();    
         
-        PatientMedicalRecordManager service =  new PatientMedicalRecordManager(reader, writer);
-        MedicalRecordManagement medical = new MedicalRecordManagement(service);
+        //MedicalRecord works fine
+
+        //DIP
+        //PatientMedicalRecordManager patientService =  new PatientMedicalRecordManager(reader, writer);
+        //MedicalRecordManagement patientMedRecord = new MedicalRecordManagement(patientService);
+        
+        //Check case 1
+        //patientRecord.viewMedicalRecord("P1001");
+
+        //Check case 2
+        //patientRecord.updateMedicalRecord("P1002", "bobby@gmail.com", "09876543");
 
 
-       //MedicalRecord works fine
+        //DoctorMedicalRecordManager doctorService =  new DoctorMedicalRecordManager(reader, writer);
+        //MedicalRecordManagement doctorUseRecord = new MedicalRecordManagement(doctorService);
+       
+        //Check case 9
+        //doctorUseRecord.viewMedicalRecord("P1001");
+
+        //Check case 10
+        //doctorUseRecord.updateMedicalRecord("P1003", "Heart Attack", "Surgery");
+
+
+
+        //MedicalRecord works fine
        //MedicalRecordManager medical = new MedicalRecordManager();
+       
        
        //Check case 1 and 9
        //medical.viewMedicalRecord("P1001");
@@ -41,11 +63,10 @@ public class Testing {
        
 
 
-        //AppointmentSlotManager slot = new AppointmentSlotManager();
+        //AppointmentSlotManager slot = new AppointmentSlotManager(reader, writer);
 
         //check case 3
         //slot.viewAvailableAppointmentSlots();
-
         
         //AppointmentManager appointment = new AppointmentManager();
 
@@ -61,7 +82,7 @@ public class Testing {
         //check case 7
         //appointment.viewScheduleAppointment("P1002");
 
-        //AppointmentOutcomeManager manager = new AppointmentOutcomeManager();
+        //AppointmentOutcomeManager manager = new AppointmentOutcomeManager(reader, writer);
         //check case 8 --> works
         //manager.viewPastRecords("P1002");
         

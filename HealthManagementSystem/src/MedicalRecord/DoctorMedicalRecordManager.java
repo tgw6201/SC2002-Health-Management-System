@@ -1,20 +1,19 @@
 package MedicalRecord;
 
+import java.util.List;
+
 import FileManager.*;
 
-import java.util.*;
-
-public class PatientMedicalRecordManager implements MedicalRecordService{
+public class DoctorMedicalRecordManager implements MedicalRecordService{
 
     private DataProcessor dataProcessor;
 
-    public PatientMedicalRecordManager(dataReader reader, dataWriter writer){
+    public DoctorMedicalRecordManager(dataReader reader, dataWriter writer){
         dataProcessor = new DataProcessor(reader, writer);
-
     }
 
-    //view Medical Record --> patient use
-    public void viewMedicalRecord(String patientID){
+     //view Medical Record --> doctor use
+     public void viewMedicalRecord(String patientID){
 
         List<String[]> medicalRecordListCsv = dataProcessor.readData("MedicalRecord_List.csv");
         
@@ -54,33 +53,32 @@ public class PatientMedicalRecordManager implements MedicalRecordService{
 
     }
 
-    //update personal information
-    public void updateMedicalRecord(String patientID, String newEmailAddress, String newContactNumber){
+    //updatePatientMedicalRecords
+    public void updateMedicalRecord(String patientID, String newDiagnosis, String newTreatment){
         List<String[]> medicalRecordListCsv = dataProcessor.readData("MedicalRecord_List.csv");
 
-        //i to keep track of the row 
+        String newDiagnosisAndTreatment = "    Diagnosis: " + newDiagnosis+ "    " + "Treatment: " + newTreatment;
+        
+        //i to keep track of row
         int i = 0;
-
         for(String [] row : medicalRecordListCsv){
-
-            //check patientID
+            
             if(row[0].equalsIgnoreCase(patientID)){
-                //update email 
-                dataProcessor.writeData("MedicalRecord_List.csv", i, 5, newEmailAddress);
-                
-                //update contact number
-                dataProcessor.writeData("MedicalRecord_List.csv", i, 4, newContactNumber);
-                
-                System.out.println("contact information has been updated successfully");
+                //get old record
+                String pastDiagnosisandTreatment = row[7];
+
+                //update diagnosisandtreament
+                String diagnosisAndTreatment = pastDiagnosisandTreatment + newDiagnosisAndTreatment;
+                dataProcessor.writeData("MedicalRecord_List.csv", i, 7, diagnosisAndTreatment);
+                System.out.println("Diagnosis and treament plan has been updated succeessfully.");
                 System.out.println();
                 return;
             }
             i++;
-
         }
+
         //if cannot find the MedicalRecord based on patientID
         System.out.println("Medical Record cannot be found. Key in Patient ID again.");
         System.out.println();    
-    }
-
+    }        
 }
