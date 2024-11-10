@@ -1,22 +1,7 @@
-import InformationAccess.InformationAccessManager;
-import Logger.FileLogger;
-import MedicalRecord.*;
-
-import userLogin.UserLoginServices;
-
-import java.io.File;
-import java.io.FileReader;
-import java.lang.reflect.Array;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import FileManager.CsvFileReader;
 import FileManager.CsvFileWriter;
 import FileManager.dataReader;
 import FileManager.dataWriter;
-import Appointment.*;
-import Appointment2.*;
 
 public class Testing {
     public static void main(String[] args) {

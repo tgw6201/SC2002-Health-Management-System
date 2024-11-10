@@ -1,4 +1,4 @@
-package Appointment2;
+package Appointment;
 
 import java.util.ArrayList;
 import java.util.List;

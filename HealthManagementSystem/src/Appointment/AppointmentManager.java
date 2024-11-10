@@ -8,7 +8,6 @@ import FileManager.*;
 import FileManager.DataProcessor;
 import FileManager.dataReader;
 import FileManager.dataWriter;
-import Appointment2.*;
 
 public class AppointmentManager implements AppointmentSchedulingService, ViewAppointment {
     
