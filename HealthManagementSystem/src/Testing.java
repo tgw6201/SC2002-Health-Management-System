@@ -47,22 +47,22 @@ public class Testing {
         //doctorUseRecord.updateMedicalRecord("P1003", "Heart Attack", "Surgery");
 
 
-        
+
         //AppointmentSlotManager slot = new AppointmentSlotManager(reader, writer);
 
         //check case 3
         //slot.viewAvailableAppointmentSlots();
         
-        //AppointmentManager appointment = new AppointmentManager();
+        AppointmentManager appointment = new AppointmentManager(reader, writer);
 
         //check case 4 --> work for available and booked
-        //appointment.scheduleAppointment("P1001", "D100111900");
+        //appointment.scheduleAppointment("P1001", "D100212600");
 
         //check case 5 --> work for if available and booked
-        //appointment.rescheduleAppointment("P1002D1002111300", "D100111900");
+        appointment.rescheduleAppointment("P1001D100212600", "D100212600");
 
         //check case 6 --> work 
-        //appointment.cancelAppointment("P1002D1002111300");
+        //appointment.cancelAppointment("P1001D100111900");
 
         //check case 7
         //appointment.viewScheduleAppointment("P1002");
@@ -94,34 +94,6 @@ public class Testing {
         //case 21 --> should be fine check again
         //appointment.viewAppointmentDetails("P1002D1002111300");
         
-        //ppointment.acceptDeclineAppointment(null, null);
-        //manager.createAppointmentOutcome("1001AB25","P1001", "25/10/2024", "Retrieve medication", "Paracetamol", "100", "pending", "eat meds 3 times a day");
-        //manager.createAppointmentOutcome("1001AB27","P1001", "27/10/2024", "X-ray", "NIL", "0", "pending", "1 day mc");
-        //manager.createAppointmentOutcome("1002BS28","P1002", "28/10/2024", "Check-up", "NIL", "0", "pending", "Nothing wrong");
-        
-        //manager.viewPastRecords("P1001");
-
-        //manager.viewOutcomeRecord("P100125");
-
-        //slot.setAppointmentAvailability("D1001", "John Smith", "11/5/2024", "9:00 - 10:00", "Available");
-        //slot.setAppointmentAvailability("D1002", "Emily Clarke", "11/6/2024", "13:00 - 14:00", "Booked");
-        //slot.setAppointmentAvailability("D100111900", "Booked");
-        //slot.viewAvailableAppointmentSlots();
-
-        //AppointmentManager appointment = new AppointmentManager();
-        //appointment.scheduleAppointment("P1001", "D100111900");
-        //appointment.scheduleAppointment("P1002", "D1002111300");
-        //appointment.scheduleAppointment("P1002", "D100111900");
-
-        //appointment.rescheduleAppointment("P1002D1002111300", "D100111900");
-        //appointment.cancelAppointment("P1002D1002111300");
-        //appointment.acceptDeclineAppointment("P1002D1002111300", "Decline");
-        
-        //appointment.viewScheduleAppointment("P1002");
-
-        //appointment.viewPersonalSchedule("D1002");
-
-
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
         //csvFileWriter.writeData("Medicine_List.csv", 2, 1, "50");
