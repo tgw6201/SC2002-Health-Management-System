@@ -72,7 +72,6 @@ public class Pharmacist {
                     System.out.println("Invalid option. Please try again.");
             }
         }
-        logger.stopLogging(); // Stop logging when the menu loop exits
     }
 
     // View a specific appointment outcome record

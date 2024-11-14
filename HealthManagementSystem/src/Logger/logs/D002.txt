@@ -1,0 +1,15 @@
+  logged out @:2024/11/14 18:42:58
+Doctor D002 logged in @:2024/11/14 18:43:08
+Doctor D002 viewed medical records of patient P1001 @:2024/11/14 18:47:25
+Doctor D002 updated medical records for patient P1001 with new diagnosis and treatment @:2024/11/14 18:50:01
+Doctor D002 viewed personal schedule @:2024/11/14 18:50:53
+Doctor D002 updated availability for slot ID D100212600 to Available @:2024/11/14 18:53:16
+Doctor D002 created new appointment slot on 18/7/2024 at 3:00-6:00 with availability Available @:2024/11/14 18:54:31
+Doctor D002 viewed personal schedule @:2024/11/14 18:57:03
+Doctor D002 viewed upcoming appointments @:2024/11/14 19:31:56
+Doctor D002 viewed upcoming appointments @:2024/11/14 19:32:01
+Doctor D002 logged in @:2024/11/14 19:32:39
+Doctor D002 viewed personal schedule @:2024/11/14 19:32:42
+Doctor D002 logged in @:2024/11/14 19:46:10
+Doctor D002 viewed upcoming appointments @:2024/11/14 19:46:17
+Doctor D002 recorded outcome for appointment ID P1001D100212600 @:2024/11/14 19:51:12

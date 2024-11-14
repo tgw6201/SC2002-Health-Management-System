@@ -82,7 +82,6 @@ public class Doctor {
                     System.out.println("Invalid option. Please try again.");
             }
         }
-        logger.stopLogging();
     }
 
     // View a specific patient's medical records
@@ -123,7 +122,7 @@ public class Doctor {
             System.out.println("Enter Appointment Slot ID:");
             String appointmentSlotID = sc.nextLine();
 
-            System.out.println("Set availability (Available/Unavailable):");
+            System.out.println("Set availability (Available/Unavailable/Booked):");
             String availability = sc.nextLine();
 
             logger.log("Doctor " + userID + " updated availability for slot ID " + appointmentSlotID + " to " + availability);
