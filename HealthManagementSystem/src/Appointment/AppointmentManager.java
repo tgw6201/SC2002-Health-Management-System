@@ -13,11 +13,13 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
     
        
     private DataProcessor dataProcessor;
-    private dataReader fileReader = new CsvFileReader();
-    private dataWriter fileWriter = new CsvFileWriter();
+    private dataReader fileReader;
+    private dataWriter fileWriter;
     
     public AppointmentManager(dataReader reader, dataWriter writer){
         dataProcessor = new DataProcessor(reader, writer);
+        fileReader = reader;
+        fileWriter = writer;
     }
 
     // more efficient to use appointmentSlotID 
@@ -34,6 +36,11 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                 if(row1[5].equalsIgnoreCase("Booked")){ //Ensure that the patient cannot book a booked/unavailable slot
                     System.out.println("Find another appointment slot. This slot is Booked.");
                     return;
+                }
+
+                else if(row1[5].equalsIgnoreCase("Unavailable")){// can be further confirmed if there should be this 
+                    System.out.println("Find another appointment slot. This slot is Unavailable.");
+                    return;                    
                 }
 
                 else{// create appointment + update appointmentslot
