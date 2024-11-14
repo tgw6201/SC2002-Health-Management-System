@@ -90,7 +90,7 @@ public class Patient
                     break;
             }
         }
-        logger.stopLogging();
+        //logger.stopLogging();
     }
     public void viewMedicalRecord()
     {

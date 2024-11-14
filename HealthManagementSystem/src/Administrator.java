@@ -76,7 +76,7 @@ public class Administrator
                     System.out.println("Invalid option. Please try again.");
             }
         }
-        logger.stopLogging();
+        //logger.stopLogging();
     }
 
     // View and manage hospital staff

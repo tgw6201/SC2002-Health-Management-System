@@ -75,6 +75,7 @@ public class SystemInitialization {
             }
             System.out.println("Logging out...");
             logger.log(userLoginServices.getRole()+" "+ userLoginServices.getID() + " logged out");
+            logger.stopLogging();
             userLoginServices.logout();
             }
         }

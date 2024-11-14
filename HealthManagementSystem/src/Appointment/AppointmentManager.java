@@ -201,12 +201,12 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
         //Find appointment
         for(String[] row : appointmentListCsv){
             //If it matches the appoointmentID
-            if(row[0].equalsIgnoreCase(appointmentID)){
+            if(row[0].equalsIgnoreCase(appointmentID) && row[3].equalsIgnoreCase("Confirmed")){
                 //change the appointmentStatus to cancelled in csv
                 dataProcessor.writeData("Appointment_List.csv", i, 3, "Cancelled");
                 //get the appointmentSlotID
                 AppointmentSlotID = row[6];
-                break;
+                //break;
             }
             i++;
         }
