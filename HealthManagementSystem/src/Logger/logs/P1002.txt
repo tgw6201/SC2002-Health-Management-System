@@ -2,3 +2,17 @@ User P1002 has logged in. @:2024/11/03 16:24:02
 User P1002 has logged out. @:2024/11/03 16:24:02
 User P1002 has logged in. @:2024/11/03 16:27:56
 User P1002 has logged out. @:2024/11/03 16:27:56
+User logged in @:2024/11/11 23:58:09
+User logged in @:2024/11/12 17:08:41
+User viewed available appointment slots @:2024/11/12 17:08:47
+User schedules an appointment @:2024/11/12 17:09:15
+User logged in @:2024/11/12 17:13:42
+User reschedules an appointment @:2024/11/12 17:13:50
+User schedules an appointment @:2024/11/12 17:14:10
+User views past appointment outcome records @:2024/11/12 17:14:56
+User logged in @:2024/11/12 17:55:48
+User schedules an appointment @:2024/11/12 17:56:12
+User reschedules an appointment @:2024/11/12 17:56:47
+User reschedules an appointment @:2024/11/12 17:57:12
+User cancels an appointment @:2024/11/12 18:00:23
+User views past appointment outcome records @:2024/11/12 18:02:43

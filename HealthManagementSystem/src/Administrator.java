@@ -11,28 +11,38 @@ public class Administrator
     private String userRole;
     private Logger logger;
     
-    Administrator(String userID, String userRole, Logger logger)
+    //Object pointer initialization
+    private Scanner sc = new Scanner(System.in);
+    private DataProcessor dataProcessor;
+    private InventoryManagement inventoryManagement;
+    private PrescriptionManagement prescriptionManagement;
+    private hospitalStaffManagement hospitalStaffManagement;
+        
+        
+        
+
+    Administrator(String userID, String userRole, Logger logger, dataReader reader, dataWriter writer)
     {
         this.userID = userID;
         this.userRole = userRole;
         this.logger = logger;
+        this.dataProcessor= new DataProcessor(reader,writer);
+        this.inventoryManagement = new InventoryManagement(reader, writer);
+        this.prescriptionManagement =  new PrescriptionManagement(inventoryManagement, reader, writer);
+        this.hospitalStaffManagement = new hospitalStaffManagement(reader,writer);
+
+
     }
 
 
     // Main menu for administrator to select different options
     public void menu() {
-        logger.log("User logged in");//once enter, log user's login
-        dataReader reader = new CsvFileReader();
-        dataWriter writer = new CsvFileWriter();
-        hospitalStaffManagement hospitalStaffManagement = new hospitalStaffManagement(reader,writer);
-        InventoryManagement inventoryManagement = new InventoryManagement(reader, writer);
-        PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement, reader, writer);
-        Scanner sc = new Scanner(System.in);
+        logger.log("Administrator " + userID + " logged in");//once enter, log user's login
         //System.out.println("Upcast with parameter successful "+ getUserID() + getRole()); //check that upcast is successful
         //logger.log("test"); //to continue logging from
         int choice = -1;
         while (choice != 5) { // Loop until the administrator chooses to log out
-            System.out.println("Administrator Menu:");
+            System.out.println("Administrator Menu: ");
             System.out.println("1. View and Manage Hospital Staff");
             System.out.println("2. View Appointments details");
             System.out.println("3. View and Manage Medication Inventory");
@@ -61,18 +71,18 @@ public class Administrator
                     approveReplenishmentRequests();
                     break;
                 case 5:
-                    System.out.println("Logging out...");
                     break;
                 default:
                     System.out.println("Invalid option. Please try again.");
             }
         }
+        logger.stopLogging();
     }
 
     // View and manage hospital staff
     private void viewAndManageStaff() {
+        logger.log("User entered staff management menu");
         int choice = -1;
-        Scanner sc = new Scanner(System.in);
         while (choice != 5) {
             System.out.println("1. Add Staff");
             System.out.println("2. Remove Staff");
@@ -109,10 +119,6 @@ public class Administrator
     }
     // Adds a new staff member
     private void addStaff() {
-        dataReader reader = new CsvFileReader();
-        dataWriter writer = new CsvFileWriter();
-        hospitalStaffManagement hospitalStaffManagement = new hospitalStaffManagement(reader,writer);
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter Staff ID:");
         String staffID = sc.nextLine();
         System.out.println("Enter Staff Name:");
@@ -132,25 +138,19 @@ public class Administrator
         }
 
         hospitalStaffManagement.addStaff(staffID, staffName, staffRole, staffGender, staffAge);
+        logger.log("User added a staff");
     }
 
     // Removes a staff member
     private void removeStaff() {
-        dataReader reader = new CsvFileReader();
-        dataWriter writer = new CsvFileWriter();
-        hospitalStaffManagement hospitalStaffManagement = new hospitalStaffManagement(reader,writer);
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter Staff ID to remove:");
         String staffID = sc.nextLine();
         hospitalStaffManagement.removeStaff(staffID);
+        logger.log("User removed staff");
     }
 
     // Updates a staff member's details
     private void updateStaff() {
-        dataReader reader = new CsvFileReader();
-        dataWriter writer = new CsvFileWriter();
-        hospitalStaffManagement hospitalStaffManagement = new hospitalStaffManagement(reader,writer);
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter Staff ID to update:");
         String staffID = sc.nextLine();
         System.out.println("Enter New Staff Name:");
@@ -170,39 +170,31 @@ public class Administrator
         }
 
         hospitalStaffManagement.updateStaff(staffID, staffName, staffRole, staffGender, staffAge);
+        logger.log("User updated staff particulars");
     }
 
     // Views staff members with a filter
     private void filteredView() {
-        dataReader reader = new CsvFileReader();
-        dataWriter writer = new CsvFileWriter();
-        hospitalStaffManagement hospitalStaffManagement = new hospitalStaffManagement(reader,writer);
-        Scanner sc = new Scanner(System.in);
         System.out.println("Enter Category to Filter By (e.g., role, gender):");
         String category = sc.nextLine();
         System.out.println("Enter Specific Type to Filter (e.g., Doctor, Male):");
         String type = sc.nextLine();
 
         hospitalStaffManagement.filteredView(category, type);
+        logger.log("User viewed staff members with a filter");
     }
 
     // View appointment details by calling a method from PrescriptionManagement
     private void viewAppointmentsDetails() {
-        dataReader reader = new CsvFileReader();
-        dataWriter writer = new CsvFileWriter();
-        InventoryManagement inventoryManagement = new InventoryManagement(reader, writer);
-        PrescriptionManagement prescriptionManagement = new PrescriptionManagement(inventoryManagement, reader, writer);
         System.out.println("Viewing all appointment details...");
         prescriptionManagement.showAllAppointments();
+        logger.log("User viewed apppointment details");
     }
 
     // View and manage medication inventory
     private void viewAndManageInventory() {
+        logger.log("User entered inventory management menu");
         int choice = -1;
-        dataReader reader = new CsvFileReader();
-        dataWriter writer = new CsvFileWriter();
-        InventoryManagement inventoryManagement = new InventoryManagement(reader, writer);
-        Scanner sc = new Scanner(System.in);
         while (choice != 5) {
             System.out.println("1. View Inventory Items");
             System.out.println("2. Check Low Stock");
@@ -261,11 +253,8 @@ public class Administrator
 
     // Approve replenishment requests by calling methods from InventoryManagement
     private void approveReplenishmentRequests() {
+        logger.log("User entered replenishment approval menu");
         int choice = -1;
-        dataReader reader = new CsvFileReader();
-        dataWriter writer = new CsvFileWriter();
-        InventoryManagement inventoryManagement = new InventoryManagement(reader, writer);
-        Scanner sc = new Scanner(System.in);
         while (choice != 3) {
             System.out.println("1. Approve Specific Replenishment Request");
             System.out.println("2. Approve All Pending Requests");

@@ -158,7 +158,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                     for(String[] row2 : appointmentListCsv){
                         
                         //find the row containing the appointment
-                        if(row2[6].equalsIgnoreCase(oldAppointmentSlotID)){
+                        if(row2[0].equalsIgnoreCase(appointmentID)){
                             patientID = row2[1];
                             appointmentOutcomeID = row2[7];
                             // need use i to iterate over to find location of appointment

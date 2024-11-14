@@ -20,6 +20,7 @@ public class SystemInitialization {
             
             String username;
             String password;
+            String defaultPassword = "password";
             Scanner sc = new Scanner(System.in);
             Logger logger;
 
@@ -35,22 +36,33 @@ public class SystemInitialization {
             if (login == false) 
             {
                 userLoginServices.logout();
+                System.out.println("Error, incorrect login credentials");
                 continue;
+            }
+            if (password.equals(defaultPassword))// if default password, change password
+            {
+                System.out.println("Default password detected; input new password");
+                password = sc.nextLine();
+                userLoginServices.changePassword(username, password);
+                userLoginServices.logout();
+                //continue;
             }
             System.out.println("Login Status:" + login);
             System.out.println("Role: " + userLoginServices.getRole());
-            
+            //userLoginServices.resetPassword(username); // ##Debug only. remove##
+
             //upcast role to user
             try 
             {
                 // Load the class dynamically
                 Class<?> myClass = Class.forName(userLoginServices.getRole());
                 //Defining constructor parameter types
-                Class<?>[] parameterTypes = {String.class, String.class, Logger.class};
+                Class<?>[] parameterTypes = {String.class, String.class, Logger.class, dataReader.class, dataWriter.class};
                 //Constructor that matches parameter
                 var constructor = myClass.getDeclaredConstructor(parameterTypes);
                 // Instantiate the class
-                Object you = constructor.newInstance(username, userLoginServices.getRole(), logger);
+                Object you = constructor.newInstance(username, userLoginServices.getRole(), logger, reader, writer);
+
                 //getDeclaredConstructor(username, userLoginServices.getRole()).newInstance();
     
                 // Use reflection to call the display method
@@ -61,7 +73,8 @@ public class SystemInitialization {
             {
                 e.printStackTrace();
             }
-            //exit menu
+            System.out.println("Logging out...");
+            logger.log(userLoginServices.getRole()+" "+ userLoginServices.getID() + " logged out");
             userLoginServices.logout();
             }
         }

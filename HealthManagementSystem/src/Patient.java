@@ -10,34 +10,36 @@ public class Patient
     private String userRole;
     private Logger logger;
 
+    //Object pointer initialization
+    private Scanner sc = new Scanner(System.in);
+    private DataProcessor dataProcessor;
+    private PatientMedicalRecordManager patientService;
+    private MedicalRecordManagement patientMedRecord;
+    private AppointmentSlotManager slot;
+    private AppointmentManager appointment;
+    private AppointmentOutcomeManager manager;
+        
 
-    public Patient(String userID, String userRole, Logger logger)
+    public Patient(String userID, String userRole, Logger logger, dataReader reader, dataWriter writer)
     {
         this.userID= userID;
         this.userRole = userRole;
         this.logger = logger;
+        this.dataProcessor = new DataProcessor(reader,writer);
+        this.patientService = new PatientMedicalRecordManager(reader, writer);
+        this.patientMedRecord = new MedicalRecordManagement(patientService);
+        this.slot = new AppointmentSlotManager(reader, writer);
+        this.appointment = new AppointmentManager(reader,writer);
+        this.manager = new AppointmentOutcomeManager(reader, writer);
     }
     
     public void menu()
     {   
-        logger.log("User logged in");//once enter, log user's login
-        dataReader reader = new CsvFileReader();
-        dataWriter writer = new CsvFileWriter();
-        PatientMedicalRecordManager patientService =  new PatientMedicalRecordManager(reader, writer);
-        MedicalRecordManagement patientMedRecord = new MedicalRecordManagement(patientService);
-        AppointmentSlotManager slot = new AppointmentSlotManager(reader, writer);
-        AppointmentOutcomeManager manager = new AppointmentOutcomeManager(reader, writer);
-        AppointmentManager appointment = new AppointmentManager(reader,writer);
-        Scanner sc = new Scanner(System.in);
+        logger.log("Patient " + userID + " logged in");//once enter, log user's login
         int choice = -1;
-        String email;
-        String number;
-        String appointmentSlotID;
-        String appointmentID;
-        String newAppointmentSlotID;
         while (choice !=9)
         {
-            System.out.println("Input a choice from 1 to 9");
+            System.out.println("Patient Menu: ");
             System.out.println("1. View Medical Record");
             System.out.println("2. Update Personal Information");
             System.out.println("3. View Available Appointment Slots");
@@ -58,69 +60,116 @@ public class Patient
             switch (choice)
             {
                 case 1:
-                    System.out.println("View medical record"); // wait rennie
-                    logger.log("User viewed medical records");
-                    patientMedRecord.viewMedicalRecord(userID);
+                    viewMedicalRecord();
                     break;
                 case 2:
-                    System.out.println("Update Personal Information"); // ask admin->SystemManagement to do so?
-                    System.out.println("Enter email");
-                    email= sc.nextLine();
-                    System.out.println("Enter Contact Number"); 
-                    number= sc.nextLine();
-                    logger.log("User updated personal information");
-                    patientMedRecord.updateMedicalRecord(userID,email,number);
+                    updatePersonalInformation();
                     break;
                 case 3:
-                    System.out.println("View Available Appointment slots"); //
-                    logger.log("User viewed available appointment slots");
-                    slot.viewAvailableAppointmentSlots();
+                    viewAvailableAppointments();
                     break;
                 case 4:
-                    System.out.println("Schedule an Appointment"); // wait dr
-                    System.out.println("Input appointment slot ID");
-                    appointmentSlotID = sc.nextLine();
-                    logger.log("User schedules an appointment");
-                    appointment.scheduleAppointment(userID, appointmentSlotID);
+                    scheduleAppointment();
                     break;
                 case 5:
-                    System.out.println("Reschedule an Appointment"); //wait dr
-                    System.out.println("Input old appointment slot ID");
-                    appointmentID = sc.nextLine();
-                    System.out.println("Input new appointment slot ID");
-                    newAppointmentSlotID = sc.nextLine();
-                    logger.log("User reschedules an appointment");
-                    appointment.rescheduleAppointment(appointmentID, newAppointmentSlotID);
+                    rescheduleAppointments();
                     break;
                 case 6:
-                    System.out.println("Cancel an Appointment");  //wait dr
-                    System.out.println("Input appointment ID to be cancelled");
-                    appointmentID = sc.nextLine();
-                    logger.log("User cancels an appointment");
-                    appointment.cancelAppointment(appointmentID);
+                    cancelAppointment();
                     break;
                 case 7:
-                    System.out.println("View Scheduled Appointments");
-                    appointment.viewScheduleAppointment(userID);
-                    logger.log("User view Scheduled Appointments");
+                    viewScheduledAppointments();
                     break;
                 case 8:
-                    System.out.println("View Past Appointment Outcome Records");
-                    logger.log ("User views past appointment outcome records");
-                    manager.viewPastRecords(userID);
+                    viewPastAppointmentOutcomeRecords();
                     break;
                 case 9:
-                    System.out.println("Logging out...");//check with gw if need log here
-                    return;                
+                    break;                
                 default:
-                    System.out.println("Invalid choice");
-                    logger.log ("User inputs an invalid choice");
+                    System.out.println("Invalid option. Please try again.");
                     break;
             }
         }
         logger.stopLogging();
-
     }
+    public void viewMedicalRecord()
+    {
+        
+        
+        System.out.println("View medical record");
+        logger.log("User viewed medical records");
+        patientMedRecord.viewMedicalRecord(userID);
+    }
+    
+    public void updatePersonalInformation()
+    {
+        String email;
+        String number;
+        System.out.println("Update Personal Information");
+        System.out.println("Enter email");
+        email= sc.nextLine();
+        System.out.println("Enter Contact Number"); 
+        number= sc.nextLine();
+        logger.log("User updated personal information");
+        patientMedRecord.updateMedicalRecord(userID,email,number);
+    }
+
+    public void viewAvailableAppointments()
+    {
+        System.out.println("View Available Appointment slots");
+        logger.log("User viewed available appointment slots");
+        slot.viewAvailableAppointmentSlots();
+    }
+
+    public void scheduleAppointment()
+    {
+        String appointmentSlotID;
+        System.out.println("Schedule an Appointment");
+        System.out.println("Input appointment slot ID");
+        appointmentSlotID = sc.nextLine();
+        logger.log("User schedules an appointment");
+        appointment.scheduleAppointment(userID, appointmentSlotID);
+    }
+
+    public void rescheduleAppointments()
+    {
+        String appointmentID;
+        String newAppointmentSlotID;
+
+        System.out.println("Reschedule an Appointment");
+        System.out.println("Input old appointment ID");
+        appointmentID = sc.nextLine();
+        System.out.println("Input new appointment slot ID");
+        newAppointmentSlotID = sc.nextLine();
+        logger.log("User reschedules an appointment");
+        appointment.rescheduleAppointment(appointmentID, newAppointmentSlotID);
+    }   
+
+    public void cancelAppointment()
+    {
+        
+        String appointmentID;
+        System.out.println("Cancel an Appointment");
+        System.out.println("Input appointment ID to be cancelled");
+        appointmentID = sc.nextLine();
+        logger.log("User cancels an appointment");
+        appointment.cancelAppointment(appointmentID);
+    }
+
+    public void viewScheduledAppointments()
+    {
+        System.out.println("View Scheduled Appointments");
+        appointment.viewScheduleAppointment(userID);
+        logger.log("User view Scheduled Appointments");
+    }
+
+    public void viewPastAppointmentOutcomeRecords()
+    {
+        System.out.println("View Past Appointment Outcome Records");
+        logger.log ("User views past appointment outcome records");
+        manager.viewPastRecords(userID);
+    }
+
 
     public String getUserID()
     {
