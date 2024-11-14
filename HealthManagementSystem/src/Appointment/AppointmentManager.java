@@ -8,7 +8,6 @@ import FileManager.*;
 import FileManager.DataProcessor;
 import FileManager.dataReader;
 import FileManager.dataWriter;
-import Appointment2.*;
 
 public class AppointmentManager implements AppointmentSchedulingService, ViewAppointment {
     
@@ -159,7 +158,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                     for(String[] row2 : appointmentListCsv){
                         
                         //find the row containing the appointment
-                        if(row2[6].equalsIgnoreCase(oldAppointmentSlotID)){
+                        if(row2[0].equalsIgnoreCase(appointmentID)){
                             patientID = row2[1];
                             appointmentOutcomeID = row2[7];
                             // need use i to iterate over to find location of appointment
