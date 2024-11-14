@@ -101,10 +101,24 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
     }
 
     public void rescheduleAppointment(String appointmentID, String newAppointmentSlotID){
-            
+
         //Read existing data in csv
         List<String[]> appointmentSlotListCsv = dataProcessor.readData("AvailabilitySlot_List.csv");
         List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
+        
+        // check for Invalid appointmentID
+        boolean appointmentIDExist = false;
+        for (String[] row : appointmentListCsv) {
+            if (row[0].equalsIgnoreCase(appointmentID)) {
+                appointmentIDExist = true;
+                break;
+            }
+        }
+        if(!appointmentIDExist){
+            System.out.println("Invalid appointment ID. Provide a valid appointment ID.");
+            return;
+        }
+            
 
         //Initalization
         String oldAppointmentSlotID = "NIL";
