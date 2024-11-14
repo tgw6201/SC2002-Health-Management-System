@@ -431,7 +431,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
 
         //view Appointment Details --> administrator
         //need print out all the appointment details
-        public void viewAppointmentDetails(String appointmentID){
+        public void viewAppointmentDetails(){
                 
             //Read existing data in csv
             List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
@@ -466,8 +466,16 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
 
             //print out appointment details
             System.out.println("Appointment Details: ");
+            // track the row in appointmentList
+            int i = 0;
             for(String[]row : appointmentListCsv){
+                //skip row with headers
+                if(i == 0){
+                    i++;
+                    continue;
+                }
                 //print out detials for each appointment
+
                 for(int j = 0; j<row.length; j++){
                     System.out.println(appointmentLabels[j] + row[j]);
                 }
@@ -488,7 +496,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                     }
                 }
                 System.out.println();
-                    
+                i++;  
             }
             
 
