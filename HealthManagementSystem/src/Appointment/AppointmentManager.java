@@ -13,11 +13,13 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
     
        
     private DataProcessor dataProcessor;
-    private dataReader fileReader = new CsvFileReader();
-    private dataWriter fileWriter = new CsvFileWriter();
+    private dataReader fileReader;
+    private dataWriter fileWriter;
     
     public AppointmentManager(dataReader reader, dataWriter writer){
         dataProcessor = new DataProcessor(reader, writer);
+        fileReader = reader;
+        fileWriter = writer;
     }
 
     // more efficient to use appointmentSlotID 
@@ -34,6 +36,11 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                 if(row1[5].equalsIgnoreCase("Booked")){ //Ensure that the patient cannot book a booked/unavailable slot
                     System.out.println("Find another appointment slot. This slot is Booked.");
                     return;
+                }
+
+                else if(row1[5].equalsIgnoreCase("Unavailable")){// can be further confirmed if there should be this 
+                    System.out.println("Find another appointment slot. This slot is Unavailable.");
+                    return;                    
                 }
 
                 else{// create appointment + update appointmentslot
@@ -110,7 +117,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
 
         AppointmentSlotManager slot = new AppointmentSlotManager(fileReader, fileWriter);
         
-        // get old appointment slot id
+        // get old appointment slot id 
         for(String[] row : appointmentListCsv){
             if(row[0].equalsIgnoreCase(appointmentID)){
                 oldAppointmentSlotID = row[6]; 
@@ -200,13 +207,13 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
         int i = 0; 
         //Find appointment
         for(String[] row : appointmentListCsv){
-            //If it matches the appoointmentID
+            //If it matches the appointmentID and must be confirmed
             if(row[0].equalsIgnoreCase(appointmentID) && row[3].equalsIgnoreCase("Confirmed")){
                 //change the appointmentStatus to cancelled in csv
                 dataProcessor.writeData("Appointment_List.csv", i, 3, "Cancelled");
                 //get the appointmentSlotID
                 AppointmentSlotID = row[6];
-                //break;
+                break;
             }
             i++;
         }
@@ -423,7 +430,8 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
 
 
         //view Appointment Details --> administrator
-        public void viewAppointmentDetails(String appointmentID){
+        //need print out all the appointment details
+        public void viewAppointmentDetails(){
                 
             //Read existing data in csv
             List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
@@ -442,24 +450,6 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                 "Appointment Outcome ID: "
             };
 
-
-            //print out appointment details
-            System.out.println("Appointment Details: ");
-            for(String[]row : appointmentListCsv){
-                //check if appointmentID matches
-                if(row[0].equalsIgnoreCase(appointmentID)){
-                    for(int j = 0; j<row.length; j++){
-                        System.out.println(appointmentLabels[j] + row[j]);
-                    }
-                    
-                    //get appointmentOutcomeID
-                    appointmentOutcomeID = row[7];
-
-                    System.out.println();
-                    
-                }
-            }
-
             //print out appointment Outcome Record
             String[] labels = {
                 "Appointment Outcome ID: ",
@@ -473,13 +463,43 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                 "Appointment Outcome ID: "
             };
 
-            for(String row1[] : appointmentOutcomeListCsv){
-                if(row1[0].equalsIgnoreCase(appointmentOutcomeID)){
-                    for(int x = 0; x<row1.length; x++){
-                        System.out.println(labels[x] + row1[x]);
+
+            //print out appointment details
+            System.out.println("Appointment Details: ");
+            // track the row in appointmentList
+            int i = 0;
+            for(String[]row : appointmentListCsv){
+                //skip row with headers
+                if(i == 0){
+                    i++;
+                    continue;
+                }
+                //print out detials for each appointment
+
+                for(int j = 0; j<row.length; j++){
+                    System.out.println(appointmentLabels[j] + row[j]);
+                }
+
+                //get appointmentOutcomeID
+                appointmentOutcomeID = row[7];
+
+                //check status of appointment and print out appointment outcome record for completed
+                if(row[3].equalsIgnoreCase("Completed")){
+                    System.out.println();
+                    System.out.println("Appointment Outcome Record: ");
+                    for(String row1[] : appointmentOutcomeListCsv){
+                        if(row1[0].equalsIgnoreCase(appointmentOutcomeID)){
+                            for(int x = 0; x<row1.length; x++){
+                                System.out.println(labels[x] + row1[x]);
+                            }
+                        }
                     }
                 }
+                System.out.println();
+                i++;  
             }
+            
+
         }
 
     
