@@ -159,3 +159,10 @@ User cancels an appointment @:2024/11/14 23:48:05
 User cancels an appointment @:2024/11/14 23:48:16
 User cancels an appointment @:2024/11/14 23:48:33
 Patient P1001 logged out @:2024/11/14 23:49:09
+Patient P1001 logged in @:2024/11/15 00:14:48
+User viewed available appointment slots @:2024/11/15 00:14:51
+User schedules an appointment @:2024/11/15 00:15:45
+User cancels an appointment @:2024/11/15 00:16:07
+User schedules an appointment @:2024/11/15 00:16:18
+User reschedules an appointment @:2024/11/15 00:16:43
+Patient P1001 logged out @:2024/11/15 00:21:21
