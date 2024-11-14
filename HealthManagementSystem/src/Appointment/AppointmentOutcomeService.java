@@ -1,4 +1,4 @@
-package Appointment2;
+package Appointment;
 
 public interface AppointmentOutcomeService {
     
