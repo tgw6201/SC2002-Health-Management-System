@@ -1,6 +1,7 @@
 package Appointment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import FileManager.*;
@@ -499,8 +500,16 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                 i++;  
             }
             
-
         }
 
+        //print out every row of AppointmentListcsv
+        public void showAppointmentCsv(){
+            List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
+            System.out.println("\nDisplaying all appointments:\n");
+
+            for (String[] record : appointmentListCsv) {
+                System.out.println(Arrays.toString(record));
+            }
+        }
     
 }
