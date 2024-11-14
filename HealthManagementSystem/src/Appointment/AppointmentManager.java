@@ -30,19 +30,19 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
         //Read existing data in csv
         List<String[]> appointmentSlotListCsv = dataProcessor.readData("AvailabilitySlot_List.csv");
 
-        // check for Invalid appointmentID --> don't exist and those cancelled/completed
-            boolean appointmentIDExist = false;
-            for (String[] row : appointmentListCsv) {
-                if (row[0].equalsIgnoreCase(appointmentID) && row[3].equalsIgnoreCase("Confirmed") ) {
-                    appointmentIDExist = true;
-                        break;
-                }
+        //check for invalid newAppointmentSlotID
+        boolean appointmentSlotIDExist = false;
+        for (String[] row : appointmentSlotListCsv) {
+            if (row[0].equalsIgnoreCase(appointmentSlotID)) {
+                appointmentSlotIDExist = true;
+                break;
             }
+        }
 
-            if(!appointmentIDExist){
-                System.out.println("Invalid appointment ID. Provide a valid appointment ID.");
-                return;
-            }
+        if(!appointmentSlotIDExist){
+            System.out.println("Invalid appointment slot ID. Provide a valid appointment slot ID.");
+            return;
+        }
 
         for(String[] row1 : appointmentSlotListCsv){
             
@@ -244,6 +244,21 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
     
         //Read existing data in csv
         List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
+        
+        // check for Invalid appointmentID --> don't exist and those cancelled/completed
+        boolean appointmentIDExist = false;
+            for (String[] row : appointmentListCsv) {
+                if (row[0].equalsIgnoreCase(appointmentID) && row[3].equalsIgnoreCase("Confirmed") ) {
+                    appointmentIDExist = true;
+                    break;
+                }
+            }
+        
+            if(!appointmentIDExist){
+                System.out.println("Invalid appointment ID. Provide a valid appointment ID.");
+                return;
+            }
+        
 
         //Intialization 
         String AppointmentSlotID = "NIL";
