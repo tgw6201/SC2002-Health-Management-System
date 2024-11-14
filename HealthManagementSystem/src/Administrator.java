@@ -1,3 +1,4 @@
+import Appointment.AppointmentManager;
 import FileManager.*;
 import Inventory.*;
 import Logger.*;
@@ -17,6 +18,7 @@ public class Administrator
     private InventoryManagement inventoryManagement;
     private PrescriptionManagement prescriptionManagement;
     private hospitalStaffManagement hospitalStaffManagement;
+    private AppointmentManager appointment;
         
         
 
@@ -29,6 +31,7 @@ public class Administrator
         this.inventoryManagement = new InventoryManagement(reader, writer);
         this.prescriptionManagement =  new PrescriptionManagement(inventoryManagement, reader, writer);
         this.hospitalStaffManagement = new hospitalStaffManagement(reader,writer);
+        this.appointment = new AppointmentManager(reader,writer);
     }
 
 
@@ -184,6 +187,7 @@ public class Administrator
     // View appointment details by calling a method from PrescriptionManagement
     private void viewAppointmentsDetails() {
         System.out.println("Viewing all appointment details...");
+        appointment.showAppointmentCsv();
         prescriptionManagement.showAllAppointments();
         logger.log("User viewed apppointment details");
     }
