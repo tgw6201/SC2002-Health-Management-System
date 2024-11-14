@@ -122,3 +122,5 @@ User reschedules an appointment @:2024/11/12 18:23:02
 User logged in @:2024/11/14 16:48:49
 User viewed medical records @:2024/11/14 16:48:53
 User logged in @:2024/11/14 16:49:37
+Patient P1001 logged in @:2024/11/14 21:01:53
+User viewed available appointment slots @:2024/11/14 21:02:01
