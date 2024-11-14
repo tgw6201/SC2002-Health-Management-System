@@ -124,3 +124,41 @@ User viewed medical records @:2024/11/14 16:48:53
 User logged in @:2024/11/14 16:49:37
 Patient P1001 logged in @:2024/11/14 21:01:53
 User viewed available appointment slots @:2024/11/14 21:02:01
+Patient P1001 logged in @:2024/11/15 00:48:02
+User viewed available appointment slots @:2024/11/15 00:48:04
+User schedules an appointment @:2024/11/15 00:48:31
+User viewed available appointment slots @:2024/11/15 00:48:34
+User cancels an appointment @:2024/11/15 00:48:56
+User viewed available appointment slots @:2024/11/15 00:49:09
+User viewed available appointment slots @:2024/11/15 00:49:25
+User cancels an appointment @:2024/11/15 00:49:55
+User schedules an appointment @:2024/11/15 00:50:06
+Patient P1001 logged in @:2024/11/15 00:56:29
+User viewed available appointment slots @:2024/11/15 00:56:33
+User schedules an appointment @:2024/11/15 00:56:53
+User viewed available appointment slots @:2024/11/15 00:57:45
+User viewed available appointment slots @:2024/11/15 00:57:51
+User cancels an appointment @:2024/11/15 00:58:15
+User viewed available appointment slots @:2024/11/15 00:58:29
+Patient P1001 logged out @:2024/11/15 00:59:04
+Patient P1001 logged in @:2024/11/15 00:59:51
+User viewed available appointment slots @:2024/11/15 00:59:53
+User schedules an appointment @:2024/11/15 01:00:07
+User viewed available appointment slots @:2024/11/15 01:00:10
+User schedules an appointment @:2024/11/15 01:00:25
+User viewed available appointment slots @:2024/11/15 01:00:28
+User viewed available appointment slots @:2024/11/15 01:00:42
+User schedules an appointment @:2024/11/15 01:00:57
+User viewed available appointment slots @:2024/11/15 01:01:01
+User cancels an appointment @:2024/11/15 01:01:15
+User viewed available appointment slots @:2024/11/15 01:01:18
+User cancels an appointment @:2024/11/15 01:01:36
+User viewed available appointment slots @:2024/11/15 01:02:04
+User reschedules an appointment @:2024/11/15 01:02:31
+User reschedules an appointment @:2024/11/15 01:07:04
+User viewed available appointment slots @:2024/11/15 01:07:25
+User cancels an appointment @:2024/11/15 01:07:43
+User cancels an appointment @:2024/11/15 01:08:01
+User viewed available appointment slots @:2024/11/15 01:08:03
+User cancels an appointment @:2024/11/15 01:08:26
+User viewed available appointment slots @:2024/11/15 01:08:28
