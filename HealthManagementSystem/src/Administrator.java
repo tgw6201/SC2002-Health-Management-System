@@ -19,7 +19,6 @@ public class Administrator
     private hospitalStaffManagement hospitalStaffManagement;
         
         
-        
 
     Administrator(String userID, String userRole, Logger logger, dataReader reader, dataWriter writer)
     {
@@ -30,8 +29,6 @@ public class Administrator
         this.inventoryManagement = new InventoryManagement(reader, writer);
         this.prescriptionManagement =  new PrescriptionManagement(inventoryManagement, reader, writer);
         this.hospitalStaffManagement = new hospitalStaffManagement(reader,writer);
-
-
     }
 
 
