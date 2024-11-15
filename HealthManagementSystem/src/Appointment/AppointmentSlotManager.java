@@ -5,15 +5,44 @@ import java.util.List;
 
 import FileManager.*;
 
+
+/**
+ * The AppointmentSlotManager class provides functionality for managing appointment slots,
+ * including updating availability, creating new slots, and viewing available slots.
+ * 
+ * <p>
+ * This class interacts with {@link DataProcessor} to manage data in the 
+ * "AvailabilitySlot_List.csv" file.
+ * </p>
+ * 
+ * @see AppointmentSlotService
+ * @see DataProcessor
+ * @see dataReader
+ * @see dataWriter
+ * 
+ * @author Lee Xing Juan Rennie
+ * @version 1.0
+ * @since 2024-11-15
+ */
 public class AppointmentSlotManager implements AppointmentSlotService{
     private DataProcessor dataProcessor;
-   
-
+ 
+    /**
+     * Constructs an AppointmentSlotManager instance with a data reader and writer.
+     * 
+     * @param reader The dataReader instance to read data.
+     * @param writer The dataWriter instance to write data.
+     */
     public AppointmentSlotManager(dataReader reader, dataWriter writer){
         dataProcessor = new DataProcessor(reader, writer);
     }
 
-    //doctor update availability --> existing appointmentslot / scheduled appointment
+    /**
+     * Updates the availability of an existing appointment slot based on the slot ID.
+     * 
+     * @param appointmentSlotID The ID of the appointment slot to update.
+     * @param availability      The new availability status (e.g., "Available", "Booked").
+     */
     public void setAppointmentAvailability(String appointmentSlotID, String availability){
         List<String[]> appointmentSlotListCsv = dataProcessor.readData("AvailabilitySlot_List.csv");
         
@@ -27,8 +56,16 @@ public class AppointmentSlotManager implements AppointmentSlotService{
         }
     }
 
-    //doctor creates an appointmentSlot --> method assigns an appointmentID
-    //assumes doctor is not dumb to create an appointmentSlot again when he has 1 already
+
+    /**
+     * Creates a new appointment slot for a doctor and assigns an appointment slot ID.
+     * 
+     * @param doctorID       The ID of the doctor.
+     * @param doctorName     The name of the doctor.
+     * @param appointmentDate The date of the appointment slot.
+     * @param appointmentTime The time of the appointment slot.
+     * @param availability    The availability status of the slot (e.g., "Available").
+     */
     public void setAppointmentAvailability(String doctorID, String doctorName, String appointmentDate, String appointmentTime, String availability){
        
         //creating appointmentSlotID with doctorid + date + time
@@ -49,8 +86,12 @@ public class AppointmentSlotManager implements AppointmentSlotService{
         System.out.println("Appointment Slot Availability updated"); 
         
     }
+
     
-    //patient view appointmentslots --> updated to only view available slots
+    /**
+     * Displays all available appointment slots for patients.
+     * Only slots marked as "Available" are displayed.
+     */
     public void viewAvailableAppointmentSlots(){
         List<String[]> appointmentSlotListCsv = dataProcessor.readData("AvailabilitySlot_List.csv");
         
