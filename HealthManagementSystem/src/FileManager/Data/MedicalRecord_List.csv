@@ -1,4 +1,4 @@
 patientID,name,dateOfBirth,gender,phoneNumber,emailAddress,bloodType,pastDiagnoses&Treatments,doctorID, doctorName
-P1001,Alice Brown,1980-05-14,Female,99999999,ab@gmail.com,A+,Diagnosis: Cancer    Treatment: Chemotherapy    Diagnosis: Breast Cancer    Treatment: Chemotherapy and Medicine,D1002,Emily Clarke
+P1001,Alice Brown,1980-05-14,Female,12345678,ALICEBROWN@gmail.com,A+,Diagnosis: Cancer    Treatment: Chemotherapy    Diagnosis: Breast Cancer    Treatment: Chemotherapy and Medicine,D1002,Emily Clarke
 P1002,Bob Stone,1975-11-22,Male,23456789,bob.stone@example.com,B+,Diagnosis: Liver Failure    Treatment: Medication,D002,Emily Clarke
 P1003,Charlie White,1990-07-08,Male,34567890,charlie.white@example.com,O-,Diagnosis: Stroke    Treatment: Surgery,D001,John Smith
