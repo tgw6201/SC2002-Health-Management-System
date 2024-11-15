@@ -58,7 +58,7 @@ public class Testing {
         //appointment.scheduleAppointment("P1001", "D100111900");
 
         //check case 5 --> work for if available and booked
-        appointment.rescheduleAppointment("P1001D100111900", "D1002111300");
+        //appointment.rescheduleAppointment("P1001D100111900", "D1002111300");
 
         //check case 6 --> work 
         //appointment.cancelAppointment("P1001D100212600");
