@@ -70,3 +70,6 @@ Patient P1002 logged out @:2024/11/14 23:22:00
 Patient P1002 logged in @:2024/11/14 23:22:05
 User viewed available appointment slots @:2024/11/14 23:22:06
 Patient P1002 logged out @:2024/11/14 23:23:45
+Patient P1002 logged in @:2024/11/15 17:44:34
+User views past appointment outcome records @:2024/11/15 17:44:36
+Patient P1002 logged out @:2024/11/15 17:44:39
