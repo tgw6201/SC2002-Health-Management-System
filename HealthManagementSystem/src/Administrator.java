@@ -5,7 +5,12 @@ import Logger.*;
 import StaffManagement.*;
 import java.util.Scanner;
 
-
+/**
+ * The Administrator class provides the functionality for an administrator to manage various operations 
+ * in a hospital system, including staff management, appointments, medication inventory, and replenishment requests.
+ * The class interacts with various submodules like AppointmentManager, InventoryManagement, PrescriptionManagement, 
+ * and StaffManagement to execute its functionalities.
+ */
 public class Administrator
 {
     private String userID;
@@ -20,8 +25,14 @@ public class Administrator
     private hospitalStaffManagement hospitalStaffManagement;
     private AppointmentManager appointment;
         
-        
-
+    /**
+     * Constructor to initialize an Administrator with necessary dependencies.
+     * @param userID The unique identifier for the administrator.
+     * @param userRole The role of the user (e.g., "Administrator").
+     * @param logger The Logger instance for logging activities.
+     * @param reader DataReader instance to handle reading of data.
+     * @param writer DataWriter instance to handle writing of data.
+     */
     Administrator(String userID, String userRole, Logger logger, dataReader reader, dataWriter writer)
     {
         this.userID = userID;
@@ -34,12 +45,11 @@ public class Administrator
         this.appointment = new AppointmentManager(reader,writer);
     }
 
-
-    // Main menu for administrator to select different options
+    /**
+     * Displays the main menu for the administrator to choose various options for managing hospital systems.
+     */
     public void menu() {
         logger.log("Administrator " + userID + " logged in");//once enter, log user's login
-        //System.out.println("Upcast with parameter successful "+ getUserID() + getRole()); //check that upcast is successful
-        //logger.log("test"); //to continue logging from
         int choice = -1;
         while (choice != 5) { // Loop until the administrator chooses to log out
             System.out.println("Administrator Menu: ");
@@ -76,10 +86,10 @@ public class Administrator
                     System.out.println("Invalid option. Please try again.");
             }
         }
-        //logger.stopLogging();
     }
-
-    // View and manage hospital staff
+    /**
+     * Manages the hospital staff, allowing the administrator to add, remove, update, or filter staff members.
+     */
     private void viewAndManageStaff() {
         logger.log("User entered staff management menu");
         int choice = -1;
@@ -117,7 +127,9 @@ public class Administrator
             }
         }
     }
-    // Adds a new staff member
+    /**
+     * Adds a new staff member to the hospital staff management system.
+     */
     private void addStaff() {
         System.out.println("Enter Staff ID:");
         String staffID = sc.nextLine();
@@ -139,16 +151,18 @@ public class Administrator
         hospitalStaffManagement.addStaff(staffID, staffName, staffRole, staffGender, staffAge);
         logger.log("User added a staff");
     }
-
-    // Removes a staff member
+    /**
+     * Removes a staff member from the hospital staff management system.
+     */
     private void removeStaff() {
         System.out.println("Enter Staff ID to remove:");
         String staffID = sc.nextLine();
         hospitalStaffManagement.removeStaff(staffID);
         logger.log("User removed staff");
     }
-
-    // Updates a staff member's details
+    /**
+     * Updates the details of a staff member in the hospital staff management system.
+     */
     private void updateStaff() {
         System.out.println("Enter Staff ID to update:");
         String staffID = sc.nextLine();
@@ -171,8 +185,9 @@ public class Administrator
         hospitalStaffManagement.updateStaff(staffID, staffName, staffRole, staffGender, staffAge);
         logger.log("User updated staff particulars");
     }
-
-    // Views staff members with a filter
+    /**
+     * Displays a filtered view of staff members based on category and type.
+     */
     private void filteredView() {
         System.out.println("Enter Category to Filter By (e.g., role, gender):");
         String category = sc.nextLine();
@@ -182,16 +197,19 @@ public class Administrator
         hospitalStaffManagement.filteredView(category, type);
         logger.log("User viewed staff members with a filter");
     }
-
-    // View appointment details by calling a method from PrescriptionManagement
+    /**
+     * Views all appointment details by accessing the AppointmentManager and PrescriptionManagement systems.
+     */
     private void viewAppointmentsDetails() {
         System.out.println("Viewing all appointment details...");
         appointment.showAppointmentCsv();
         prescriptionManagement.showAllAppointments();
         logger.log("User viewed apppointment details");
     }
-
-    // View and manage medication inventory
+    /**
+     * Manages the medication inventory, including viewing items, checking low stock, updating thresholds, 
+     * and restocking items.
+     */
     private void viewAndManageInventory() {
         logger.log("User entered inventory management menu");
         int choice = -1;
@@ -250,8 +268,9 @@ public class Administrator
             }
         }
     }
-
-    // Approve replenishment requests by calling methods from InventoryManagement
+    /**
+     * Approves replenishment requests for inventory items by calling appropriate methods from InventoryManagement.
+     */
     private void approveReplenishmentRequests() {
         logger.log("User entered replenishment approval menu");
         int choice = -1;
@@ -286,11 +305,20 @@ public class Administrator
             }
         }
     }
-
+    /**
+     * Retrieves the administrator's unique ID.
+     *
+     * @return the administrator's unique ID.
+     */
     public String getUserID()
     {
         return userID;
     }
+    /**
+     * Retrieves the administrator's role within the system.
+     *
+     * @return the role of the user, specifically "Administrator" in this context.
+     */
     public String getRole()
     {
         return userRole;

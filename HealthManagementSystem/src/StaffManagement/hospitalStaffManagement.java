@@ -27,8 +27,8 @@ public class hospitalStaffManagement implements StaffManagementAdd, StaffManagem
     }
 
     /**
-     * Adds a new staff member to the staff list. Checks if the staff ID already exists before adding.
-     *
+     * Adds a new staff member to the staff list and create a user account. 
+     * Checks if the staff ID already exists before adding.
      * @param staffID    The ID of the staff member.
      * @param staffName  The name of the staff member.
      * @param staffRole  The role of the staff member (e.g., Doctor, Nurse).
@@ -60,7 +60,7 @@ public class hospitalStaffManagement implements StaffManagementAdd, StaffManagem
     }
 
     /**
-     * Removes a staff member from the staff list based on the given staff ID.
+     * Removes a staff member from the staff list and his user account based on the given staff ID.
      *
      * @param staffID The ID of the staff member to remove.
      * @return true if the staff member was successfully removed, false if the staff ID was not found.
