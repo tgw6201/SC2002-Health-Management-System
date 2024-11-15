@@ -30,7 +30,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
         //Read existing data in csv
         List<String[]> appointmentSlotListCsv = dataProcessor.readData("AvailabilitySlot_List.csv");
 
-        //check for invalid newAppointmentSlotID
+        //check for invalid AppointmentSlotID
         boolean appointmentSlotIDExist = false;
         for (String[] row : appointmentSlotListCsv) {
             if (row[0].equalsIgnoreCase(appointmentSlotID)) {

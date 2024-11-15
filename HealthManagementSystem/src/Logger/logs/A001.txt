@@ -15,3 +15,5 @@ User logged in @:2024/11/11 23:58:14
 User logged in @:2024/11/12 17:17:33
 User viewed apppointment details @:2024/11/12 17:18:49
 User logged in @:2024/11/12 17:38:47
+Administrator A001 logged in @:2024/11/15 00:03:24
+User viewed apppointment details @:2024/11/15 00:03:27
