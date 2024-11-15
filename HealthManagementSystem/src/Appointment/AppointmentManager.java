@@ -318,7 +318,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
         //Find appointment
         for(String[] row : appointmentListCsv){
             //If it matches the appointmentID and must be confirmed
-            if(row[6].equalsIgnoreCase(appointmentID) && row[3].equalsIgnoreCase("Confirmed")){
+            if(row[0].equalsIgnoreCase(appointmentID) && row[3].equalsIgnoreCase("Confirmed")){
                 //change the appointmentStatus to cancelled in csv
                 dataProcessor.writeData("Appointment_List.csv", i, 3, "Cancelled");
                 //get the appointmentSlotID
@@ -329,6 +329,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
         }
         //Update appointmentSlot from booked to available
         AppointmentSlotManager slot = new AppointmentSlotManager(fileReader, fileWriter);
+        System.out.println(AppointmentSlotID);
         slot.setAppointmentAvailability(AppointmentSlotID, "Available");
 
         //verify that the appointment has been cancelled

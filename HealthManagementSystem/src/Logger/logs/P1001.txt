@@ -308,3 +308,19 @@ User cancels an appointment @:2024/11/15 17:44:02
 User view Scheduled Appointments @:2024/11/15 17:44:07
 User views past appointment outcome records @:2024/11/15 17:44:23
 Patient P1001 logged out @:2024/11/15 17:44:32
+Patient P1001 logged in @:2024/11/15 23:11:08
+Patient P1001 logged in @:2024/11/15 23:11:50
+User viewed available appointment slots @:2024/11/15 23:11:53
+User schedules an appointment @:2024/11/15 23:12:13
+User reschedules an appointment @:2024/11/15 23:12:32
+User reschedules an appointment @:2024/11/15 23:12:56
+User viewed available appointment slots @:2024/11/15 23:13:20
+User viewed available appointment slots @:2024/11/15 23:13:57
+User reschedules an appointment @:2024/11/15 23:14:38
+User reschedules an appointment @:2024/11/15 23:15:17
+User cancels an appointment @:2024/11/15 23:16:33
+User cancels an appointment @:2024/11/15 23:16:52
+Patient P1001 logged in @:2024/11/15 23:19:29
+User schedules an appointment @:2024/11/15 23:19:48
+User cancels an appointment @:2024/11/15 23:20:09
+User viewed available appointment slots @:2024/11/15 23:20:22
