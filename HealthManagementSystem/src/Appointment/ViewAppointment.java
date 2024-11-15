@@ -26,6 +26,12 @@ public interface ViewAppointment {
     /**
      * Views the scheduled appointments for a specific patient.
      * 
+     * <p>
+     * This method allows viewing of all appointments associated with a given 
+     * patient, displaying details such as the doctor's name, appointment date,
+     * time, and status.
+     * </p>
+     *
      * @param patientID The ID of the patient whose appointments are to be viewed.
      */
     public void viewScheduleAppointment(String patientID);
@@ -44,7 +50,7 @@ public interface ViewAppointment {
      * 
      * @param doctorID The ID of the doctor whose upcoming appointments are to be viewed.
      */   
-    public void viewUpcomingAppointments(String DoctorID);
+    public void viewUpcomingAppointments(String doctorID);
 
 
     /**

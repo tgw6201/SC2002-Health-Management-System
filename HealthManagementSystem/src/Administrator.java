@@ -305,22 +305,4 @@ public class Administrator
             }
         }
     }
-    /**
-     * Retrieves the administrator's unique ID.
-     *
-     * @return the administrator's unique ID.
-     */
-    public String getUserID()
-    {
-        return userID;
-    }
-    /**
-     * Retrieves the administrator's role within the system.
-     *
-     * @return the role of the user, specifically "Administrator" in this context.
-     */
-    public String getRole()
-    {
-        return userRole;
-    }
 }

@@ -213,23 +213,4 @@ public class Patient
         logger.log ("User views past appointment outcome records");
         manager.viewPastRecords(userID);
     }
-
-    /**
-     * Retrieves the patient's unique ID.
-     *
-     * @return the user's unique ID.
-     */
-    public String getUserID()
-    {
-        return userID;
-    }
-    /**
-     * Retrieves the user's role within the system.
-     *
-     * @return the role of the user, specifically "Patient" in this context.
-     */
-    public String getRole()
-    {
-        return userRole;
-    }
 }

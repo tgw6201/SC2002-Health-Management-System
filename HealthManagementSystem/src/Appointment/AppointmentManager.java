@@ -392,12 +392,8 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                     }
                     i++;
                 }
-                //update appointmentSlot to available
                 AppointmentSlotManager slot = new AppointmentSlotManager(fileReader, fileWriter);
                 slot.setAppointmentAvailability(appointmentSlotID, "Available");
-    
-    
-                //verify “cancelled” when declined
                 System.out.println("Appointment status changed to decline");
             }
         }
