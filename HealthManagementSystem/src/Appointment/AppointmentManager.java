@@ -433,60 +433,54 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
             }
             
         }
-        //view upcoming confirmed appointments
-        public void viewUpcomingAppointments(String DoctorID){
-            //Read existing data in csv
-            List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
-            List<String[]> medicalRecordListCsv = dataProcessor.readData("MedicalRecord_List.csv");
+//view upcoming confirmed appointments
+public void viewUpcomingAppointments(String doctorID) {
+    //Read existing data in csv
+    List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
+    List<String[]> medicalRecordListCsv = dataProcessor.readData("MedicalRecord_List.csv");
 
-            //initialization 
+    //labels for formatting 
+    String[] labels = {
+        "Patient ID: ", 
+        "Name: ",
+        "Date Of Birth: ",
+        "Gender: ",
+        "Phone Number: ",
+        "Email Address: ",
+        "Blood Type: "
+    };
 
-            String appointmentDate = "NIL";
-            String appointmentTime = "NIL";
-            String patientID = "NIL";
+    System.out.println("Upcoming appointments:");
+    System.out.println();
 
-            //labels for formatting 
-            String[] labels = {
-                "Patient ID: ", 
-                "Name: ",
-                "Date Of Birth: ",
-                "Gender: ",
-                "Phone Number: ",
-                "Email Address: ",
-                "Blood Type: ",
-                "",
-            };
+    for (String[] row : appointmentListCsv) {
+        // Check if doctorID matches and appointmentStatus is Confirmed
+        if (row[2].equalsIgnoreCase(doctorID) && row[3].equalsIgnoreCase("Confirmed")) {
+            String appointmentID = row[0];
+            String patientID = row[1];
+            String appointmentDate = row[4];
+            String appointmentTime = row[5];
 
+            // Display appointment details
+            System.out.println("Appointment ID: " + appointmentID);
+            System.out.println("Appointment Date: " + appointmentDate);
+            System.out.println("Appointment Time: " + appointmentTime);
 
-            System.out.println("Upcoming appointments:");
-            System.out.println();
-
-            for(String[] row: appointmentListCsv){
-                //check if doctorID matches and appointmentStatus = confirmed
-                if(row[2].equalsIgnoreCase(DoctorID) && row[3].equalsIgnoreCase("Confirmed")){
-                    patientID = row[1];
-                    appointmentDate = row[4];
-                    appointmentTime = row[5];
-
-                    //print out patient details 
-                    for(String[]row1 : medicalRecordListCsv){
-                        if(row1[0].equalsIgnoreCase(patientID)){
-                            for(int i=0; i<8; i++){
-                                System.out.println(labels[i] + row1[i]);
-                            } 
-                        }
+            // Fetch and display patient details
+            for (String[] row1 : medicalRecordListCsv) {
+                if (row1[0].equalsIgnoreCase(patientID)) {
+                    System.out.println("Patient Details:");
+                    for (int i = 0; i < labels.length; i++) {
+                        System.out.println(labels[i] + row1[i]);
                     }
-
-                    System.out.println("Appointment Date: " + appointmentDate);
-                    System.out.println("Appointment Time: " + appointmentTime);
-                    System.out.println();
-                    
+                    break; // Exit the loop once the matching patient is found
                 }
             }
 
+            System.out.println(); // Add a blank line between appointments
         }
-
-
+    }
+}
 
         //view Appointment Details --> administrator
         //need print out all the appointment details
