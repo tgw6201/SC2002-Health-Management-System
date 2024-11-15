@@ -8,6 +8,6 @@ public interface ViewAppointment {
 
     public void viewUpcomingAppointments(String DoctorID);
 
-    public void viewAppointmentDetails(String appointmentID);
+    public void viewAppointmentDetails();
      
 }
