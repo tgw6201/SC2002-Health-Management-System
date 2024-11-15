@@ -5,6 +5,14 @@ import Logger.*;
 import MedicalRecord.*;
 import java.util.Scanner;
 
+/**
+ * Represents a Doctor in the hospital management system. 
+ * Provides functionality for managing appointments, viewing and updating patient medical records,
+ * and recording appointment outcomes. Utilizes various managers for appointment and medical record handling.
+ * 
+ * @author Tee Yu Xuan
+ * 
+ */
 public class Doctor {
     private final String userID;
     private final String userRole;
@@ -17,7 +25,15 @@ public class Doctor {
     private final AppointmentSlotManager appointmentSlotManager;
     private final AppointmentOutcomeManager appointmentOutcomeManager;
 
-    // Constructor to initialize the doctor with associated data managers
+    /**
+     * Constructs a Doctor object with the specified user information and data managers.
+     *
+     * @param userID  the unique identifier for the doctor.
+     * @param userRole  the role of the user (expected to be "Doctor").
+     * @param logger  the logging utility for recording actions.
+     * @param reader  the data reader for retrieving information.
+     * @param writer  the data writer for saving information.
+     */
     public Doctor(String userID, String userRole, Logger logger, dataReader reader, dataWriter writer) {
         this.userID = userID;
         this.userRole = userRole;
@@ -31,7 +47,10 @@ public class Doctor {
         this.appointmentOutcomeManager = new AppointmentOutcomeManager(reader, writer);
     }
 
-    // Main menu for doctor to select different options
+    /**
+     * Displays the main menu for the doctor to perform various tasks. 
+     * Logs the doctor's actions and processes menu choices in a loop.
+     */
     public void menu() {
         logger.log("Doctor " + userID + " logged in"); // Log doctor login
         int choice = -1;
@@ -84,7 +103,11 @@ public class Doctor {
         }
     }
 
-    // View a specific patient's medical records
+    /**
+     * Views the medical records of a specific patient.
+     * Prompts the doctor for the patient ID.
+     * Logs the action and retrieves the record from the medical record manager.
+     */
     private void viewPatientRecords() {
         System.out.println("Enter Patient ID:");
         String patientID = sc.nextLine();
@@ -92,12 +115,15 @@ public class Doctor {
         doctorMedicalRecordManager.viewMedicalRecord(patientID);
     }
 
-    // Update a patient's medical records (diagnosis and treatment)
+    /**
+     * Updates the medical records of a specific patient.
+     * Prompts the doctor for the patient ID, new diagnosis, and treatment.
+     * Logs the update and sends the data to the medical record manager.
+     */
     private void updatePatientMedicalRecords() {
         System.out.println("Enter Patient ID:");
         String patientID = sc.nextLine();
 
-        // Prompt for updated diagnosis and treatment
         System.out.println("Enter new Diagnosis:");
         String newDiagnosis = sc.nextLine();
         System.out.println("Enter new Treatment:");
@@ -107,13 +133,20 @@ public class Doctor {
         doctorMedicalRecordManager.updateMedicalRecord(patientID, newDiagnosis, newTreatment);
     }
 
-    // View the doctor's personal schedule
+    /**
+     * Views the personal schedule of the doctor.
+     * Logs the action and retrieves the schedule from the appointment manager.
+     */
     private void viewPersonalSchedule() {
         logger.log("Doctor " + userID + " viewed personal schedule");
         appointmentManager.viewPersonalSchedule(userID);
     }
 
-    // Set availability for appointment slots (either create a new slot or update existing one)
+    /**
+     * Sets availability for appointment slots.
+     * Allows the doctor to update an existing slot or create a new one.
+     * Logs the action and updates the appointment slot manager.
+     */
     private void setAvailability() {
         System.out.println("Do you want to update an existing slot or create a new one? (Enter 'u' for update or 'c' for create):");
         String choice = sc.nextLine().trim().toLowerCase();
@@ -148,15 +181,24 @@ public class Doctor {
         }
     }
 
-    // Manage appointment requests (accept or decline based on input)
+    /**
+     * Manages appointment requests by allowing the doctor to accept or decline appointments.
+     * Prompts for appointment ID and decision, then logs the action and updates the appointment manager.
+     */
     private void manageAppointmentRequests() {
-        System.out.println("Enter Appointment ID to accept/decline:");
+        logger.log("Doctor " + userID + " viewed upcoming appointments");
+        appointmentManager.viewUpcomingAppointments(userID);
+
+        System.out.println("Enter Appointment ID to accept/decline (or type 'E' to exit if there's no upcoming appointment):");
         String appointmentID = sc.nextLine();
+        if (appointmentID.equalsIgnoreCase("E")) {
+            return;
+        }
+
         System.out.println("Accept (A) or Decline (D):");
         String decisionInput = sc.nextLine();
 
         String decision = "";
-
         if (decisionInput.equalsIgnoreCase("A")) {
             decision = "Accept";
         } else if (decisionInput.equalsIgnoreCase("D")) {
@@ -170,18 +212,24 @@ public class Doctor {
         appointmentManager.acceptDeclineAppointment(appointmentID, decision);
     }
 
-    // View all upcoming appointments for the doctor
+    /**
+     * Views all upcoming appointments for the doctor.
+     * Logs the action and retrieves the appointments from the appointment manager.
+     */
     private void viewUpcomingAppointments() {
         logger.log("Doctor " + userID + " viewed upcoming appointments");
         appointmentManager.viewUpcomingAppointments(userID);
     }
 
-    // Record the outcome of an appointment
+    /**
+     * Records the outcome of an appointment.
+     * Prompts the doctor for details such as type of service, prescribed medication, and consultation notes.
+     * Logs the action and updates the appointment outcome manager.
+     */
     private void recordAppointmentOutcome() {
         System.out.println("Enter Appointment ID:");
         String appointmentID = sc.nextLine();
 
-        // Collect details for recording the outcome
         System.out.println("Enter Type of Service:");
         String typeOfService = sc.nextLine();
 
@@ -200,5 +248,4 @@ public class Doctor {
         logger.log("Doctor " + userID + " recorded outcome for appointment ID " + appointmentID);
         appointmentOutcomeManager.recordAppointmentOutcome(typeOfService, prescribedMedication, prescribedMedicationQuantity, prescriptionStatus, consultationNotes, appointmentID);
     }
-
 }
