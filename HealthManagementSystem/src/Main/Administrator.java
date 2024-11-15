@@ -1,3 +1,4 @@
+package Main;
 import Appointment.AppointmentManager;
 import FileManager.*;
 import Inventory.*;
@@ -10,6 +11,10 @@ import java.util.Scanner;
  * in a hospital system, including staff management, appointments, medication inventory, and replenishment requests.
  * The class interacts with various submodules like AppointmentManager, InventoryManagement, PrescriptionManagement, 
  * and StaffManagement to execute its functionalities.
+ * 
+ * @author Peter Loh
+ * @version 1.0
+ * @since 2024-11-6
  */
 public class Administrator
 {

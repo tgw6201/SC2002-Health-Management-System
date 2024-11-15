@@ -1,3 +1,4 @@
+package Main;
 import Appointment.*;
 import FileManager.*;
 import Logger.*;
@@ -17,6 +18,10 @@ import java.util.Scanner;
  * - AppointmentOutcomeManager: for viewing past appointment outcome records.
  * 
  * Logging of patient actions is handled through the Logger interface.
+ * 
+ * @author Peter Loh
+ * @version 1.0
+ * @since 2024-11-6
  */
 public class Patient 
 {

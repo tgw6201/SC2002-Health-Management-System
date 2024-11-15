@@ -1,3 +1,13 @@
+package Main;
+import FileManager.CsvFileReader;
+import FileManager.CsvFileWriter;
+import FileManager.dataReader;
+import FileManager.dataWriter;
+import Logger.FileLogger;
+import Logger.Logger;
+import java.util.Scanner;
+import userLogin.UserLoginServices;
+
 /**
  * The SystemInitialization class serves as the entry point for the 
  * Hospital Management System. It handles the user login process, 
@@ -10,15 +20,11 @@
  * - userLogin: For managing user login credentials and roles.
  *
  * This class demonstrates dynamic role-based functionality using Java reflection.
+ * 
+ * @author Peter Loh
+ * @version 1.0
+ * @since 2024-11-6
  */
-import FileManager.CsvFileReader;
-import FileManager.CsvFileWriter;
-import FileManager.dataReader;
-import FileManager.dataWriter;
-import Logger.FileLogger;
-import Logger.Logger;
-import java.util.Scanner;
-import userLogin.UserLoginServices;
 
 public class SystemInitialization {
     /**
