@@ -194,7 +194,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                     appointmentDate = row1[3];
                     appointmentTime = row1[4];
 
-                    //change new appoointmentSlot to booked
+                    //change new appointmentSlot to booked
                     slot.setAppointmentAvailability(newAppointmentSlotID, "Booked");
 
                     //make old appointmentslot available
@@ -208,8 +208,8 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                     //Finding location of appointment in csv and rewrite the whole row
                     for(String[] row2 : appointmentListCsv){
                         
-                        //find the row containing the appointment
-                        if(row2[0].equalsIgnoreCase(appointmentID)){
+                        //find the row containing the appointment + make sure it is confirmed(cannot change cancelled ones)
+                        if(row2[0].equalsIgnoreCase(appointmentID) && row2[3].equalsIgnoreCase("Confirmed")){
                             patientID = row2[1];
                             appointmentOutcomeID = row2[7];
                             // need use i to iterate over to find location of appointment

@@ -55,10 +55,10 @@ public class Testing {
         AppointmentManager appointment = new AppointmentManager(reader, writer);
 
         //check case 4 --> work for available and booked
-        //appointment.scheduleAppointment("P1001", "D100212600");
+        //appointment.scheduleAppointment("P1001", "D100111900");
 
         //check case 5 --> work for if available and booked
-        //appointment.rescheduleAppointment("P1001D100212600", "D100212600");
+        appointment.rescheduleAppointment("P1001D100111900", "D1002111300");
 
         //check case 6 --> work 
         //appointment.cancelAppointment("P1001D100212600");
