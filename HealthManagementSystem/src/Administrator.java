@@ -136,7 +136,6 @@ public class Administrator
             System.out.println("Invalid input. Please enter a valid age.");
             return; // Exit the method if invalid age input
         }
-
         hospitalStaffManagement.addStaff(staffID, staffName, staffRole, staffGender, staffAge);
         logger.log("User added a staff");
     }

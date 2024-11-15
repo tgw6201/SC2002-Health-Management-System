@@ -1,6 +1,5 @@
 import FileManager.CsvFileReader;
 import FileManager.CsvFileWriter;
-import FileManager.DataProcessor;
 import FileManager.dataReader;
 import FileManager.dataWriter;
 import Logger.FileLogger;
@@ -11,12 +10,9 @@ import userLogin.UserLoginServices;
 public class SystemInitialization {
         public static void main(String[] args) 
         {
-            while(true)
-            {
             //Login Process
             dataReader reader = new CsvFileReader();
             dataWriter writer = new CsvFileWriter();
-            DataProcessor processor = new DataProcessor(reader, writer); 
             
             String username;
             String password;
@@ -24,13 +20,17 @@ public class SystemInitialization {
             Scanner sc = new Scanner(System.in);
             Logger logger;
 
+            //Assumes Role is properly spelled in User_Accounts
+            while(true)
+            {
             System.out.println("Hospital Management System");
             System.out.println("Username: ");
             username = sc.nextLine();
-            logger = new FileLogger(username); //removed .txt
+            logger = new FileLogger(username);
             System.out.println("Password: ");
             password = sc.nextLine();
-            
+
+
             UserLoginServices userLoginServices = new UserLoginServices(reader,writer);
             boolean login = userLoginServices.login(username, password);
             if (login == false) 
@@ -49,8 +49,7 @@ public class SystemInitialization {
             }
             System.out.println("Login Status:" + login);
             System.out.println("Role: " + userLoginServices.getRole());
-            //userLoginServices.resetPassword(username); // ##Debug only. remove##
-
+            
             //upcast role to user
             try 
             {

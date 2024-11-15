@@ -207,3 +207,90 @@ Patient P1001 logged in @:2024/11/15 13:12:28
 User viewed available appointment slots @:2024/11/15 13:12:31
 User schedules an appointment @:2024/11/15 13:13:10
 Patient P1001 logged out @:2024/11/15 13:13:54
+Patient P1001 logged in @:2024/11/15 15:03:06
+User schedules an appointment @:2024/11/15 15:03:15
+User viewed medical records @:2024/11/15 15:04:41
+User updated personal information @:2024/11/15 15:05:05
+User updated personal information @:2024/11/15 15:05:17
+User viewed medical records @:2024/11/15 15:05:19
+User viewed available appointment slots @:2024/11/15 15:05:29
+User reschedules an appointment @:2024/11/15 15:05:57
+User viewed available appointment slots @:2024/11/15 15:06:26
+User reschedules an appointment @:2024/11/15 15:07:08
+User view Scheduled Appointments @:2024/11/15 15:07:26
+User views past appointment outcome records @:2024/11/15 15:07:37
+User cancels an appointment @:2024/11/15 15:07:57
+Patient P1001 logged out @:2024/11/15 15:08:07
+Patient P1001 logged in @:2024/11/15 15:32:53
+Patient P1001 logged out @:2024/11/15 15:32:54
+Patient P1001 logged in @:2024/11/15 15:45:45
+Patient P1001 logged out @:2024/11/15 15:45:47
+Patient P1001 logged in @:2024/11/15 16:21:12
+User viewed medical records @:2024/11/15 16:21:13
+Patient P1001 logged out @:2024/11/15 16:21:18
+Patient P1001 logged in @:2024/11/15 16:28:24
+User viewed medical records @:2024/11/15 16:28:25
+User updated personal information @:2024/11/15 16:28:42
+User viewed medical records @:2024/11/15 16:28:46
+User viewed available appointment slots @:2024/11/15 16:28:54
+User schedules an appointment @:2024/11/15 16:29:50
+User viewed available appointment slots @:2024/11/15 16:29:56
+User reschedules an appointment @:2024/11/15 16:30:22
+User cancels an appointment @:2024/11/15 16:31:34
+User reschedules an appointment @:2024/11/15 16:33:44
+User reschedules an appointment @:2024/11/15 16:35:37
+Patient P1001 logged out @:2024/11/15 16:36:19
+Patient P1001 logged in @:2024/11/15 16:36:38
+User viewed available appointment slots @:2024/11/15 16:36:43
+User cancels an appointment @:2024/11/15 16:37:08
+User viewed medical records @:2024/11/15 16:46:01
+Patient P1001 logged out @:2024/11/15 16:46:06
+Patient P1001 logged in @:2024/11/15 16:46:35
+User viewed available appointment slots @:2024/11/15 16:46:38
+User schedules an appointment @:2024/11/15 16:47:07
+User reschedules an appointment @:2024/11/15 16:47:26
+User reschedules an appointment @:2024/11/15 16:47:58
+User cancels an appointment @:2024/11/15 16:48:12
+User schedules an appointment @:2024/11/15 16:48:23
+User reschedules an appointment @:2024/11/15 16:48:51
+Patient P1001 logged out @:2024/11/15 16:49:59
+Patient P1001 logged in @:2024/11/15 16:50:36
+User schedules an appointment @:2024/11/15 16:50:46
+User schedules an appointment @:2024/11/15 16:50:55
+User cancels an appointment @:2024/11/15 16:51:14
+User schedules an appointment @:2024/11/15 16:51:31
+User reschedules an appointment @:2024/11/15 16:51:45
+User schedules an appointment @:2024/11/15 16:52:12
+User reschedules an appointment @:2024/11/15 16:53:28
+User cancels an appointment @:2024/11/15 16:56:12
+User schedules an appointment @:2024/11/15 16:56:54
+User cancels an appointment @:2024/11/15 16:56:58
+User reschedules an appointment @:2024/11/15 16:57:09
+User reschedules an appointment @:2024/11/15 16:57:23
+User reschedules an appointment @:2024/11/15 16:58:18
+User reschedules an appointment @:2024/11/15 16:58:39
+User cancels an appointment @:2024/11/15 16:58:51
+User schedules an appointment @:2024/11/15 16:59:06
+Patient P1001 logged out @:2024/11/15 16:59:14
+Patient P1001 logged in @:2024/11/15 17:01:03
+User reschedules an appointment @:2024/11/15 17:01:35
+User schedules an appointment @:2024/11/15 17:02:01
+Patient P1001 logged out @:2024/11/15 17:02:40
+Patient P1001 logged in @:2024/11/15 17:02:58
+User schedules an appointment @:2024/11/15 17:03:06
+User cancels an appointment @:2024/11/15 17:03:13
+User schedules an appointment @:2024/11/15 17:03:21
+User reschedules an appointment @:2024/11/15 17:03:44
+User cancels an appointment @:2024/11/15 17:04:00
+Patient P1001 logged out @:2024/11/15 17:13:57
+Patient P1001 logged in @:2024/11/15 17:14:37
+User schedules an appointment @:2024/11/15 17:15:04
+User cancels an appointment @:2024/11/15 17:15:15
+User schedules an appointment @:2024/11/15 17:15:23
+Patient P1001 logged out @:2024/11/15 17:17:24
+Patient P1001 logged in @:2024/11/15 17:22:56
+User viewed medical records @:2024/11/15 17:23:04
+User updated personal information @:2024/11/15 17:24:02
+User viewed medical records @:2024/11/15 17:24:04
+User viewed available appointment slots @:2024/11/15 17:24:40
+Patient P1001 logged out @:2024/11/15 17:31:37
