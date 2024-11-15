@@ -27,8 +27,8 @@ public class hospitalStaffManagement implements StaffManagementAdd, StaffManagem
     }
 
     /**
-     * Adds a new staff member to the staff list. Checks if the staff ID already exists before adding.
-     *
+     * Adds a new staff member to the staff list and create a user account. 
+     * Checks if the staff ID already exists before adding.
      * @param staffID    The ID of the staff member.
      * @param staffName  The name of the staff member.
      * @param staffRole  The role of the staff member (e.g., Doctor, Nurse).
@@ -48,6 +48,10 @@ public class hospitalStaffManagement implements StaffManagementAdd, StaffManagem
             List<String> staffData = List.of(staffID, staffName, staffRole, staffGender, String.valueOf(staffAge));
             // Add staff using DataProcessor
             dataProcessor.writeRow("Staff_List.csv", staffData);
+            // Prepare staff account information
+            List<String> accountDetail = List.of(staffID, "password", staffRole);
+            // Add account using DataProcessor
+            dataProcessor.writeRow("User_Accounts.csv", accountDetail);
             return true;
         } catch (Exception e) {
             System.out.println("Error writing to file: " + e.getMessage());
@@ -56,7 +60,7 @@ public class hospitalStaffManagement implements StaffManagementAdd, StaffManagem
     }
 
     /**
-     * Removes a staff member from the staff list based on the given staff ID.
+     * Removes a staff member from the staff list and his user account based on the given staff ID.
      *
      * @param staffID The ID of the staff member to remove.
      * @return true if the staff member was successfully removed, false if the staff ID was not found.
@@ -67,9 +71,16 @@ public class hospitalStaffManagement implements StaffManagementAdd, StaffManagem
         if (staffIndex == -1) {
             System.out.println("Staff not found.");
             return false;
-        } else {
+        }
+        int accountIndex = getAccountByIndex(staffID);
+        if (accountIndex == -1){
+            System.out.println("Account not found.");
+            return false;
+        } 
+        else {
             // Delete staff row using DataProcessor
             dataProcessor.deleteRow("Staff_List.csv", staffIndex);
+            dataProcessor.deleteRow("User_Accounts.csv",accountIndex);
             return true;
         }
     }
@@ -134,6 +145,21 @@ public class hospitalStaffManagement implements StaffManagementAdd, StaffManagem
      */
     private int getStaffByIndex(String staffID) {
         List<String[]> data = dataProcessor.readData("Staff_List.csv");
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i)[0].equals(staffID)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    /**
+     * Helper method to get account index using ID
+     *
+     * @param staffID The ID of the staff member to search for.
+     * @return The index of the staff member in the account list, or -1 if not found.
+     */
+    private int getAccountByIndex(String staffID) {
+        List<String[]> data = dataProcessor.readData("User_Accounts.csv");
         for (int i = 0; i < data.size(); i++) {
             if (data.get(i)[0].equals(staffID)) {
                 return i;

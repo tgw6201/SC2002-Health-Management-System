@@ -55,13 +55,13 @@ public class Testing {
         AppointmentManager appointment = new AppointmentManager(reader, writer);
 
         //check case 4 --> work for available and booked
-        //appointment.scheduleAppointment("P1001", "D100212600");
+        //appointment.scheduleAppointment("P1001", "D100111900");
 
         //check case 5 --> work for if available and booked
-        //appointment.rescheduleAppointment("P1001D100212600", "D100212600");
+        appointment.rescheduleAppointment("P1001D100111900", "D1002111300");
 
         //check case 6 --> work 
-        //appointment.cancelAppointment("P1001D100111900");
+        //appointment.cancelAppointment("P1001D100212600");
 
         //check case 7
         //appointment.viewScheduleAppointment("P1002");
@@ -91,8 +91,10 @@ public class Testing {
         //manager.viewOutcomeRecord("P1002P1002D1002111300");
 
         //case 21 --> should be fine check again
-        appointment.viewAppointmentDetails();
+        //appointment.viewAppointmentDetails();
         
+        //new function 
+        //appointment.showAppointmentCsv();
 
         //CsvFileWriter csvFileWriter = new CsvFileWriter();
         //csvFileWriter.writeData("Medicine_List.csv", 2, 1, "50");

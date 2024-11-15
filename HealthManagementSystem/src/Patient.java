@@ -4,6 +4,20 @@ import Logger.*;
 import MedicalRecord.*;
 import java.util.Scanner;
 
+/**
+ * The Patient class represents a patient user within the Hospital Management System.
+ * It provides a menu-driven interface to allow patients to view and manage their medical records,
+ * schedule and manage appointments, and update personal information.
+ * 
+ * This class interacts with multiple components such as:
+ * - DataProcessor: for reading and writing data.
+ * - PatientMedicalRecordManager: for managing patient medical records.
+ * - AppointmentSlotManager: for viewing available appointment slots.
+ * - AppointmentManager: for scheduling, rescheduling, and canceling appointments.
+ * - AppointmentOutcomeManager: for viewing past appointment outcome records.
+ * 
+ * Logging of patient actions is handled through the Logger interface.
+ */
 public class Patient 
 {
     private String userID;
@@ -19,7 +33,16 @@ public class Patient
     private AppointmentManager appointment;
     private AppointmentOutcomeManager manager;
         
-
+    /**
+     * Constructs a Patient instance with necessary components for accessing and managing
+     * patient records and appointments.
+     * 
+     * @param userID the unique identifier of the patient user.
+     * @param userRole the role of the user, specifically "Patient" for this class.
+     * @param logger the logger to log actions performed by the patient.
+     * @param reader the data reader for accessing file data.
+     * @param writer the data writer for saving updates to file data.
+     */
     public Patient(String userID, String userRole, Logger logger, dataReader reader, dataWriter writer)
     {
         this.userID= userID;
@@ -32,7 +55,10 @@ public class Patient
         this.appointment = new AppointmentManager(reader,writer);
         this.manager = new AppointmentOutcomeManager(reader, writer);
     }
-    
+    /**
+     * Displays the main menu for the patient user and handles various patient operations
+     * based on the user's input.
+     */
     public void menu()
     {   
         logger.log("Patient " + userID + " logged in");//once enter, log user's login
@@ -90,8 +116,10 @@ public class Patient
                     break;
             }
         }
-        logger.stopLogging();
     }
+    /**
+     * Displays the patient's medical records.
+     */
     public void viewMedicalRecord()
     {
         
@@ -100,7 +128,9 @@ public class Patient
         logger.log("User viewed medical records");
         patientMedRecord.viewMedicalRecord(userID);
     }
-    
+    /**
+     * Allows the patient to update personal information such as email and contact number.
+     */
     public void updatePersonalInformation()
     {
         String email;
@@ -113,14 +143,18 @@ public class Patient
         logger.log("User updated personal information");
         patientMedRecord.updateMedicalRecord(userID,email,number);
     }
-
+    /**
+     * Displays available appointment slots for scheduling.
+     */
     public void viewAvailableAppointments()
     {
         System.out.println("View Available Appointment slots");
         logger.log("User viewed available appointment slots");
         slot.viewAvailableAppointmentSlots();
     }
-
+    /**
+     * Allows the patient to schedule a new appointment by specifying an appointment slot ID.
+     */
     public void scheduleAppointment()
     {
         String appointmentSlotID;
@@ -131,6 +165,10 @@ public class Patient
         appointment.scheduleAppointment(userID, appointmentSlotID);
     }
 
+    /**
+     * Allows the patient to reschedule an existing appointment by specifying
+     * an old appointment ID and a new appointment slot ID.
+     */
     public void rescheduleAppointments()
     {
         String appointmentID;
@@ -144,7 +182,9 @@ public class Patient
         logger.log("User reschedules an appointment");
         appointment.rescheduleAppointment(appointmentID, newAppointmentSlotID);
     }   
-
+    /**
+     * Allows the patient to cancel an existing appointment by specifying the appointment ID.
+     */
     public void cancelAppointment()
     {
         
@@ -155,14 +195,18 @@ public class Patient
         logger.log("User cancels an appointment");
         appointment.cancelAppointment(appointmentID);
     }
-
+    /**
+     * Displays all scheduled appointments for the patient.
+     */
     public void viewScheduledAppointments()
     {
         System.out.println("View Scheduled Appointments");
         appointment.viewScheduleAppointment(userID);
         logger.log("User view Scheduled Appointments");
     }
-
+    /**
+     * Displays past appointment outcome records for the patient.
+     */
     public void viewPastAppointmentOutcomeRecords()
     {
         System.out.println("View Past Appointment Outcome Records");
@@ -170,12 +214,20 @@ public class Patient
         manager.viewPastRecords(userID);
     }
 
-
+    /**
+     * Retrieves the patient's unique ID.
+     *
+     * @return the user's unique ID.
+     */
     public String getUserID()
     {
         return userID;
     }
-
+    /**
+     * Retrieves the user's role within the system.
+     *
+     * @return the role of the user, specifically "Patient" in this context.
+     */
     public String getRole()
     {
         return userRole;

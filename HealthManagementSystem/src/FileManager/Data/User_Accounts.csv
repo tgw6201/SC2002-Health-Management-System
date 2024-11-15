@@ -1,10 +1,11 @@
 Hospital ID,Password,Role
-D001,D002,Doctor
-D002,password,Doctor
-P001,password,Pharmacist
+D001,password,Doctor
+D002,digimon,Doctor
+P001,pokemon,Pharmacist
 A001,pw,Administrator
 P1001,pw,Patient
 P1002,pw,Patient
 P1003,password,Patient
 PLOH008,password,Patient
 PLOH007,password,Patient
+A002,password,Administrator

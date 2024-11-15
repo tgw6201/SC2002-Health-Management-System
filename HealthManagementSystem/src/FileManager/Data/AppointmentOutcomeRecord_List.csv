@@ -1,2 +1,3 @@
 appointmentOutcomeID,patientID,appointmentDate,typeOfService,prescribedMedication,prescribedMedicationQuantity,prescriptionStatus,consultationNotes,appointmentID
 P1002P1002D1002111300,P1002,11/6/2024,Retrieve medication,Paracetamol,100,pending,eat meds 3 times a day,P1002D1002111300
+P1001P1001D100212600,P1001,12/7/2024,Check-up,nil,nil,nil,Healthy,P1001D100212600

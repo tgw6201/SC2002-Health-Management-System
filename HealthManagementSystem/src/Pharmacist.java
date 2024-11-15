@@ -5,6 +5,14 @@ import Inventory.*;
 import Logger.*;
 import java.util.Scanner;
 
+/**
+ * Represents a Pharmacist in the medical management system.
+ * Provides functionality for viewing and updating prescriptions, managing medication inventory,
+ * and handling appointment outcome records.
+ * Utilizes various managers for appointment, inventory, and prescription handling.
+ *
+ * @author Tee Yu Xuan
+ */
 public class Pharmacist {
     private final String userID;
     private final String userRole;
@@ -16,7 +24,15 @@ public class Pharmacist {
     private final InventoryManagement inventoryManagement;
     private final PrescriptionManagement prescriptionManagement;
 
-    // Constructor to initialize the pharmacist with associated data managers
+    /**
+     * Constructs a Pharmacist object with the specified user information and data managers.
+     *
+     * @param userID   the unique identifier for the pharmacist.
+     * @param userRole the role of the user (expected to be "Pharmacist").
+     * @param logger   the logging utility for recording actions.
+     * @param reader   the data reader for retrieving information.
+     * @param writer   the data writer for saving information.
+     */
     public Pharmacist(String userID, String userRole, Logger logger, dataReader reader, dataWriter writer) {
         this.userID = userID;
         this.userRole = userRole;
@@ -29,11 +45,14 @@ public class Pharmacist {
         this.prescriptionManagement = new PrescriptionManagement(inventoryManagement, reader, writer);
     }
 
-    // Main menu for pharmacist to select different options
+    /**
+     * Displays the main menu for the pharmacist to perform various tasks.
+     * Logs the pharmacist's actions and processes menu choices in a loop.
+     */
     public void menu() {
-        logger.log("Pharmacist " + userID + " logged in"); // Log pharmacist login with userID
+        logger.log("Pharmacist " + userID + " logged in");
         int choice = -1;
-        while (choice != 6) { // Loop until the pharmacist chooses to log out
+        while (choice != 6) {
             System.out.println("Pharmacist Menu:");
             System.out.println("1. View Appointment Outcome Record");
             System.out.println("2. Update Prescription Status");
@@ -43,13 +62,12 @@ public class Pharmacist {
             System.out.println("6. Logout");
 
             try {
-                choice = Integer.parseInt(sc.nextLine().trim()); // Parse choice as integer
+                choice = Integer.parseInt(sc.nextLine().trim());
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number between 1 and 6.");
-                continue; // Skip this iteration and prompt again
+                continue;
             }
 
-            // Execute the selected option
             switch (choice) {
                 case 1:
                     viewAppointmentOutcomeRecord();
@@ -72,10 +90,12 @@ public class Pharmacist {
                     System.out.println("Invalid option. Please try again.");
             }
         }
-        logger.stopLogging(); // Stop logging when the menu loop exits
     }
 
-    // View a specific appointment outcome record
+    /**
+     * Views a specific appointment outcome record.
+     * Allows the pharmacist to choose between viewing a specific record or all records.
+     */
     private void viewAppointmentOutcomeRecord() {
         System.out.println("Choose viewing method");
         System.out.println("1. View Appointment Outcome Record by Appointment Outcome ID");
@@ -105,7 +125,9 @@ public class Pharmacist {
         }
     }
 
-    // Update prescription status or dispense items
+    /**
+     * Updates the prescription status or dispenses items based on appointment outcome records.
+     */
     private void updatePrescriptionStatus() {
         System.out.println("Choose dispensing method:");
         System.out.println("1. Dispense by Appointment Outcome ID");
@@ -140,7 +162,10 @@ public class Pharmacist {
         }
     }
 
-    // Dispense item based on an appointment outcome ID
+    /**
+     * Dispenses an item based on an appointment outcome ID.
+     * Prompts the pharmacist for the appointment outcome ID and dispenses the corresponding items.
+     */
     private void dispenseItemByAppointmentID() {
         System.out.println("Enter Appointment Outcome ID for dispensing:");
         String appointmentOutcomeID = sc.nextLine();
@@ -148,7 +173,10 @@ public class Pharmacist {
         prescriptionManagement.dispenseItemByAppointmentID(appointmentOutcomeID);
     }
 
-    // Dispense a specified quantity of a medicine by its name
+    /**
+     * Dispenses a specified quantity of a medicine by its name.
+     * Prompts the pharmacist for the medicine name and quantity to dispense.
+     */
     private void dispenseItemByMedicineName() {
         System.out.println("Enter Medicine Name to dispense:");
         String medicineName = sc.nextLine();
@@ -166,13 +194,19 @@ public class Pharmacist {
         prescriptionManagement.dispenseItemByMedicineName(medicineName, quantity);
     }
 
-    // View the current medication inventory
+    /**
+     * Views the current medication inventory.
+     * Logs the action and retrieves the inventory from the inventory management system.
+     */
     private void viewMedicationInventory() {
         logger.log("Pharmacist " + userID + " viewed medication inventory");
         inventoryManagement.viewItems();
     }
 
-    // Submit a request to replenish medication inventory
+    /**
+     * Submits a request to replenish medication inventory.
+     * Prompts the pharmacist for the item name and quantity to request.
+     */
     private void submitReplenishmentRequest() {
         System.out.println("Enter the name of the item to replenish:");
         String itemName = sc.nextLine();
@@ -189,5 +223,4 @@ public class Pharmacist {
         logger.log("Pharmacist " + userID + " submitted replenishment request for " + quantity + " of " + itemName);
         inventoryManagement.submitReplenishmentRequest(itemName, quantity, userID);
     }
-
 }
