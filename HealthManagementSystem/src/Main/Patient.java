@@ -31,7 +31,6 @@ public class Patient
 
     //Object pointer initialization
     private Scanner sc = new Scanner(System.in);
-    private DataProcessor dataProcessor;
     private PatientMedicalRecordManager patientService;
     private MedicalRecordManagement patientMedRecord;
     private AppointmentSlotManager slot;
@@ -53,7 +52,6 @@ public class Patient
         this.userID= userID;
         this.userRole = userRole;
         this.logger = logger;
-        this.dataProcessor = new DataProcessor(reader,writer);
         this.patientService = new PatientMedicalRecordManager(reader, writer);
         this.patientMedRecord = new MedicalRecordManagement(patientService);
         this.slot = new AppointmentSlotManager(reader, writer);
