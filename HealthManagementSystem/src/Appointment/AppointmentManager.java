@@ -32,8 +32,8 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
 
         // check for Invalid appointmentID --> don't exist and those cancelled/completed
             boolean appointmentIDExist = false;
-            for (String[] row : appointmentListCsv) {
-                if (row[0].equalsIgnoreCase(appointmentID) && row[3].equalsIgnoreCase("Confirmed") ) {
+            for (String[] row : appointmentSlotListCsv) {
+                if (row[0].equalsIgnoreCase(appointmentSlotID) && row[3].equalsIgnoreCase("Confirmed") ) {
                     appointmentIDExist = true;
                         break;
                 }
