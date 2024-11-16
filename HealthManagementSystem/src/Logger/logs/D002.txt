@@ -55,3 +55,8 @@ Doctor D002 viewed upcoming appointments @:2024/11/15 17:31:24
 Doctor D002 viewed upcoming appointments @:2024/11/15 17:31:37
 Doctor D002 viewed upcoming appointments @:2024/11/15 17:31:52
 Doctor D002 chose to accept appointment ID P100D200212622 @:2024/11/15 17:32:19
+Doctor D002 logged in @:2024/11/16 18:23:40
+Doctor D002 viewed medical records of patient P001 @:2024/11/16 18:23:46
+Doctor D002 logged out @:2024/11/16 18:23:50
+Doctor D002 logged in @:2024/11/16 18:26:30
+Doctor D002 logged out @:2024/11/16 18:26:33

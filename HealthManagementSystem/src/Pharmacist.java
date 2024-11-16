@@ -1,3 +1,4 @@
+
 import Appointment.*;
 import FileManager.dataReader;
 import FileManager.dataWriter;
@@ -12,6 +13,8 @@ import java.util.Scanner;
  * Utilizes various managers for appointment, inventory, and prescription handling.
  *
  * @author Tee Yu Xuan
+ * @version 1.0
+ * @since 2024-11-6
  */
 public class Pharmacist {
     private final String userID;

@@ -103,3 +103,8 @@ User viewed apppointment details @:2024/11/15 23:34:11
 User entered inventory management menu @:2024/11/15 23:40:21
 User entered replenishment approval menu @:2024/11/15 23:47:43
 Administrator A001 logged out @:2024/11/15 23:52:01
+Administrator A001 logged out @:2024/11/16 17:56:25
+Administrator A001 logged in @:2024/11/16 18:22:58
+Administrator A001 logged out @:2024/11/16 18:23:08
+Administrator A001 logged in @:2024/11/16 18:26:11
+Administrator A001 logged out @:2024/11/16 18:26:15

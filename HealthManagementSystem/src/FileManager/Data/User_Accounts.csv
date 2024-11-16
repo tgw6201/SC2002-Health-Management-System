@@ -8,4 +8,4 @@ P1002,password,Patient
 P1003,password,Patient
 PLOH008,password,Patient
 PLOH007,password,Patient
-A002,password,Administrator
+A002,pw,Administrator

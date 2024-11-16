@@ -1,3 +1,4 @@
+
 import Appointment.*;
 import FileManager.dataReader;
 import FileManager.dataWriter;
@@ -11,6 +12,8 @@ import java.util.Scanner;
  * and recording appointment outcomes. Utilizes various managers for appointment and medical record handling.
  * 
  * @author Tee Yu Xuan
+ * @version 1.0
+ * @since 2024-11-6
  * 
  */
 public class Doctor {

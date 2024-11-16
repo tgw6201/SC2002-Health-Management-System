@@ -1,3 +1,4 @@
+
 import Appointment.*;
 import FileManager.*;
 import Logger.*;
@@ -17,6 +18,10 @@ import java.util.Scanner;
  * - AppointmentOutcomeManager: for viewing past appointment outcome records.
  * 
  * Logging of patient actions is handled through the Logger interface.
+ * 
+ * @author Peter Loh
+ * @version 1.0
+ * @since 2024-11-6
  */
 public class Patient 
 {
@@ -26,7 +31,6 @@ public class Patient
 
     //Object pointer initialization
     private Scanner sc = new Scanner(System.in);
-    private DataProcessor dataProcessor;
     private PatientMedicalRecordManager patientService;
     private MedicalRecordManagement patientMedRecord;
     private AppointmentSlotManager slot;
@@ -48,7 +52,6 @@ public class Patient
         this.userID= userID;
         this.userRole = userRole;
         this.logger = logger;
-        this.dataProcessor = new DataProcessor(reader,writer);
         this.patientService = new PatientMedicalRecordManager(reader, writer);
         this.patientMedRecord = new MedicalRecordManagement(patientService);
         this.slot = new AppointmentSlotManager(reader, writer);
