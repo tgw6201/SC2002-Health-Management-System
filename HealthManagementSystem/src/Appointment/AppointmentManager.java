@@ -10,34 +10,6 @@ import FileManager.DataProcessor;
 import FileManager.dataReader;
 import FileManager.dataWriter;
 
-/**
- * The AppointmentManager class provides functionality for managing 
- * appointment scheduling, rescheduling, cancellations, and viewing appointments.
- * 
- * <p>
- * This class implements both {@link AppointmentSchedulingService} and {@link ViewAppointment}
- * interfaces, allowing it to handle appointment-related functionalities such as booking,
- * modifying, and viewing schedules.
- * </p>
- * 
- * <p>
- * It interacts with {@link DataProcessor}, {@link dataReader}, and {@link dataWriter}
- * to manage appointment data and updates availability slots.
- * </p>
- * 
- * <p><b>Note:</b> Ensure "Appointment_List.csv" and "AvailabilitySlot_List.csv" files are 
- * available for correct functionality.</p>
- * 
- * @see AppointmentSchedulingService
- * @see ViewAppointment
- * @see DataProcessor
- * @see dataReader
- * @see dataWriter
- * 
- * @author Lee Xing Juan Rennie
- * @version 1.0
- * @since 2024-11-15
- */
 public class AppointmentManager implements AppointmentSchedulingService, ViewAppointment {
     
        
@@ -45,25 +17,13 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
     private dataReader fileReader;
     private dataWriter fileWriter;
     
-
-    /**
-     * Constructs an AppointmentManager instance and initializes the data processor.
-     * 
-     * @param reader The dataReader instance to read appointment data.
-     * @param writer The dataWriter instance to write appointment data.
-     */
     public AppointmentManager(dataReader reader, dataWriter writer){
         dataProcessor = new DataProcessor(reader, writer);
         fileReader = reader;
         fileWriter = writer;
     }
 
-    /**
-     * Schedules an appointment for a patient based on the provided slot ID.
-     * 
-     * @param patientID The ID of the patient.
-     * @param appointmentSlotID The ID of the desired appointment slot.
-     */
+    // more efficient to use appointmentSlotID 
     public void scheduleAppointment(String patientID, String appointmentSlotID){
         
         
@@ -154,12 +114,6 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
 
     }
 
-    /**
-     * Reschedules an existing appointment to a new slot.
-     * 
-     * @param appointmentID The ID of the appointment to reschedule.
-     * @param newAppointmentSlotID The ID of the new appointment slot.
-     */
     public void rescheduleAppointment(String appointmentID, String newAppointmentSlotID){
 
         //Read existing data in csv
@@ -285,12 +239,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
             }
 
     }
-    
-    /**
-     * Cancels an appointment based on the provided appointment ID.
-     * 
-     * @param appointmentID The ID of the appointment to cancel.
-     */
+
     public void cancelAppointment(String appointmentID){
     
         //Read existing data in csv
@@ -329,19 +278,13 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
         }
         //Update appointmentSlot from booked to available
         AppointmentSlotManager slot = new AppointmentSlotManager(fileReader, fileWriter);
-        System.out.println(AppointmentSlotID);
         slot.setAppointmentAvailability(AppointmentSlotID, "Available");
 
         //verify that the appointment has been cancelled
         System.out.println("Appointment cancelled.");
     }
 
-    /**
-     * Allows a doctor to accept or decline an appointment.
-     * 
-     * @param appointmentID The ID of the appointment.
-     * @param decision Either "Accept" or "Decline".
-     */
+        //Doctor accept or decline appointment
         public void acceptDeclineAppointment(String appointmentID, String decision){
             //Read existing data in csv
             List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
@@ -393,17 +336,17 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
                     }
                     i++;
                 }
+                //update appointmentSlot to available
                 AppointmentSlotManager slot = new AppointmentSlotManager(fileReader, fileWriter);
                 slot.setAppointmentAvailability(appointmentSlotID, "Available");
+    
+    
+                //verify “cancelled” when declined
                 System.out.println("Appointment status changed to decline");
             }
         }
 
-    /**
-     * Displays all scheduled appointments for a specific patient.
-     * 
-     * @param patientID The ID of the patient.
-     */
+        //View Scheduled Appointment for patient
         public void viewScheduleAppointment(String patientID){
             //Read existing data in csv
             List<String[]> appointmentSlotListCsv = dataProcessor.readData("AvailabilitySlot_List.csv");
@@ -437,11 +380,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
 
         }
 
-    /**
-     * Displays the personal schedule of a specific doctor.
-     * 
-     * @param doctorID The ID of the doctor.
-     */
+        //doctor view personal schedule
         public void viewPersonalSchedule(String doctorID){
             
             //Read existing data in csv
@@ -494,12 +433,7 @@ public class AppointmentManager implements AppointmentSchedulingService, ViewApp
             }
             
         }
-
-    /**
-     * Views all upcoming confirmed appointments for a specific doctor.
-     * 
-     * @param doctorID The ID of the doctor.
-     */
+//view upcoming confirmed appointments
 public void viewUpcomingAppointments(String doctorID) {
     //Read existing data in csv
     List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
@@ -548,9 +482,8 @@ public void viewUpcomingAppointments(String doctorID) {
     }
 }
 
-    /**
-     * Displays the details of all appointments, including outcomes for completed ones.
-     */
+        //view Appointment Details --> administrator
+        //need print out all the appointment details
         public void viewAppointmentDetails(){
                 
             //Read existing data in csv
@@ -621,9 +554,7 @@ public void viewUpcomingAppointments(String doctorID) {
             
         }
 
-    /**
-     * Displays the entire list of appointments from the CSV.
-     */
+        //print out every row of AppointmentListcsv
         public void showAppointmentCsv(){
             List<String[]> appointmentListCsv = dataProcessor.readData("Appointment_List.csv");
             System.out.println("\nDisplaying all appointments:\n");

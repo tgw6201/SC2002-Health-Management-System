@@ -21,12 +21,12 @@ import java.util.List;
  * <p>
  * Example usage:
  * <pre>
- * CsvFileWriter csvWriter = new CsvFileWriter();
- * csvWriter.writeData("example.csv", 2, 1, "newValue");
- * csvWriter.writeRow("example.csv", List.of("new", "data", "row"));
- * csvWriter.writeRow("example.csv", 3, List.of("updated", "data", "row"));
+ *     CsvFileWriter csvWriter = new CsvFileWriter();
+ *     csvWriter.writeData("example.csv", 2, 1, "newValue");
+ *     csvWriter.writeRow("example.csv", List.of("new", "data", "row"));
+ *     csvWriter.writeRow("example.csv", 3, List.of("updated", "data", "row"));
  * </pre>
- * 
+ * </p>
  * 
  * <p>
  * Note: Ensure proper file permissions and that the file exists at the specified path.

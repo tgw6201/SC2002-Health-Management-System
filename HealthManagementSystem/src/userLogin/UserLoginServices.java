@@ -8,14 +8,12 @@ import java.util.List;
  * Implements {@link userLogin} interface for user authentication, registration, and password management.
  * Logs user actions such as login, logout, and registration.
  * 
- * <p>
  * Example usage:
- * </p>
  * <pre>
- * dataReader reader = new CsvFileReader();
- * dataWriter writer = new CsvFileWriter();
- * UserLoginServices loginServices = new UserLoginServices(reader, writer);
- * loginServices.login("P1001", "password");
+ *     dataReader reader = new CsvFileReader();
+       dataWriter writer = new CsvFileWriter();
+ *     UserLoginServices loginServices = new UserLoginServices(reader,writer);
+ *     loginServices.login("P1001", "password");
  * </pre>
  * 
  * @author Tan Guang Wei
@@ -69,10 +67,10 @@ public class UserLoginServices implements userLogin{
     }
 
     /**
-     * Logs out the user.
-     * 
-     * @return {@code false} (no data returned after logout).
-     */
+    * Logs out the user.
+    * 
+    * @return {@code false} (no data returned after logout).
+    */
     @Override
     public boolean logout() {
         this.validation = false;
@@ -180,7 +178,7 @@ public class UserLoginServices implements userLogin{
         return true;
     }
 
-     /**
+    /**
      * Retrieves the role of the currently logged-in user.
      * 
      * @return The user's role if logged in; otherwise an empty string.
@@ -193,11 +191,6 @@ public class UserLoginServices implements userLogin{
         else
             return "";
     }
-    /**
-     * Retrieves the ID of the currently logged-in user.
-     * 
-     * @return The user's ID (username).
-     */
     public String getID()
     {
         return this.username;

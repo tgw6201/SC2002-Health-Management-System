@@ -16,7 +16,7 @@ package userLogin;
  *     loginSystem.register("user1", "password123", "admin");
  *     boolean success = loginSystem.login("user1", "password123");
  * </pre>
- * 
+ * </p>
  * @author Tan Guang Wei
  * @version 1.0
  * @since 2024-11-6

@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter;
  *     logger.log("This is a log message.");
  *     logger.stopLogging();
  * </pre>
- * 
+ * </p>
  * 
  * @author Tan Guang Wei
  * @version 1.0

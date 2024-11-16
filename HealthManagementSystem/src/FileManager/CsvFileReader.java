@@ -6,26 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The {@code CsvFileReader} class provides methods to read data from CSV files located
- * in the resources folder. It implements the {@code dataReader} interface, enabling the 
- * reading of entire data sets, specific rows, or specific columns from a CSV file.
+ * The CsvFileReader class provides methods to read data from CSV files located
+ * in the resources folder. It implements the dataReader interface, allowing 
+ * the reading of entire data sets, specific rows, or specific columns from a CSV file.
  * 
  * <p>
- * CSV files are assumed to be stored under the path {@code "FileManager/Data/"} 
- * within the project resources.
+ * This class assumes that CSV files are stored under the path 
+ * "FileManager/Data/" within the project resources.
  * </p>
  * 
  * <p>
  * Example usage:
+ * <pre>
+ *     CsvFileReader csvReader = new CsvFileReader();
+ *     List<String[]> allData = csvReader.readData("example.csv");
+ *     List<String[]> row = csvReader.readRow("example.csv", 2);
+ *     List<String[]> column = csvReader.readColumn("example.csv", 1);
+ * </pre>
  * </p>
- * <pre>{@code
- * CsvFileReader csvReader = new CsvFileReader();
- * List<String[]> allData = csvReader.readData("example.csv");
- * List<String[]> row = csvReader.readRow("example.csv", 2);
- * List<String[]> column = csvReader.readColumn("example.csv", 1);
- * }</pre>
  * 
- * <p><b>Note:</b> Ensure the CSV files are properly formatted and located under the expected path.</p>
+ * <p>
+ * Note: Ensure the CSV files are properly formatted and located under the expected path.
+ * </p>
  * 
  * @author Tan Guang Wei
  * @version 1.0
