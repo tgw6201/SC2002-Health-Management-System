@@ -331,3 +331,11 @@ User cancels an appointment @:2024/11/15 23:23:53
 User view Scheduled Appointments @:2024/11/15 23:25:08
 User views past appointment outcome records @:2024/11/15 23:26:13
 Patient P1001 logged out @:2024/11/15 23:26:35
+Patient P1001 logged in @:2024/11/16 17:54:15
+Patient P1001 logged out @:2024/11/16 17:54:16
+Patient P1001 logged in @:2024/11/16 17:54:57
+Patient P1001 logged out @:2024/11/16 17:55:01
+Patient P1001 logged in @:2024/11/16 17:55:38
+Patient P1001 logged out @:2024/11/16 17:55:41
+Patient P1001 logged in @:2024/11/16 17:56:04
+Patient P1001 logged out @:2024/11/16 17:56:18

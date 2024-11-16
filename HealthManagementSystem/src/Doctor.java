@@ -1,4 +1,4 @@
-package Main;
+
 import Appointment.*;
 import FileManager.dataReader;
 import FileManager.dataWriter;

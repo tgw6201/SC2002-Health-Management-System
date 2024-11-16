@@ -1,4 +1,4 @@
-package Main;
+
 import FileManager.CsvFileReader;
 import FileManager.CsvFileWriter;
 import FileManager.dataReader;

@@ -1,4 +1,4 @@
-package Main;
+
 import Appointment.AppointmentManager;
 import FileManager.*;
 import Inventory.*;
