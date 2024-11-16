@@ -1,12 +1,8 @@
 
-import FileManager.CsvFileReader;
-import FileManager.CsvFileWriter;
-import FileManager.dataReader;
-import FileManager.dataWriter;
-import Logger.FileLogger;
-import Logger.Logger;
+import FileManager.*;
+import Logger.*;
 import java.util.Scanner;
-import userLogin.UserLoginServices;
+import userLogin.*;
 
 /**
  * The SystemInitialization class serves as the entry point for the 

@@ -25,3 +25,7 @@ Pharmacist P001 dispensing 20 of Paracetamol @:2024/11/14 18:15:00
 Pharmacist P001 logged out @:2024/11/16 17:57:40
 Pharmacist P001 logged in @:2024/11/16 17:58:37
 Pharmacist P001 logged out @:2024/11/16 17:58:51
+Pharmacist P001 logged in @:2024/11/16 18:24:00
+Pharmacist P001 logged out @:2024/11/16 18:24:04
+Pharmacist P001 logged in @:2024/11/16 18:26:23
+Pharmacist P001 logged out @:2024/11/16 18:26:25

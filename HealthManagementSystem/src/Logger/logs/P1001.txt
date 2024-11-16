@@ -339,3 +339,8 @@ Patient P1001 logged in @:2024/11/16 17:55:38
 Patient P1001 logged out @:2024/11/16 17:55:41
 Patient P1001 logged in @:2024/11/16 17:56:04
 Patient P1001 logged out @:2024/11/16 17:56:18
+Patient P1001 logged in @:2024/11/16 18:22:50
+User viewed medical records @:2024/11/16 18:22:53
+Patient P1001 logged out @:2024/11/16 18:22:56
+Patient P1001 logged in @:2024/11/16 18:25:59
+Patient P1001 logged out @:2024/11/16 18:26:02
