@@ -4,7 +4,7 @@ D002,digimon,Doctor
 P001,pokemon,Pharmacist
 A001,pw,Administrator
 P1001,pw,Patient
-P1002,pw,Patient
+P1002,password,Patient
 P1003,password,Patient
 PLOH008,password,Patient
 PLOH007,password,Patient
