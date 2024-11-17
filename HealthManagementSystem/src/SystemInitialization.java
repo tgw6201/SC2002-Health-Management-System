@@ -67,7 +67,7 @@ public class SystemInitialization {
                 password = sc.nextLine();
                 userLoginServices.changePassword(username, password);
                 userLoginServices.logout();
-                //continue;
+                continue;
             }
             System.out.println("Login Status:" + login);
             System.out.println("Role: " + userLoginServices.getRole());
@@ -87,7 +87,7 @@ public class SystemInitialization {
                 // Use reflection to invoke the menu method
                 myClass.getMethod("menu").invoke(you);
             } catch (ClassNotFoundException e) {
-                //System.out.println("User not found: " + e.getMessage());
+                System.out.println("Role not found: " + e.getMessage());
             } catch (Exception e) 
             {
                 e.printStackTrace();
