@@ -67,6 +67,7 @@ public class SystemInitialization {
                 password = sc.nextLine();
                 userLoginServices.changePassword(username, password);
                 userLoginServices.logout();
+                logger.stopLogging();
                 continue;
             }
             System.out.println("Login Status:" + login);
