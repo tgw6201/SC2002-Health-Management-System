@@ -26,6 +26,8 @@ public class Pharmacist {
     private final AppointmentOutcomeManager appointmentOutcomeManager;
     private final InventoryManagement inventoryManagement;
     private final PrescriptionManagement prescriptionManagement;
+    private final InventoryManager  inventoryManager;
+    private final PrescriptionManager prescriptionManager;
 
     /**
      * Constructs a Pharmacist object with the specified user information and data managers.
@@ -46,6 +48,8 @@ public class Pharmacist {
         this.appointmentOutcomeManager = new AppointmentOutcomeManager(reader, writer);
         this.inventoryManagement = new InventoryManagement(reader, writer);
         this.prescriptionManagement = new PrescriptionManagement(inventoryManagement, reader, writer);
+        this.inventoryManager = new InventoryManager(inventoryManagement, reader, writer);
+        this.prescriptionManager = new PrescriptionManager(prescriptionManagement, reader, writer);
     }
 
     /**
