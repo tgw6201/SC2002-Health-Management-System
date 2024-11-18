@@ -116,4 +116,12 @@ public class InventoryManager {
     public void handleAllPending(String approvedBy) {
         pendingManagement.handleAllPending(approvedBy);
     }
+
+    public void checkLowStockForItem(String itemName){
+        replenishmentService.checkLowStockForItem(itemName);
+    }
+
+    public int getStockLevel(String medicineName){
+        return replenishmentService.getStockLevel(medicineName);
+    }
 }

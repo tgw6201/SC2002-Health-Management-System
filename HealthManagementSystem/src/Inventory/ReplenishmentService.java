@@ -66,4 +66,8 @@ public interface ReplenishmentService {
      *         {@code false} if the request was not found or has already been processed.
      */
     boolean restockItemByRequestID(String requestID, String approvedBy);
+
+    void checkLowStockForItem(String itemName);
+
+    int getStockLevel(String medicineName);
 }
