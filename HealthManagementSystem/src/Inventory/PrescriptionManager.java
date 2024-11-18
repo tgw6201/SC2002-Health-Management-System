@@ -30,6 +30,7 @@ import FileManager.*;
  * @see dataReader
  * @see dataWriter
  * 
+ * @author Sia Yi Zhen
  * @version 1.1
  * @since 2024-11-18
  */
@@ -90,7 +91,7 @@ public class PrescriptionManager {
     }
 
     /**
-     * Displays all appointment outcome records. This method utilizes the {@link DispensingService#showAllAppointment()}
+     * Displays all appointment outcome records. This method utilizes the {@link DispensingService#showAllAppointments()}
      * to access and display all appointment records.
      *
      */
