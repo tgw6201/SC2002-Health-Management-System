@@ -1,18 +1,17 @@
 package Inventory;
 
 /**
- * The ReplenishmentService interface provides methods for managing inventory replenishment.
+ * The {@code ReplenishmentService} interface defines methods for managing inventory replenishment operations.
  * 
  * <p>
- * This interface includes methods for submitting replenishment requests, updating stock thresholds,
- * and restocking items either by item name or by specific replenishment request IDs. Implementations 
- * of this interface should handle the inventory update process and manage stock quantities based on 
- * these operations.
+ * This interface includes functionality for submitting replenishment requests, updating stock thresholds,
+ * restocking items either by their names or replenishment request IDs, and checking stock levels. It is
+ * designed to support inventory control systems by providing a structured way to maintain adequate stock levels.
  * </p>
  * 
  * <p>
- * This interface is designed to support systems that require inventory control and restocking
- * to maintain stock levels.
+ * Implementations of this interface should handle the inventory update process, ensuring accuracy in stock 
+ * management and addressing low stock situations effectively.
  * </p>
  * 
  * @see InventoryManagement
@@ -25,8 +24,10 @@ package Inventory;
 
 public interface ReplenishmentService {
 
+     /**
+     * Displays all items in the inventory with their current stock levels.
+     */
     void viewItems();
-
     /**
      * Submits a new replenishment request for an item.
      * This request includes the item name, quantity requested, and the ID of the individual 
@@ -66,8 +67,17 @@ public interface ReplenishmentService {
      *         {@code false} if the request was not found or has already been processed.
      */
     boolean restockItemByRequestID(String requestID, String approvedBy);
-
+    /**
+     * Checks if a specific item in the inventory is below its low stock threshold.
+     * 
+     * @param itemName The name of the item to check.
+     */
     void checkLowStockForItem(String itemName);
-
+    /**
+     * Retrieves the current stock level of a specific item in the inventory.
+     * 
+     * @param medicineName The name of the item to retrieve the stock level for.
+     * @return The current stock quantity of the specified item.
+     */
     int getStockLevel(String medicineName);
 }

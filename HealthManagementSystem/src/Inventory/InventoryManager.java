@@ -3,13 +3,16 @@ package Inventory;
 import FileManager.*;
 
 /**
- * The InventoryManager class provides a streamlined interface for managing inventory-related operations 
- * through the {@link ReplenishmentService} and {@link PendingManagement} interfaces.
+ * The {@code InventoryManager} class provides a streamlined interface for managing inventory operations 
+ * using the {@link ReplenishmentService} and {@link PendingManagement} interfaces.
  *
- * <p>This class enables users to perform inventory-related tasks such as viewing items, handling 
- * replenishment requests, restocking items, and checking stock levels.</p>
+ * <p>
+ * This class supports common inventory management tasks such as viewing items, submitting replenishment 
+ * requests, restocking items, handling pending requests, and checking stock levels. It integrates 
+ * file operations through the {@link dataReader} and {@link dataWriter} utilities.
+ * </p>
  *
- * <p><b>Example usage:</b></p>
+ * <p><b>Example Usage:</b></p>
  * <pre>
  * dataReader reader = new CsvFileReader();
  * dataWriter writer = new CsvFileWriter();
@@ -21,16 +24,18 @@ import FileManager.*;
  * boolean restocked = manager.restockItemByName("Ibuprofen", 30);
  * System.out.println("Restocked: " + restocked);
  * </pre>
- *
+ * 
  * @see ReplenishmentService
  * @see PendingManagement
  * @see DataProcessor
  * @see dataReader
  * @see dataWriter
  * 
+ * @author Sia Yi Zhen
  * @version 1.1
  * @since 2024-11-18
  */
+
 public class InventoryManager {
 
     private final ReplenishmentService replenishmentService;
@@ -50,14 +55,12 @@ public class InventoryManager {
         this.pendingManagement = pendingManagement;
         this.dataProcessor = new DataProcessor(dataReader, dataWriter);
     }
-
     /**
      * Displays all items in the inventory by using the {@link ReplenishmentService#viewItems()} method.
      */
     public void viewItems() {
         replenishmentService.viewItems();
     }
-
     /**
      * Submits a replenishment request for an item through the {@link ReplenishmentService#submitReplenishmentRequest(String, int, String)} method.
      *
@@ -68,7 +71,6 @@ public class InventoryManager {
     public void submitReplenishmentRequest(String itemName, int quantity, String requestedBy) {
         replenishmentService.submitReplenishmentRequest(itemName, quantity, requestedBy);
     }
-
     /**
      * Updates the low stock threshold for an item using {@link ReplenishmentService#updateLowStockThreshold(String, int)}.
      *
@@ -78,7 +80,6 @@ public class InventoryManager {
     public void updateLowStockThreshold(String itemName, int newThreshold) {
         replenishmentService.updateLowStockThreshold(itemName, newThreshold);
     }
-
     /**
      * Restocks an item by its name using {@link ReplenishmentService#restockItemByName(String, int)}.
      *
@@ -89,7 +90,6 @@ public class InventoryManager {
     public boolean restockItemByName(String itemName, int quantity) {
         return replenishmentService.restockItemByName(itemName, quantity);
     }
-
     /**
      * Restocks an item using its request ID with {@link ReplenishmentService#restockItemByRequestID(String, String)}.
      *
@@ -100,14 +100,12 @@ public class InventoryManager {
     public boolean restockItemByRequestID(String requestId, String approvedBy) {
         return replenishmentService.restockItemByRequestID(requestId, approvedBy);
     }
-
     /**
      * Displays all pending replenishment requests using {@link PendingManagement#viewPendingItems()}.
      */
     public void viewPendingItems() {
         pendingManagement.viewPendingItems();
     }
-
     /**
      * Processes all pending replenishment requests using {@link PendingManagement#handleAllPending(String)}.
      *
@@ -116,11 +114,20 @@ public class InventoryManager {
     public void handleAllPending(String approvedBy) {
         pendingManagement.handleAllPending(approvedBy);
     }
-
+    /**
+     * Checks whether a specific item is below its low stock threshold.
+     * 
+     * @param itemName The name of the item to check.
+     */
     public void checkLowStockForItem(String itemName){
         replenishmentService.checkLowStockForItem(itemName);
     }
-
+    /**
+     * Retrieves the current stock level of a specific item.
+     * 
+     * @param medicineName The name of the item to retrieve the stock level for.
+     * @return The current stock quantity of the specified item.
+     */
     public int getStockLevel(String medicineName){
         return replenishmentService.getStockLevel(medicineName);
     }
