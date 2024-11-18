@@ -1,3 +1,6 @@
 appointmentOutcomeID,patientID,appointmentDate,typeOfService,prescribedMedication,prescribedMedicationQuantity,prescriptionStatus,consultationNotes,appointmentID
-P1002P1002D1002111300,P1002,11/6/2024,Retrieve medication,Paracetamol,100,pending,eat meds 3 times a day,P1002D1002111300
+P1002P1002D1002111300,P1002,11/6/2024,Retrieve medication,Paracetamol,100,Dispensed,eat meds 3 times a day,P1002D1002111300
 P1001P1001D100212600,P1001,12/7/2024,Check-up,nil,nil,nil,Healthy,P1001D100212600
+P1002P1002D1002111301,P1002,11/6/2024,Retrieve medication,Amoxicillin,100,Dispensed,take before meal once a day,P1002D1002111301
+P1002P1002D1002111303,P1002,11/6/2024,Retrieve medication,Antibiotics,100,Pending,take after mean 3 times a day,P1002D1002111303
+P1001P100D200212624,P1001,22/8/2024,Blood draw,nil,nil,nil,nil,P100D200212624

@@ -22,3 +22,49 @@ Pharmacist P001 logged in @:2024/11/14 18:08:17
 Pharmacist P001 viewed medication inventory @:2024/11/14 18:08:24
 Pharmacist P001 submitted replenishment request for 50 of Ibuprofen @:2024/11/14 18:11:41
 Pharmacist P001 dispensing 20 of Paracetamol @:2024/11/14 18:15:00
+Pharmacist P001 logged in @:2024/11/16 04:57:27
+Pharmacist P001 viewed appointment outcome record by ID: P1002P1002D1002111300 @:2024/11/16 04:58:22
+Pharmacist P001 logged in @:2024/11/16 04:58:49
+Pharmacist P001 logged in @:2024/11/16 04:59:25
+Pharmacist P001 viewed appointment outcome record by ID: P1002P1002D1002111300 @:2024/11/16 04:59:45
+Pharmacist P001 viewed all appointment outcome records @:2024/11/16 04:59:49
+Pharmacist P001 dispensing item by appointment outcome ID: P1002P1002D1002111300 @:2024/11/16 05:00:24
+Pharmacist P001 dispensing item by appointment outcome ID: P1002P1002D1002111300 @:2024/11/16 05:00:49
+Pharmacist P001 viewed all pending prescriptions before dispensing @:2024/11/16 05:01:05
+Pharmacist P001 dispensed all pending prescriptions @:2024/11/16 05:01:11
+Pharmacist P001 viewed medication inventory @:2024/11/16 05:01:24
+Pharmacist P001 submitted replenishment request for 25 of Ibuprofen @:2024/11/16 05:01:51
+Pharmacist P001 dispensing 20 of Ibuprofen @:2024/11/16 05:02:26
+Pharmacist P001 logged out @:2024/11/16 05:02:33
+Pharmacist P001 logged in @:2024/11/16 05:05:22
+Pharmacist P001 viewed appointment outcome record by ID: P1002P1002D1002111300 @:2024/11/16 05:05:46
+Pharmacist P001 viewed all appointment outcome records @:2024/11/16 05:05:58
+Pharmacist P001 dispensing item by appointment outcome ID: P1002P1002D1002111300 @:2024/11/16 05:06:24
+Pharmacist P001 viewed all pending prescriptions before dispensing @:2024/11/16 05:06:40
+Pharmacist P001 dispensed all pending prescriptions @:2024/11/16 05:06:46
+Pharmacist P001 viewed medication inventory @:2024/11/16 05:06:53
+Pharmacist P001 submitted replenishment request for 50 of Ibuprofen @:2024/11/16 05:07:10
+Pharmacist P001 dispensing 10 of Ibuprofen @:2024/11/16 05:07:35
+Pharmacist P001 dispensing 10 of Amoxicillin @:2024/11/16 05:07:48
+Pharmacist P001 logged out @:2024/11/16 05:07:56
+Pharmacist P001 logged in @:2024/11/16 17:20:14
+Pharmacist P001 logged in @:2024/11/16 17:22:53
+Pharmacist P001 viewed appointment outcome record by ID: P1002P1002D1002111300 @:2024/11/16 17:23:16
+Pharmacist P001 viewed all appointment outcome records @:2024/11/16 17:23:29
+Pharmacist P001 dispensing item by appointment outcome ID: P1002P1002D1002111300 @:2024/11/16 17:23:59
+Pharmacist P001 viewed all pending prescriptions before dispensing @:2024/11/16 17:24:12
+Pharmacist P001 dispensed all pending prescriptions @:2024/11/16 17:24:21
+Pharmacist P001 viewed medication inventory @:2024/11/16 17:24:48
+Pharmacist P001 submitted replenishment request for 100 of Ibuprofen @:2024/11/16 17:25:08
+Pharmacist P001 dispensing 60 of Antibiotics @:2024/11/16 17:25:31
+Pharmacist P001 logged out @:2024/11/16 17:25:42
+Pharmacist P001 logged in @:2024/11/17 18:39:16
+Pharmacist P001 viewed appointment outcome record by ID: P1002P1002D1002111300 @:2024/11/17 18:39:37
+Pharmacist P001 viewed all appointment outcome records @:2024/11/17 18:39:46
+Pharmacist P001 dispensing item by appointment outcome ID: P1002P1002D1002111300 @:2024/11/17 18:40:13
+Pharmacist P001 viewed all pending prescriptions before dispensing @:2024/11/17 18:40:25
+Pharmacist P001 dispensed all pending prescriptions @:2024/11/17 18:40:32
+Pharmacist P001 viewed medication inventory @:2024/11/17 18:40:53
+Pharmacist P001 submitted replenishment request for 100 of Antibiotics @:2024/11/17 18:41:14
+Pharmacist P001 dispensing 80 of Paracetamol @:2024/11/17 18:41:45
+Pharmacist P001 logged out @:2024/11/17 18:41:53

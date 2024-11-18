@@ -55,3 +55,31 @@ Doctor D002 viewed upcoming appointments @:2024/11/15 17:31:24
 Doctor D002 viewed upcoming appointments @:2024/11/15 17:31:37
 Doctor D002 viewed upcoming appointments @:2024/11/15 17:31:52
 Doctor D002 chose to accept appointment ID P100D200212622 @:2024/11/15 17:32:19
+Doctor D002 logged in @:2024/11/16 04:56:31
+Doctor D002 logged in @:2024/11/17 18:13:15
+Doctor D002 updated medical records for patient P1001 with new diagnosis and treatment @:2024/11/17 18:14:04
+Doctor D002 recorded outcome for appointment ID P1002D1002111303 @:2024/11/17 18:24:30
+Doctor D002 logged in @:2024/11/17 20:07:31
+Doctor D002 viewed medical records of patient P1002 @:2024/11/17 20:07:50
+Doctor D002 updated medical records for patient P1002 with new diagnosis and treatment @:2024/11/17 20:08:19
+Doctor D002 viewed personal schedule @:2024/11/17 20:08:31
+Doctor D002 updated availability for slot ID D00218300 to Unavailable @:2024/11/17 20:09:13
+Doctor D002 created new appointment slot on 22/07/2024 at 3:00 - 6:00 with availability Available @:2024/11/17 20:10:02
+Doctor D002 viewed upcoming appointments @:2024/11/17 20:10:25
+Doctor D002 logged in @:2024/11/17 20:14:06
+Doctor D002 viewed upcoming appointments @:2024/11/17 20:14:29
+Doctor D002 logged in @:2024/11/17 20:16:58
+Doctor D002 viewed upcoming appointments @:2024/11/17 20:17:16
+Doctor D002 chose to decline appointment ID P100D200212622 @:2024/11/17 20:18:10
+Doctor D002 viewed upcoming appointments @:2024/11/17 20:18:20
+Doctor D002 viewed upcoming appointments @:2024/11/17 20:18:43
+Doctor D002 logged in @:2024/11/17 20:21:51
+Doctor D002 viewed upcoming appointments @:2024/11/17 20:22:17
+Doctor D002 chose to decline appointment ID P100D200212622 @:2024/11/17 20:22:45
+Doctor D002 viewed upcoming appointments @:2024/11/17 20:22:55
+Doctor D002 chose to decline appointment ID P100D200212624 @:2024/11/17 20:23:14
+Doctor D002 viewed upcoming appointments @:2024/11/17 20:23:19
+Doctor D002 viewed upcoming appointments @:2024/11/17 20:23:35
+Doctor D002 viewed upcoming appointments @:2024/11/17 20:23:49
+Doctor D002 recorded outcome for appointment ID P100D200212624 @:2024/11/17 20:24:20
+Doctor D002 logged out @:2024/11/17 20:24:35
