@@ -29,3 +29,8 @@ Pharmacist P001 logged in @:2024/11/16 18:24:00
 Pharmacist P001 logged out @:2024/11/16 18:24:04
 Pharmacist P001 logged in @:2024/11/16 18:26:23
 Pharmacist P001 logged out @:2024/11/16 18:26:25
+Pharmacist P001 logged in @:2024/11/18 14:26:42
+Pharmacist P001 viewed appointment outcome record by ID: P1002P1002D1002111300 @:2024/11/18 14:27:05
+Pharmacist P001 viewed all appointment outcome records @:2024/11/18 14:27:32
+Pharmacist P001 dispensing item by appointment outcome ID: P1002P1002D1002111300 @:2024/11/18 14:27:48
+Pharmacist P001 viewed medication inventory @:2024/11/18 14:28:05
