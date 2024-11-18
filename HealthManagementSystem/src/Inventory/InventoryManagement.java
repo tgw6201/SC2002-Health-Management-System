@@ -43,6 +43,8 @@ public class InventoryManagement implements ReplenishmentService, PendingManagem
     /**
      * Constructs an InventoryManagement instance and loads all inventory data 
      * from the "Medicine_List.csv" file at initialization.
+     * @param dataReader DataReader instance to handle reading of data
+     * @param dataWriter DataWriter instance to handle writing of data
      */
     public InventoryManagement(dataReader dataReader, dataWriter dataWriter) {
         // Load all inventory data at initialization

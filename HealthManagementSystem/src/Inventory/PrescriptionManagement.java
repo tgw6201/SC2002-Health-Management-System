@@ -41,6 +41,8 @@ public class PrescriptionManagement implements DispensingService, PendingManagem
      * for stock management, linking inventory controls with prescription processing.
      *
      * @param inventoryManagement The InventoryManagement instance used for managing inventory items.
+     * @param dataReader DataReader instance to handle reading of data
+     * @param dataWriter DataWriter instance to handle writing of data
      */
     public PrescriptionManagement(InventoryManagement inventoryManagement, dataReader dataReader, dataWriter dataWriter) {
         dataProcessor = new DataProcessor(dataReader, dataWriter);
