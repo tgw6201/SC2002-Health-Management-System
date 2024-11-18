@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * The Administrator class provides the functionality for an administrator to manage various operations 
  * in a hospital system, including staff management, appointments, medication inventory, and replenishment requests.
- * The class interacts with various submodules like AppointmentManager, InventoryManagement, PrescriptionManagement, 
+ * The class interacts with various submodules like AppointmentManager, InventoryManager, PrescriptionManager, 
  * and StaffManagement to execute its functionalities.
  * 
  * @author Peter Loh
@@ -25,8 +25,10 @@ public class Administrator
     //Object pointer initialization
     private Scanner sc = new Scanner(System.in);
     private DataProcessor dataProcessor;
-    private InventoryManagement inventoryManagement;
-    private PrescriptionManagement prescriptionManagement;
+    private final InventoryManagement inventoryManagement;
+    private final PrescriptionManagement prescriptionManagement;
+    private final InventoryManager  inventoryManager;
+    private final PrescriptionManager prescriptionManager;
     private hospitalStaffManagement hospitalStaffManagement;
     private AppointmentManager appointment;
         
@@ -45,7 +47,9 @@ public class Administrator
         this.logger = logger;
         this.dataProcessor= new DataProcessor(reader,writer);
         this.inventoryManagement = new InventoryManagement(reader, writer);
-        this.prescriptionManagement =  new PrescriptionManagement(inventoryManagement, reader, writer);
+        this.prescriptionManagement = new PrescriptionManagement(inventoryManagement, reader, writer);
+        this.inventoryManager = new InventoryManager(inventoryManagement, inventoryManagement, reader, writer);
+        this.prescriptionManager = new PrescriptionManager(prescriptionManagement, prescriptionManagement, reader, writer);
         this.hospitalStaffManagement = new hospitalStaffManagement(reader,writer);
         this.appointment = new AppointmentManager(reader,writer);
     }
@@ -203,12 +207,12 @@ public class Administrator
         logger.log("User viewed staff members with a filter");
     }
     /**
-     * Views all appointment details by accessing the AppointmentManager and PrescriptionManagement systems.
+     * Views all appointment details by accessing the AppointmentManager and PrescriptionManager systems.
      */
     private void viewAppointmentsDetails() {
         System.out.println("Viewing all appointment details...");
         appointment.showAppointmentCsv();
-        prescriptionManagement.showAllAppointments();
+        prescriptionManager.showAllAppointments();
         logger.log("User viewed apppointment details");
     }
     /**
@@ -233,12 +237,12 @@ public class Administrator
             }
             switch (choice) {
                 case 1:
-                    inventoryManagement.viewItems();
+                    inventoryManager.viewItems();
                     break;
                 case 2:
                     System.out.println("Enter Item Name to check stock:");
                     String itemName = sc.nextLine();
-                    inventoryManagement.checkLowStockForItem(itemName);
+                    inventoryManager.checkLowStockForItem(itemName);
                     break;
                 case 3:
                     System.out.println("Enter Item Name to update threshold:");
@@ -251,7 +255,7 @@ public class Administrator
                         System.out.println("Invalid input. Please enter a valid threshold.");
                         continue;
                     }
-                    inventoryManagement.updateLowStockThreshold(itemNameThreshold, threshold);
+                    inventoryManager.updateLowStockThreshold(itemNameThreshold, threshold);
                     break;
                 case 4:
                     System.out.println("Enter Medicine Name to restock:");
@@ -264,7 +268,7 @@ public class Administrator
                         System.out.println("Invalid input. Please enter a valid quantity.");
                         continue;
                     }
-                    inventoryManagement.restockItemByName(medicineName, quantity);
+                    inventoryManager.restockItemByName(medicineName, quantity);
                     break;
                 case 5:
                     return; // Go back to the main menu
@@ -274,7 +278,7 @@ public class Administrator
         }
     }
     /**
-     * Approves replenishment requests for inventory items by calling appropriate methods from InventoryManagement.
+     * Approves replenishment requests for inventory items by calling appropriate methods from InventoryManager.
      */
     private void approveReplenishmentRequests() {
         logger.log("User entered replenishment approval menu");
@@ -296,12 +300,12 @@ public class Administrator
                     String requestID = sc.nextLine();
                     System.out.println("Enter Approver ID:");
                     String approvedBy = sc.nextLine();
-                    inventoryManagement.restockItemByRequestID(requestID, approvedBy);
+                    inventoryManager.restockItemByRequestID(requestID, approvedBy);
                     break;
                 case 2:
                     System.out.println("Enter Approver ID:");
                     String approvedByAll = sc.nextLine();
-                    inventoryManagement.handleAllPending(approvedByAll);
+                    inventoryManager.handleAllPending(approvedByAll);
                     break;
                 case 3:
                     return; // Go back to the main menu

@@ -1,12 +1,17 @@
 package Inventory;
 
 /**
- * The DispensingService interface provides methods for dispensing items in an inventory system.
+ * The {@code DispensingService} interface defines methods for dispensing items in an inventory system.
  * 
  * <p>
- * This interface includes methods to dispense items either by a unique appointment ID or 
- * directly by specifying the name and quantity of a medicine. Implementations of this 
- * interface should handle inventory adjustments and track dispensed items accordingly.
+ * This interface includes functionality for dispensing items based on appointment outcomes or by specifying
+ * medicine details such as name and quantity. Implementations of this interface should manage inventory
+ * adjustments, ensure accurate tracking of dispensed items, and maintain proper inventory levels.
+ * </p>
+ * 
+ * <p>
+ * Designed to integrate with inventory management systems, this interface ensures the dispensing process
+ * is streamlined and supports effective stock monitoring.
  * </p>
  * 
  * @author Sia Yi Zhen
@@ -35,4 +40,13 @@ public interface DispensingService {
      *         {@code false} if the quantity is unavailable or if there is an error in dispensing.
      */
     boolean dispenseItemByMedicineName(String medicineName, int quantity);
+    /**
+     * Displays all appointments related to the inventory dispensing system.
+     * 
+     * <p>
+     * This method lists all the appointments, including their associated details, to
+     * facilitate tracking and management of the dispensing process.
+     * </p>
+     */
+    void showAllAppointments();
 }

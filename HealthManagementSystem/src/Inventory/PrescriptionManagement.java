@@ -41,8 +41,9 @@ public class PrescriptionManagement implements DispensingService, PendingManagem
      * for stock management, linking inventory controls with prescription processing.
      *
      * @param inventoryManagement The InventoryManagement instance used for managing inventory items.
-     * @param dataReader DataReader instance to handle reading of data
-     * @param dataWriter DataWriter instance to handle writing of data
+     * @param dataReader DataReader instance to handle reading of data.
+     * @param dataWriter DataWriter instance to handle writing of data.
+     *
      */
     public PrescriptionManagement(InventoryManagement inventoryManagement, dataReader dataReader, dataWriter dataWriter) {
         dataProcessor = new DataProcessor(dataReader, dataWriter);
@@ -171,6 +172,7 @@ public class PrescriptionManagement implements DispensingService, PendingManagem
     /**
      * Displays all records from "AppointmentOutcomeRecord_List.csv", showing the outcome of each appointment.
      */
+    @Override
     public void showAllAppointments() {
         List<String[]> appointments = dataProcessor.readData("AppointmentOutcomeRecord_List.csv");
         System.out.println("\nDisplaying all appointment outcome records:\n");

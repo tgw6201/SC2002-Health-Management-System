@@ -26,6 +26,8 @@ public class Pharmacist {
     private final AppointmentOutcomeManager appointmentOutcomeManager;
     private final InventoryManagement inventoryManagement;
     private final PrescriptionManagement prescriptionManagement;
+    private final InventoryManager  inventoryManager;
+    private final PrescriptionManager prescriptionManager;
 
     /**
      * Constructs a Pharmacist object with the specified user information and data managers.
@@ -46,10 +48,12 @@ public class Pharmacist {
         this.appointmentOutcomeManager = new AppointmentOutcomeManager(reader, writer);
         this.inventoryManagement = new InventoryManagement(reader, writer);
         this.prescriptionManagement = new PrescriptionManagement(inventoryManagement, reader, writer);
+        this.inventoryManager = new InventoryManager(inventoryManagement, inventoryManagement, reader, writer);
+        this.prescriptionManager = new PrescriptionManager(prescriptionManagement, prescriptionManagement, reader, writer);
     }
 
     /**
-     * Displays the main menu for the pharmacist to perform various tasks.
+     * Displays the main menu for the pharmacist to perform various tasks. 
      * Logs the pharmacist's actions and processes menu choices in a loop.
      */
     public void menu() {
@@ -121,7 +125,7 @@ public class Pharmacist {
                 break;
             case 2:
                 logger.log("Pharmacist " + userID + " viewed all appointment outcome records");
-                prescriptionManagement.showAllAppointments();
+                prescriptionManager.showAllAppointments();
                 break;
             default:
                 System.out.println("Invalid option. Please enter 1 or 2.");
@@ -150,13 +154,13 @@ public class Pharmacist {
                 break;
             case 2:
                 logger.log("Pharmacist " + userID + " viewed all pending prescriptions before dispensing");
-                prescriptionManagement.viewPendingItems();
+                prescriptionManager.viewPendingItems();
 
                 System.out.println("Do you want to dispense all pending items? (yes/no): ");
                 String confirmation = sc.nextLine().trim().toLowerCase();
 
                 if ("yes".equals(confirmation)) {
-                    prescriptionManagement.handleAllPending(userID);
+                    prescriptionManager.handleAllPending(userID);
                     logger.log("Pharmacist " + userID + " dispensed all pending prescriptions");
                 }
                 break;
@@ -173,7 +177,7 @@ public class Pharmacist {
         System.out.println("Enter Appointment Outcome ID for dispensing:");
         String appointmentOutcomeID = sc.nextLine();
         logger.log("Pharmacist " + userID + " dispensing item by appointment outcome ID: " + appointmentOutcomeID);
-        prescriptionManagement.dispenseItemByAppointmentID(appointmentOutcomeID);
+        prescriptionManager.dispenseItemByAppointmentID(appointmentOutcomeID);
     }
 
     /**
@@ -194,7 +198,7 @@ public class Pharmacist {
         }
 
         logger.log("Pharmacist " + userID + " dispensing " + quantity + " of " + medicineName);
-        prescriptionManagement.dispenseItemByMedicineName(medicineName, quantity);
+        prescriptionManager.dispenseItemByMedicineName(medicineName, quantity);
     }
 
     /**
@@ -203,7 +207,7 @@ public class Pharmacist {
      */
     private void viewMedicationInventory() {
         logger.log("Pharmacist " + userID + " viewed medication inventory");
-        inventoryManagement.viewItems();
+        inventoryManager.viewItems();
     }
 
     /**
@@ -224,6 +228,6 @@ public class Pharmacist {
         }
 
         logger.log("Pharmacist " + userID + " submitted replenishment request for " + quantity + " of " + itemName);
-        inventoryManagement.submitReplenishmentRequest(itemName, quantity, userID);
+        inventoryManager.submitReplenishmentRequest(itemName, quantity, userID);
     }
 }

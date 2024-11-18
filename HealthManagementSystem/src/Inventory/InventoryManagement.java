@@ -43,8 +43,8 @@ public class InventoryManagement implements ReplenishmentService, PendingManagem
     /**
      * Constructs an InventoryManagement instance and loads all inventory data 
      * from the "Medicine_List.csv" file at initialization.
-     * @param dataReader DataReader instance to handle reading of data
-     * @param dataWriter DataWriter instance to handle writing of data
+     * @param dataReader DataReader instance to handle reading of data.
+     * @param dataWriter DataWriter instance to handle writing of data.
      */
     public InventoryManagement(dataReader dataReader, dataWriter dataWriter) {
         // Load all inventory data at initialization
@@ -55,6 +55,7 @@ public class InventoryManagement implements ReplenishmentService, PendingManagem
     /**
      * Displays all items in the inventory by reading from "Medicine_List.csv".
      */
+    @Override
     public void viewItems() {
         System.out.println("\nViewing Medicine Inventory.... \n");
         for (int i = 1; i < inventoryData.size(); i++) {
