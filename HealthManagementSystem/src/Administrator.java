@@ -48,8 +48,8 @@ public class Administrator
         this.dataProcessor= new DataProcessor(reader,writer);
         this.inventoryManagement = new InventoryManagement(reader, writer);
         this.prescriptionManagement = new PrescriptionManagement(inventoryManagement, reader, writer);
-        this.inventoryManager = new InventoryManager(inventoryManagement, reader, writer);
-        this.prescriptionManager = new PrescriptionManager(prescriptionManagement, reader, writer);
+        this.inventoryManager = new InventoryManager(inventoryManagement, inventoryManagement, reader, writer);
+        this.prescriptionManager = new PrescriptionManager(prescriptionManagement, prescriptionManagement, reader, writer);
         this.hospitalStaffManagement = new hospitalStaffManagement(reader,writer);
         this.appointment = new AppointmentManager(reader,writer);
     }

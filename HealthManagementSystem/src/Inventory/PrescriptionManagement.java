@@ -169,6 +169,7 @@ public class PrescriptionManagement implements DispensingService, PendingManagem
     /**
      * Displays all records from "AppointmentOutcomeRecord_List.csv", showing the outcome of each appointment.
      */
+    @Override
     public void showAllAppointments() {
         List<String[]> appointments = dataProcessor.readData("AppointmentOutcomeRecord_List.csv");
         System.out.println("\nDisplaying all appointment outcome records:\n");

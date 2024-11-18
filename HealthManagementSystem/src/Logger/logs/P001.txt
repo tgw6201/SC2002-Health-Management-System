@@ -34,3 +34,14 @@ Pharmacist P001 viewed appointment outcome record by ID: P1002P1002D1002111300 @
 Pharmacist P001 viewed all appointment outcome records @:2024/11/18 14:27:32
 Pharmacist P001 dispensing item by appointment outcome ID: P1002P1002D1002111300 @:2024/11/18 14:27:48
 Pharmacist P001 viewed medication inventory @:2024/11/18 14:28:05
+Pharmacist P001 logged in @:2024/11/18 15:05:03
+Pharmacist P001 viewed appointment outcome record by ID: P1002P1002D1002111300 @:2024/11/18 15:05:17
+Pharmacist P001 viewed all pending prescriptions before dispensing @:2024/11/18 15:05:35
+Pharmacist P001 dispensing item by appointment outcome ID: P1002P1002D1002111300 @:2024/11/18 15:05:55
+Pharmacist P001 viewed all pending prescriptions before dispensing @:2024/11/18 15:06:23
+Pharmacist P001 viewed all pending prescriptions before dispensing @:2024/11/18 15:06:36
+Pharmacist P001 dispensed all pending prescriptions @:2024/11/18 15:06:48
+Pharmacist P001 dispensing item by appointment outcome ID: P1002P1002D1002111300 @:2024/11/18 15:07:09
+Pharmacist P001 viewed medication inventory @:2024/11/18 15:07:12
+Pharmacist P001 submitted replenishment request for 200 of Paracetamol @:2024/11/18 15:07:27
+Pharmacist P001 logged out @:2024/11/18 15:07:46

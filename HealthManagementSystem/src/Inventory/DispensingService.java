@@ -35,4 +35,6 @@ public interface DispensingService {
      *         {@code false} if the quantity is unavailable or if there is an error in dispensing.
      */
     boolean dispenseItemByMedicineName(String medicineName, int quantity);
+
+    void showAllAppointments();
 }

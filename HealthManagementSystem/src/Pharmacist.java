@@ -48,12 +48,12 @@ public class Pharmacist {
         this.appointmentOutcomeManager = new AppointmentOutcomeManager(reader, writer);
         this.inventoryManagement = new InventoryManagement(reader, writer);
         this.prescriptionManagement = new PrescriptionManagement(inventoryManagement, reader, writer);
-        this.inventoryManager = new InventoryManager(inventoryManagement, reader, writer);
-        this.prescriptionManager = new PrescriptionManager(prescriptionManagement, reader, writer);
+        this.inventoryManager = new InventoryManager(inventoryManagement, inventoryManagement, reader, writer);
+        this.prescriptionManager = new PrescriptionManager(prescriptionManagement, prescriptionManagement, reader, writer);
     }
 
     /**
-     * Displays the main menu for the pharmacist to perform various tasks.
+     * Displays the main menu for the pharmacist to perform various tasks. 
      * Logs the pharmacist's actions and processes menu choices in a loop.
      */
     public void menu() {

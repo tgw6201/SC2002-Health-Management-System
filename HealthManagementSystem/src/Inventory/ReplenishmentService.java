@@ -24,6 +24,9 @@ package Inventory;
  */
 
 public interface ReplenishmentService {
+
+    void viewItems();
+
     /**
      * Submits a new replenishment request for an item.
      * This request includes the item name, quantity requested, and the ID of the individual 
