@@ -19,6 +19,6 @@ public class Haematologist {
     }
     public void menu()
     {
-        System.out.println("Reflection successful");
+        System.out.println("Reflection successful, Addition of new role done");
     }
 }
